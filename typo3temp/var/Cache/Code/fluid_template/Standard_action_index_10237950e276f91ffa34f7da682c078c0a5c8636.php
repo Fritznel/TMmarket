@@ -1,6 +1,6 @@
 <?php
 
-class Standard_action_index_cc47c43358e3118fd28e8ef73cfdfa21e2d21bc4 extends \TYPO3Fluid\Fluid\Core\Compiler\AbstractCompiledTemplate {
+class Standard_action_index_10237950e276f91ffa34f7da682c078c0a5c8636 extends \TYPO3Fluid\Fluid\Core\Compiler\AbstractCompiledTemplate {
 
 public function getLayoutName(\TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface $renderingContext) {
 $self = $this; 
@@ -211,6 +211,7 @@ $arguments26['typoscriptObjectPath'] = 'lib.rootline';
 $output25 .= TYPO3\CMS\Fluid\ViewHelpers\CObjectViewHelper::renderStatic($arguments26, $renderChildrenClosure27, $renderingContext);
 
 $output25 .= '
+
 <div class="container maincontent"><!-- Content Container -->
   <div class="row">
     <div class="col-md-8">
@@ -286,34 +287,19 @@ $output36 .= TYPO3\CMS\Fluid\ViewHelpers\CObjectViewHelper::renderStatic($argume
 
 $output36 .= '
 <div class="container maincontent"><!-- Content Container -->
-  ';
-// Rendering ViewHelper TYPO3\CMS\Fluid\ViewHelpers\CObjectViewHelper
-$renderChildrenClosure40 = function() use ($renderingContext, $self) {
-return NULL;
-};
-$arguments39 = array();
-$arguments39['typoscriptObjectPath'] = NULL;
-$arguments39['data'] = NULL;
-$arguments39['currentValueKey'] = NULL;
-$arguments39['table'] = '';
-$arguments39['typoscriptObjectPath'] = 'lib.rootline';
-
-$output36 .= TYPO3\CMS\Fluid\ViewHelpers\CObjectViewHelper::renderStatic($arguments39, $renderChildrenClosure40, $renderingContext);
-
-$output36 .= '
   <div class="row">
     <div class="col-md-12">
       <hr>
         ';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\Format\RawViewHelper
-$renderChildrenClosure42 = function() use ($renderingContext, $self) {
-$array43 = array (
-);return $renderingContext->getVariableProvider()->getByPath('content0', $array43);
+$renderChildrenClosure40 = function() use ($renderingContext, $self) {
+$array41 = array (
+);return $renderingContext->getVariableProvider()->getByPath('content0', $array41);
 };
-$arguments41 = array();
-$arguments41['value'] = NULL;
+$arguments39 = array();
+$arguments39['value'] = NULL;
 
-$output36 .= isset($arguments41['value']) ? $arguments41['value'] : $renderChildrenClosure42();
+$output36 .= isset($arguments39['value']) ? $arguments39['value'] : $renderChildrenClosure40();
 
 $output36 .= '
     </div>
@@ -327,24 +313,22 @@ return $output36;
  */
 public function render(\TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface $renderingContext) {
 $self = $this;
-$output44 = '';
-
-$output44 .= '
-';
+$output42 = '';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\LayoutViewHelper
-$renderChildrenClosure46 = function() use ($renderingContext, $self) {
+$renderChildrenClosure44 = function() use ($renderingContext, $self) {
 return NULL;
 };
-$arguments45 = array();
-$arguments45['name'] = NULL;
-$arguments45['name'] = 'Standard';
+$arguments43 = array();
+$arguments43['name'] = NULL;
+$arguments43['name'] = 'Standard';
 
-$output44 .= htmlspecialchars(TYPO3Fluid\Fluid\ViewHelpers\LayoutViewHelper::renderStatic($arguments45, $renderChildrenClosure46, $renderingContext), ENT_QUOTES);
+$output42 .= htmlspecialchars(TYPO3Fluid\Fluid\ViewHelpers\LayoutViewHelper::renderStatic($arguments43, $renderChildrenClosure44, $renderingContext), ENT_QUOTES);
 
-$output44 .= '
+$output42 .= '
+
 ';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\SectionViewHelper
-$renderChildrenClosure48 = function() use ($renderingContext, $self) {
+$renderChildrenClosure46 = function() use ($renderingContext, $self) {
 return '
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
@@ -356,63 +340,63 @@ return '
 </div>
 ';
 };
-$arguments47 = array();
-$arguments47['name'] = NULL;
-$arguments47['name'] = 'Jumbotron';
+$arguments45 = array();
+$arguments45['name'] = NULL;
+$arguments45['name'] = 'Jumbotron';
 
-$output44 .= '';
+$output42 .= '';
 
-$output44 .= '
+$output42 .= '
 ';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\SectionViewHelper
-$renderChildrenClosure50 = function() use ($renderingContext, $self) {
-$output51 = '';
+$renderChildrenClosure48 = function() use ($renderingContext, $self) {
+$output49 = '';
 
-$output51 .= '
+$output49 .= '
 <div class="container maincontent"><!-- Content Container -->
 <!-- Content Bereich Product Kategorien -->
   <div class="row">
     <div class="col-md-4">
       ';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\Format\RawViewHelper
-$renderChildrenClosure53 = function() use ($renderingContext, $self) {
-$array54 = array (
-);return $renderingContext->getVariableProvider()->getByPath('content1', $array54);
+$renderChildrenClosure51 = function() use ($renderingContext, $self) {
+$array52 = array (
+);return $renderingContext->getVariableProvider()->getByPath('content1', $array52);
 };
-$arguments52 = array();
-$arguments52['value'] = NULL;
+$arguments50 = array();
+$arguments50['value'] = NULL;
 
-$output51 .= isset($arguments52['value']) ? $arguments52['value'] : $renderChildrenClosure53();
+$output49 .= isset($arguments50['value']) ? $arguments50['value'] : $renderChildrenClosure51();
 
-$output51 .= '
+$output49 .= '
       </div>
     <div class="col-md-4">
       ';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\Format\RawViewHelper
-$renderChildrenClosure56 = function() use ($renderingContext, $self) {
-$array57 = array (
-);return $renderingContext->getVariableProvider()->getByPath('content3', $array57);
+$renderChildrenClosure54 = function() use ($renderingContext, $self) {
+$array55 = array (
+);return $renderingContext->getVariableProvider()->getByPath('content3', $array55);
 };
-$arguments55 = array();
-$arguments55['value'] = NULL;
+$arguments53 = array();
+$arguments53['value'] = NULL;
 
-$output51 .= isset($arguments55['value']) ? $arguments55['value'] : $renderChildrenClosure56();
+$output49 .= isset($arguments53['value']) ? $arguments53['value'] : $renderChildrenClosure54();
 
-$output51 .= '
+$output49 .= '
       </div>
     <div class="col-md-4">
       ';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\Format\RawViewHelper
-$renderChildrenClosure59 = function() use ($renderingContext, $self) {
-$array60 = array (
-);return $renderingContext->getVariableProvider()->getByPath('content2', $array60);
+$renderChildrenClosure57 = function() use ($renderingContext, $self) {
+$array58 = array (
+);return $renderingContext->getVariableProvider()->getByPath('content2', $array58);
 };
-$arguments58 = array();
-$arguments58['value'] = NULL;
+$arguments56 = array();
+$arguments56['value'] = NULL;
 
-$output51 .= isset($arguments58['value']) ? $arguments58['value'] : $renderChildrenClosure59();
+$output49 .= isset($arguments56['value']) ? $arguments56['value'] : $renderChildrenClosure57();
 
-$output51 .= '
+$output49 .= '
     </div>
   </div>
   <!-- Content Bereich ueber ganze Breite -->
@@ -420,16 +404,16 @@ $output51 .= '
     <div class="col-md-12">
       ';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\Format\RawViewHelper
-$renderChildrenClosure62 = function() use ($renderingContext, $self) {
-$array63 = array (
-);return $renderingContext->getVariableProvider()->getByPath('content0', $array63);
+$renderChildrenClosure60 = function() use ($renderingContext, $self) {
+$array61 = array (
+);return $renderingContext->getVariableProvider()->getByPath('content0', $array61);
 };
-$arguments61 = array();
-$arguments61['value'] = NULL;
+$arguments59 = array();
+$arguments59['value'] = NULL;
 
-$output51 .= isset($arguments61['value']) ? $arguments61['value'] : $renderChildrenClosure62();
+$output49 .= isset($arguments59['value']) ? $arguments59['value'] : $renderChildrenClosure60();
 
-$output51 .= '
+$output49 .= '
     </div>
   </div>
   <!-- Example row of columns -->
@@ -437,58 +421,58 @@ $output51 .= '
     <div class="col-md-3">
       ';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\Format\RawViewHelper
-$renderChildrenClosure65 = function() use ($renderingContext, $self) {
-$array66 = array (
-);return $renderingContext->getVariableProvider()->getByPath('content5', $array66);
+$renderChildrenClosure63 = function() use ($renderingContext, $self) {
+$array64 = array (
+);return $renderingContext->getVariableProvider()->getByPath('content5', $array64);
 };
-$arguments64 = array();
-$arguments64['value'] = NULL;
+$arguments62 = array();
+$arguments62['value'] = NULL;
 
-$output51 .= isset($arguments64['value']) ? $arguments64['value'] : $renderChildrenClosure65();
+$output49 .= isset($arguments62['value']) ? $arguments62['value'] : $renderChildrenClosure63();
 
-$output51 .= '
+$output49 .= '
     </div>
     <div class="col-md-3">
       ';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\Format\RawViewHelper
-$renderChildrenClosure68 = function() use ($renderingContext, $self) {
-$array69 = array (
-);return $renderingContext->getVariableProvider()->getByPath('content6', $array69);
+$renderChildrenClosure66 = function() use ($renderingContext, $self) {
+$array67 = array (
+);return $renderingContext->getVariableProvider()->getByPath('content6', $array67);
 };
-$arguments67 = array();
-$arguments67['value'] = NULL;
+$arguments65 = array();
+$arguments65['value'] = NULL;
 
-$output51 .= isset($arguments67['value']) ? $arguments67['value'] : $renderChildrenClosure68();
+$output49 .= isset($arguments65['value']) ? $arguments65['value'] : $renderChildrenClosure66();
 
-$output51 .= '
+$output49 .= '
     </div>
     <div class="col-md-3">
       ';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\Format\RawViewHelper
-$renderChildrenClosure71 = function() use ($renderingContext, $self) {
-$array72 = array (
-);return $renderingContext->getVariableProvider()->getByPath('content7', $array72);
+$renderChildrenClosure69 = function() use ($renderingContext, $self) {
+$array70 = array (
+);return $renderingContext->getVariableProvider()->getByPath('content7', $array70);
 };
-$arguments70 = array();
-$arguments70['value'] = NULL;
+$arguments68 = array();
+$arguments68['value'] = NULL;
 
-$output51 .= isset($arguments70['value']) ? $arguments70['value'] : $renderChildrenClosure71();
+$output49 .= isset($arguments68['value']) ? $arguments68['value'] : $renderChildrenClosure69();
 
-$output51 .= '
+$output49 .= '
     </div>
     <div class="col-md-3">
       ';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\Format\RawViewHelper
-$renderChildrenClosure74 = function() use ($renderingContext, $self) {
-$array75 = array (
-);return $renderingContext->getVariableProvider()->getByPath('content8', $array75);
+$renderChildrenClosure72 = function() use ($renderingContext, $self) {
+$array73 = array (
+);return $renderingContext->getVariableProvider()->getByPath('content8', $array73);
 };
-$arguments73 = array();
-$arguments73['value'] = NULL;
+$arguments71 = array();
+$arguments71['value'] = NULL;
 
-$output51 .= isset($arguments73['value']) ? $arguments73['value'] : $renderChildrenClosure74();
+$output49 .= isset($arguments71['value']) ? $arguments71['value'] : $renderChildrenClosure72();
 
-$output51 .= '
+$output49 .= '
     </div>
   </div>
   <!-- Content Bereich ueber ganze Breite -->
@@ -501,162 +485,148 @@ $output51 .= '
     </div>
   </div>
 ';
-return $output51;
+return $output49;
 };
-$arguments49 = array();
-$arguments49['name'] = NULL;
-$arguments49['name'] = 'Multicolumn';
+$arguments47 = array();
+$arguments47['name'] = NULL;
+$arguments47['name'] = 'Multicolumn';
 
-$output44 .= '';
+$output42 .= '';
 
-$output44 .= '
+$output42 .= '
 
 ';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\SectionViewHelper
-$renderChildrenClosure77 = function() use ($renderingContext, $self) {
-$output78 = '';
+$renderChildrenClosure75 = function() use ($renderingContext, $self) {
+$output76 = '';
 
-$output78 .= '
+$output76 .= '
 <!-- Rootline -->
 ';
 // Rendering ViewHelper TYPO3\CMS\Fluid\ViewHelpers\CObjectViewHelper
-$renderChildrenClosure80 = function() use ($renderingContext, $self) {
+$renderChildrenClosure78 = function() use ($renderingContext, $self) {
 return NULL;
 };
-$arguments79 = array();
-$arguments79['typoscriptObjectPath'] = NULL;
-$arguments79['data'] = NULL;
-$arguments79['currentValueKey'] = NULL;
-$arguments79['table'] = '';
-$arguments79['typoscriptObjectPath'] = 'lib.rootline';
+$arguments77 = array();
+$arguments77['typoscriptObjectPath'] = NULL;
+$arguments77['data'] = NULL;
+$arguments77['currentValueKey'] = NULL;
+$arguments77['table'] = '';
+$arguments77['typoscriptObjectPath'] = 'lib.rootline';
 
-$output78 .= TYPO3\CMS\Fluid\ViewHelpers\CObjectViewHelper::renderStatic($arguments79, $renderChildrenClosure80, $renderingContext);
+$output76 .= TYPO3\CMS\Fluid\ViewHelpers\CObjectViewHelper::renderStatic($arguments77, $renderChildrenClosure78, $renderingContext);
 
-$output78 .= '
+$output76 .= '
+
 <div class="container maincontent"><!-- Content Container -->
   <div class="row">
     <div class="col-md-8">
       ';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\Format\RawViewHelper
-$renderChildrenClosure82 = function() use ($renderingContext, $self) {
-$array83 = array (
-);return $renderingContext->getVariableProvider()->getByPath('content1', $array83);
+$renderChildrenClosure80 = function() use ($renderingContext, $self) {
+$array81 = array (
+);return $renderingContext->getVariableProvider()->getByPath('content1', $array81);
 };
-$arguments81 = array();
-$arguments81['value'] = NULL;
+$arguments79 = array();
+$arguments79['value'] = NULL;
 
-$output78 .= isset($arguments81['value']) ? $arguments81['value'] : $renderChildrenClosure82();
+$output76 .= isset($arguments79['value']) ? $arguments79['value'] : $renderChildrenClosure80();
 
-$output78 .= '
+$output76 .= '
     </div>
     <div class="col-md-4">
       ';
 // Rendering ViewHelper TYPO3\CMS\Fluid\ViewHelpers\CObjectViewHelper
-$renderChildrenClosure85 = function() use ($renderingContext, $self) {
+$renderChildrenClosure83 = function() use ($renderingContext, $self) {
 return NULL;
 };
-$arguments84 = array();
-$arguments84['typoscriptObjectPath'] = NULL;
-$arguments84['data'] = NULL;
-$arguments84['currentValueKey'] = NULL;
-$arguments84['table'] = '';
-$arguments84['typoscriptObjectPath'] = 'lib.subnavigation';
+$arguments82 = array();
+$arguments82['typoscriptObjectPath'] = NULL;
+$arguments82['data'] = NULL;
+$arguments82['currentValueKey'] = NULL;
+$arguments82['table'] = '';
+$arguments82['typoscriptObjectPath'] = 'lib.subnavigation';
 
-$output78 .= TYPO3\CMS\Fluid\ViewHelpers\CObjectViewHelper::renderStatic($arguments84, $renderChildrenClosure85, $renderingContext);
+$output76 .= TYPO3\CMS\Fluid\ViewHelpers\CObjectViewHelper::renderStatic($arguments82, $renderChildrenClosure83, $renderingContext);
 
-$output78 .= '
+$output76 .= '
       ';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\Format\RawViewHelper
-$renderChildrenClosure87 = function() use ($renderingContext, $self) {
-$array88 = array (
-);return $renderingContext->getVariableProvider()->getByPath('content0', $array88);
+$renderChildrenClosure85 = function() use ($renderingContext, $self) {
+$array86 = array (
+);return $renderingContext->getVariableProvider()->getByPath('content0', $array86);
 };
-$arguments86 = array();
-$arguments86['value'] = NULL;
+$arguments84 = array();
+$arguments84['value'] = NULL;
 
-$output78 .= isset($arguments86['value']) ? $arguments86['value'] : $renderChildrenClosure87();
+$output76 .= isset($arguments84['value']) ? $arguments84['value'] : $renderChildrenClosure85();
 
-$output78 .= '
+$output76 .= '
    </div>
   </div>
 ';
-return $output78;
+return $output76;
 };
-$arguments76 = array();
-$arguments76['name'] = NULL;
-$arguments76['name'] = '2spalten';
+$arguments74 = array();
+$arguments74['name'] = NULL;
+$arguments74['name'] = '2spalten';
 
-$output44 .= '';
+$output42 .= '';
 
-$output44 .= '
+$output42 .= '
 ';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\SectionViewHelper
-$renderChildrenClosure90 = function() use ($renderingContext, $self) {
-$output91 = '';
+$renderChildrenClosure88 = function() use ($renderingContext, $self) {
+$output89 = '';
 
-$output91 .= '
+$output89 .= '
 <!-- Rootline -->
 ';
 // Rendering ViewHelper TYPO3\CMS\Fluid\ViewHelpers\CObjectViewHelper
-$renderChildrenClosure93 = function() use ($renderingContext, $self) {
+$renderChildrenClosure91 = function() use ($renderingContext, $self) {
 return NULL;
 };
-$arguments92 = array();
-$arguments92['typoscriptObjectPath'] = NULL;
-$arguments92['data'] = NULL;
-$arguments92['currentValueKey'] = NULL;
-$arguments92['table'] = '';
-$arguments92['typoscriptObjectPath'] = 'lib.rootline';
+$arguments90 = array();
+$arguments90['typoscriptObjectPath'] = NULL;
+$arguments90['data'] = NULL;
+$arguments90['currentValueKey'] = NULL;
+$arguments90['table'] = '';
+$arguments90['typoscriptObjectPath'] = 'lib.rootline';
 
-$output91 .= TYPO3\CMS\Fluid\ViewHelpers\CObjectViewHelper::renderStatic($arguments92, $renderChildrenClosure93, $renderingContext);
+$output89 .= TYPO3\CMS\Fluid\ViewHelpers\CObjectViewHelper::renderStatic($arguments90, $renderChildrenClosure91, $renderingContext);
 
-$output91 .= '
+$output89 .= '
 <div class="container maincontent"><!-- Content Container -->
-  ';
-// Rendering ViewHelper TYPO3\CMS\Fluid\ViewHelpers\CObjectViewHelper
-$renderChildrenClosure95 = function() use ($renderingContext, $self) {
-return NULL;
-};
-$arguments94 = array();
-$arguments94['typoscriptObjectPath'] = NULL;
-$arguments94['data'] = NULL;
-$arguments94['currentValueKey'] = NULL;
-$arguments94['table'] = '';
-$arguments94['typoscriptObjectPath'] = 'lib.rootline';
-
-$output91 .= TYPO3\CMS\Fluid\ViewHelpers\CObjectViewHelper::renderStatic($arguments94, $renderChildrenClosure95, $renderingContext);
-
-$output91 .= '
   <div class="row">
     <div class="col-md-12">
       <hr>
         ';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\Format\RawViewHelper
-$renderChildrenClosure97 = function() use ($renderingContext, $self) {
-$array98 = array (
-);return $renderingContext->getVariableProvider()->getByPath('content0', $array98);
+$renderChildrenClosure93 = function() use ($renderingContext, $self) {
+$array94 = array (
+);return $renderingContext->getVariableProvider()->getByPath('content0', $array94);
 };
-$arguments96 = array();
-$arguments96['value'] = NULL;
+$arguments92 = array();
+$arguments92['value'] = NULL;
 
-$output91 .= isset($arguments96['value']) ? $arguments96['value'] : $renderChildrenClosure97();
+$output89 .= isset($arguments92['value']) ? $arguments92['value'] : $renderChildrenClosure93();
 
-$output91 .= '
+$output89 .= '
     </div>
   </div>
 ';
-return $output91;
+return $output89;
 };
-$arguments89 = array();
-$arguments89['name'] = NULL;
-$arguments89['name'] = '1spalte';
+$arguments87 = array();
+$arguments87['name'] = NULL;
+$arguments87['name'] = '1spalte';
 
-$output44 .= '';
+$output42 .= '';
 
-$output44 .= '
+$output42 .= '
 ';
 
-return $output44;
+return $output42;
 }
 
 

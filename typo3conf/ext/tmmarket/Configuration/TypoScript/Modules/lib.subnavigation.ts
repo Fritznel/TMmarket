@@ -1,14 +1,15 @@
 lib.subnavigation = HMENU
 lib.subnavigation {
 
-wrap = <div class="card"><div class="card-block"><ul class="nav nav-pills nav-stacked mysubnav">|</ul></div></div>
+	stdWrap.wrap = <div class="card"><div class="card-block"><ul class="nav nav-pills nav-stacked mysubnav">|</ul></div></div>
+    stdWrap.required = 1
+
 	entryLevel = 1
 
 	1 = TMENU
 	1 {
 		NO = 1
 		NO {
-
 			wrapItemAndSub = <li class="nav-item">|</li>
 			stdWrap.htmlSpecialChars = 1
 			ATagTitle.field = description // subtitle // title
@@ -27,5 +28,4 @@ wrap = <div class="card"><div class="card-block"><ul class="nav nav-pills nav-st
 
 	3 < .2
 	4 < .2
-
 }

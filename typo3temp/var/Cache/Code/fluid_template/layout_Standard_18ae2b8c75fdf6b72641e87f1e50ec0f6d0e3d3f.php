@@ -1,6 +1,6 @@
 <?php
 
-class layout_Standard_e7a67b4f319e0d10c62ff8b41e66d6dd99efa6ba extends \TYPO3Fluid\Fluid\Core\Compiler\AbstractCompiledTemplate {
+class layout_Standard_18ae2b8c75fdf6b72641e87f1e50ec0f6d0e3d3f extends \TYPO3Fluid\Fluid\Core\Compiler\AbstractCompiledTemplate {
 
 public function getLayoutName(\TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface $renderingContext) {
 $self = $this; 
@@ -194,7 +194,6 @@ $renderChildrenClosure19 = function() use ($renderingContext, $self) {
 $output23 = '';
 
 $output23 .= '
-
   ';
 // Rendering ViewHelper TYPO3Fluid\Fluid\ViewHelpers\RenderViewHelper
 $renderChildrenClosure25 = function() use ($renderingContext, $self) {

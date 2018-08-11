@@ -8,12 +8,12 @@ lib.rootline {
   1{
     NO = 1
     NO {
-    allWrap = <li class="breadcrumb-item">|</li>
-    stdWrap.htmlSpecialChars = 1
-    ATagTitle.field = description // subtitle // title
-}
-    ACT < .NO
-    ACT {
+        allWrap = <li class="breadcrumb-item">|</li>
+        stdWrap.htmlSpecialChars = 1
+        ATagTitle.field = description // subtitle // title
+       }
+    CUR < .NO
+    CUR {
       allWrap = <li class="breadcrumb-item active">|</li>
       doNotLinkIt = 1
     }

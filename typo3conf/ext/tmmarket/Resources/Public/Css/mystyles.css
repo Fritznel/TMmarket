@@ -305,38 +305,3 @@ ul.tx-indexedsearch-browsebox, .tx-indexedsearch-browsebox li {
 .frame-bluebox a, .frame-bluebox a:visited { color: #ff0; }
 
 .frame-greybox { background: #ccc; }
-
-
-#rootline li{
-	list-style:none;
-	float:left;
-	margin:0 7px 0 0px;
-}
-
-#rootline li.navigationMsg{ color:#FF6700;}
-
-
-
-#rootline li.navigation{
-	padding-right: 16px;
-	background:url(path/to/my/image) no-repeat right; /* list-style between elements */
-}
-
-#rootline li.navigation a{
-	color:#000000;
-	text-decoration:none;
-}
-
-#rootline li.navigation a:hover{
-	color:#D60075;
-	text-decoration:underline;
-}
-
-#rootline li.navigationActif{
-	color:#D60075;
-	text-decoration:none;
-	font-weight:bold;
-	font-style:italic;
-}
-
-			.clearBoth{clear:both;}
