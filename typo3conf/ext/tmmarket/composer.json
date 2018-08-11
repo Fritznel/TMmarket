@@ -1,0 +1,28 @@
+{
+    "name": "froemer/tmmarket",
+    "type": "typo3-cms-extension",
+    "description": "",
+    "authors": [
+        {
+            "name": "F. R\u00f6mer",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "typo3/cms-core": "^8.7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "FRoemer\\Tmmarket\\": "Classes"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "FRoemer\\Tmmarket\\Tests\\": "Tests"
+        }
+    },
+    "replace": {
+        "tmmarket": "self.version",
+        "typo3-ter/tmmarket": "self.version"
+    }
+}

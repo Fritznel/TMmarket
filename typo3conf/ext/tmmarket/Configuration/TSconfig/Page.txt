@@ -1,0 +1,27 @@
+TCEFORM.tt_content.header_layout {
+altLabels{
+0= h2 - SubjectTitle
+1= h1 - PageTitle
+2=
+3= h3 - Title 3. order
+4= h4 - Title 4. order
+5= h5 - Title 5. order
+}
+removeItems = 2,5
+}
+
+TCEFORM.tt_content.frame_class.addItems {
+greybox = graue Box
+blauebox = blue Box
+}
+TCEFORM.tt_content.layout.addItems {
+5 = My Own layout
+}
+###RTE KONFIGURIERE
+RTE.default.preset = full
+
+### default language backeend
+mod.SHARED {
+defaultLanguageFlag = fr
+defaultLanguageLabel = francais
+}

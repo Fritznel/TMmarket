@@ -1,0 +1,84 @@
+
+<f:layout name="Standard"/>
+<f:section name="Jumbotron">
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Kaba Lavichè!</h1>
+    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+  </div>
+</div>
+</f:section>
+<f:section name="Multicolumn">
+<div class="container maincontent"><!-- Content Container -->
+<!-- Content Bereich Product Kategorien -->
+  <div class="row">
+    <div class="col-md-4">
+      <f:format.raw>{content1}</f:format.raw>
+      </div>
+    <div class="col-md-4">
+      <f:format.raw>{content3}</f:format.raw>
+      </div>
+    <div class="col-md-4">
+      <f:format.raw>{content2}</f:format.raw>
+    </div>
+  </div>
+  <!-- Content Bereich ueber ganze Breite -->
+  <div class="row">
+    <div class="col-md-12">
+      <f:format.raw>{content0}</f:format.raw>
+    </div>
+  </div>
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col-md-3">
+      <f:format.raw>{content5}</f:format.raw>
+    </div>
+    <div class="col-md-3">
+      <f:format.raw>{content6}</f:format.raw>
+    </div>
+    <div class="col-md-3">
+      <f:format.raw>{content7}</f:format.raw>
+    </div>
+    <div class="col-md-3">
+      <f:format.raw>{content8}</f:format.raw>
+    </div>
+  </div>
+  <!-- Content Bereich ueber ganze Breite -->
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Content Bereich über ganze Breite</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi cum deserunt est eum expedita illo iste
+        labore modi molestias nulla porro, repudiandae, similique voluptatibus? Dolorem eaque id repellat rerum
+        veritatis!</p>
+    </div>
+  </div>
+</f:section>
+
+<f:section name="2spalten">
+<!-- Rootline -->
+<f:cObject typoscriptObjectPath="lib.rootline" />
+<div class="container maincontent"><!-- Content Container -->
+  <div class="row">
+    <div class="col-md-8">
+      <f:format.raw>{content1}</f:format.raw>
+    </div>
+    <div class="col-md-4">
+      <f:cObject typoscriptObjectPath="lib.subnavigation" />
+      <f:format.raw>{content0}</f:format.raw>
+   </div>
+  </div>
+</f:section>
+<f:section name="1spalte">
+<!-- Rootline -->
+<f:cObject typoscriptObjectPath="lib.rootline" />
+<div class="container maincontent"><!-- Content Container -->
+  <f:cObject typoscriptObjectPath="lib.rootline" />
+  <div class="row">
+    <div class="col-md-12">
+      <hr>
+        <f:format.raw>{content0}</f:format.raw>
+    </div>
+  </div>
+</f:section>

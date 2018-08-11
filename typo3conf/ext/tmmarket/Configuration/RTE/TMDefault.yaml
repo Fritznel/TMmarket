@@ -1,0 +1,72 @@
+# Load default processing options
+imports:
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Processing.yaml" }
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Base.yaml" }
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Plugins.yaml" }
+
+# Add configuration for the editor
+# For complete documentation see http://docs.ckeditor.com/#!/api/CKEDITOR.config
+editor:
+  config:
+    stylesSet:
+    - { name:"Jumbotron H1", element: "h1", attribute: { class:"display-3"}}
+    format_tags: "p;h1;h2;h3;h4;h5;pre"
+
+    toolbarGroups:
+    - { name: 'document', groups: [ 'mode', 'document', 'doctools' ] }
+    - { name: 'clipboard', groups: [ 'clipboard', 'undo' ] }
+    - { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] }
+    - { name: 'forms', groups: [ 'forms' ] }
+    - { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] }
+    - '/'
+    - { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] }
+    - { name: 'insert', groups: [ 'insert' ] }
+    - { name: 'links', groups: [ 'links' ] }
+    - '/'
+    - { name: 'styles', groups: [ 'styles' ] }
+    - { name: 'colors', groups: [ 'colors' ] }
+    - { name: 'tools', groups: [ 'tools' ] }
+    - { name: 'others', groups: [ 'others' ] }
+    - { name: 'about', groups: [ 'about' ] }
+
+    justifyClasses:
+      - text-left
+      - text-center
+      - text-right
+      - text-justify
+
+    extraPlugins:
+      - justify
+
+    removePlugins:
+      - image
+
+    removeButtons:
+      - Templates
+      - Find
+      - Form
+      - Radio
+      - TextField
+      - Textarea
+      - Select
+      - Button
+      - ImageButton
+      - HiddenField
+      - CreateDiv
+      - Anchor
+      - BidiRtl
+      - BidiLtr
+      - Flash
+      - PageBreak
+      - Iframe
+      - ShowBlocks
+      - About
+      - Replace
+      - SelectAll
+      - Checkbox
+      - CopyFormatting
+      - Strike
+      - JustifyRight
+      - Save
+      - NewPage
+      - Preview

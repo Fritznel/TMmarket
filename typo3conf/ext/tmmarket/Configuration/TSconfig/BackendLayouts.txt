@@ -1,0 +1,118 @@
+mod.web_layout.BackendLayouts {
+  jumbotron {
+    title = Jumbotron
+    icon = EXT:tmmarket/Resources/Public/Icons/BackendLayouts/jumbotron.png
+    config {
+      backend_layout {
+        colCount = 12
+        rowCount = 3
+        rows {
+          1 {
+            columns {
+              1 {
+                name = Linke Spalte
+                colspan = 4
+                colPos = 1
+              }
+              2 {
+                name = Mittlere Spalte
+                colspan = 4
+                colPos = 3
+              }
+              3 {
+                name = Rechte Spalte
+                colspan = 4
+                colPos = 2
+              }
+            }
+          }
+          2 {
+            columns {
+              1 {
+                name = Sortiment
+                colspan = 12
+                colPos = 0
+              }
+            }
+          }
+          3 {
+            columns {
+              1 {
+                name = Spalte 1
+                colspan = 3
+                colPos = 5
+              }
+              2 {
+                name = Spalte 2
+                colspan = 3
+                colPos = 6
+              }
+              3 {
+                name = Spalte 3
+                colspan = 3
+                colPos = 7
+              }
+              4 {
+                name = Spalte 4
+                colspan = 3
+                colPos = 8
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+mod.web_layout.BackendLayouts {
+  2spalten {
+    title = 2 Spalten
+    icon = EXT:tmmarket/Resources/Public/Icons/BackendLayouts/2spalten.png
+    config {
+      backend_layout {
+        colCount = 3
+        rowCount = 1
+        rows {
+          1 {
+            columns {
+              1 {
+                name = Product
+                colspan = 1
+                colPos = 1
+              }
+              2 {
+                name = Angebot
+                colspan = 2
+                colPos = 0
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+mod.web_layout.BackendLayouts {
+  1spalte {
+    title = 1 Spalte
+    icon = EXT:tmmarket/Resources/Public/Icons/BackendLayouts/1spalte.png
+    config {
+      backend_layout {
+        colCount = 1
+        rowCount = 1
+        rows {
+          1 {
+            columns {
+              1 {
+                name = Main Content
+                colPos = 0
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

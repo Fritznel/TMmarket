@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3locallangExt>
+  <data type="array">
+    <languageKey index="es" type="array">
+			<label index="no_docs">No hay documentos abiertos en este momento.</label>
+			<label index="open_docs">Documentos abiertos</label>
+			<label index="recent_docs">Documentos recientemente utilizados</label>
+			<label index="toolbaritem">Documentos abiertos y recientemente utilizados</label>
+		</languageKey>
+  </data>
+</T3locallangExt>

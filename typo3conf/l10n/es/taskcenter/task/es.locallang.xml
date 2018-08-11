@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3locallangExt>
+  <data type="array">
+    <languageKey index="es" type="array">
+			<label index="error-access"/>
+			<label index="error_header"/>
+			<label index="error_no-instance"/>
+			<label index="lCancel">Cancelar</label>
+			<label index="lCreate">Crear</label>
+			<label index="lDelete">Borrar</label>
+			<label index="lDelete_warning">¿Seguro que desea borrar este usuario?</label>
+			<label index="lHomedir">Directorio personal</label>
+			<label index="listSeparator_Groups">__Grupos:__</label>
+			<label index="lNone">[ninguno]</label>
+			<label index="lReplyAddress">La dirección de respuesta es la de su email</label>
+			<label index="lSelf">Yo mismo</label>
+			<label index="lSendNew">Enviar mensaje</label>
+			<label index="lSendReply">Contestar mensaje</label>
+			<label index="lUpdate">Actualizar</label>
+			<label index="mlang_tabs_tab"/>
+			<label index="no-tasks"/>
+			<label index="taskcenter-about"/>
+			<label index="taskcenter-admin"/>
+			<label index="taskcenter-adminheader"/>
+			<label index="task_description"/>
+			<label index="task_overview"/>
+		</languageKey>
+  </data>
+</T3locallangExt>
