@@ -7,6 +7,8 @@ $typo3InstallDir = PATH_site;
 return array(
     'EBT\\ExtensionBuilder\\' => array($typo3InstallDir . 'typo3conf/ext/extension_builder/Classes'),
     'FRoemer\\Tmmarket\\' => array($typo3InstallDir . 'typo3conf/ext/tmmarket/Classes'),
-    'Netresearch\\RteCKEditorImage\\' => array($typo3InstallDir . 'typo3conf/ext/t3x-rte_ckeditor_image/Classes'),
+    'JambageCom\\Div2007\\' => array($typo3InstallDir . 'typo3conf/ext/div2007/Classes'),
+    'JambageCom\\MigrationCore\\' => array($typo3InstallDir . 'typo3conf/ext/migration_core/Classes'),
+    'JambageCom\\Tsparser\\' => array($typo3InstallDir . 'typo3conf/ext/tsparser/Classes'),
     'PhpParser\\' => array($typo3InstallDir . 'typo3conf/ext/extension_builder/Resources/Private/PHP/PHP-Parser/lib/PhpParser'),
 );

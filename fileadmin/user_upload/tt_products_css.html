@@ -1,0 +1,429 @@
+tt_products template
+ITEM_LIST_TEMPLATE
+This subpart is used to display the regular list of products. It's also used by search-results.
+
+vorherige Seite ###BROWSE_LINKS### nächste Seite
+###CATEGORY_TITLE###
+###PRODUCT_IMAGE###
+###PRODUCT_TITLE###
+###PRODUCT_SUBTITLE###
+
+Preis: ###PRICE_TAX### EUR
+Detailansicht
+Stück:
+###FIELD_QTY###
+vorherige Seite ###BROWSE_LINKS### nächste Seite
+
+
+ITEM_SINGLE_DISPLAY
+This subpart is used to display single products.
+###PRODUCT_TITLE###
+###PRODUCT_SUBTITLE###
+
+###PRODUCT_IMAGE###
+###PRODUCT_NOTE###
+Preis:	###PRICE_TAX### EUR
+(enthaltene MwSt: ###PRICE_ONLY_TAX### EUR)
+Stück:
+###FIELD_QTY###
+Fragen zum Artikel
+zurück zur Liste
+!------------------------------------------------------ Categories: menu ---------------------------------------------------------------->
+###ITEM_SINGLE_PRE_HTML### ###LIST_LINK### ###ITEM_SINGLE_POST_HTML###
+###ITEM_SINGLE_PRE_HTML### ###LIST_LINK### ###ITEM_SINGLE_POST_HTML###
+Suchen nach:
+###SWORDS###
+
+Es wurde leider kein passendes Produkt gefunden.
+
+BASKET_TEMPLATE
+Subpart used to display the content of the shopping basket. The product list part has the exact same features as the regular LIST_ITEM_TEMPLATE subpart. In addition there's a number of fields used for delivery and payment information.
+Warenkorb
+Stück	 	Produkt	Preis	Gesamt
+
+###FIELD_QTY###
+###PRODUCT_IMAGE###	###PRODUCT_TITLE###	###PRICE_TAX### EUR	###PRICE_TOTAL_TAX### EUR
+Um einen Artikel aus dem Warenkorb zu entfernen, geben Sie im Feld "Stück" eine "0" ein und klicken Sie dann auf "Warenkorb aktualisieren".
+Versandart & Bezahlung
+Bitte wählen Sie eine Versandart
+
+###SHIPPING_SELECTOR###
+Versandkosten: ###PRICE_SHIPPING_TAX### EUR
+Die Ware wird per Postpaket versendet.
+Bitte überweisen Sie den Rechnungsbetrag nach Erhalt der Rechung auf unser Konto.
+
+Die Ware wird im Büro abgeholt.
+Die Bezahlung erfolgt bar bei Abholung der Ware.
+Es fallen keine Versandkosten an.
+
+Die Ware wird per Nachnahme versendet.
+Die Bezahlung erfolgt bar bei Entgegennahme der Ware
+Gesamtpreis: ###PRICE_TOTAL_TAX### EUR
+Gesamtpreis ohne MwSt: ###PRICE_TOTAL_NO_TAX### EUR
+Enthaltene MwSt: ###PRICE_TOTAL_ONLY_TAX### EUR
+
+
+
+
+
+
+
+
+BASKET_TEMPLATE_MINPRICE_ERROR
+
+
+
+If the minimum price in basket has not been reached this subpart is displayed on the data entry and finalization pages
+
+Es müssen mindestens Waren für 20 Euro gekauft werden.
+BASKET_INFO_TEMPLATE
+Subpart used if the GPvar "products_info" was set.
+This is normally used to let people enter address information separately from the real basket.
+Exact same features as BASKET_TEMPLATE.
+
+Eingabe Ihrer Daten
+Bitte geben Sie hier Ihren Namen und die Adresse ein. Die bestellten Artikel werden an diese Adresse geschickt. Falls die Bestellung an eine andere Stelle geliefert werden soll, tragen Sie diese Adresse bitte in das Feld Lieferanschrift ein.
+
+Felder mit * müssen ausgefüllt werden!
+Rechnungsadresse
+Name/Unternehmen: *
+###PERSON_NAME###
+
+Straße: *
+###PERSON_ADDRESS###
+
+PLZ/Stadt: *
+###PERSON_ZIP###
+
+###PERSON_CITY###
+
+Land: *
+###PERSON_COUNTRY_CODE###
+Email: *
+###PERSON_EMAIL###
+
+Telefon: *
+###PERSON_TELEPHONE###
+
+Rechnungsanschrift:
+Name/Unternehmen:
+###PERSON_NAME###
+Adresse:
+###PERSON_ADDRESS_DISPLAY###
+Email:
+###PERSON_EMAIL###
+Telefon:
+###PERSON_TELEPHONE###
+abweichende Lieferanschrift
+Falls die Bestellung nicht an die Rechnungsadresse geschickt werden soll, tragen Sie bitte hier die Lieferadresse ein. In das Emailfeld können Sie für das Bestätigungsschreiben eine weitere Emailadresse eingeben.
+
+Kontaktperson:
+###DELIVERY_NAME###
+
+Straße:
+###DELIVERY_ADDRESS###
+
+PLZ/Stadt:
+###DELIVERY_ZIP###
+
+###DELIVERY_CITY###
+
+Land:
+###DELIVERY_COUNTRY###
+
+Email:
+###DELIVERY_EMAIL###
+
+Telefon:
+###DELIVERY_TELEPHONE###
+Bemerkungen
+Bitte tragen Sie hier Ihre Fragen zur Bestellung ein.
+
+
+###DELIVERY_NOTE###
+Allgemeine Geschäftsbedingungen
+Hiermit bestätige ich, dass ich die Allgemeinen Geschäftsbedingungen
+gelesen und akzeptiert habe:
+
+*
+Ich bin mit den allgemeinen Geschäftsbedingungen einverstanden
+
+###IMAGE_BASKET###
+###NUMBER_GOODSTOTAL### Produkt(e)
+###PRICE_GOODSTOTAL_TAX### EUR
+zum Warenkorb
+###IMAGE_BASKET###
+Keine Produkte im Warenkorb.
+BASKET_PAYMENT_TEMPLATE
+Subpart used if the GPvar "products_payment" was set. This displays the final information about the order before the payment is initiated. Exact same features as BASKET_TEMPLATE
+Übersicht über Ihre Bestellung
+Stück	 	Produkt	Preis	Gesamt
+###FIELD_QTY###	###PRODUCT_IMAGE###	###PRODUCT_TITLE###	###PRICE_TAX### EUR	###PRICE_TOTAL_TAX### EUR
+Rechnungsadresse
+Name/Unternehmen:	###PERSON_NAME###
+Adresse:	###PERSON_ADDRESS_DISPLAY###
+###PERSON_ZIP### ###PERSON_CITY###
+###PERSON_COUNTRY###
+Telefon:	###PERSON_TELEPHONE###
+Email:	###PERSON_EMAIL###
+(An diese Email-Adresse wird die Bestätigung
+Ihrer Bestellung geschickt!)
+Lieferanschrift
+Kontakt:	###DELIVERY_NAME###
+Adresse:	###DELIVERY_ADDRESS_DISPLAY###
+###DELIVERY_ZIP### ###DELIVERY_CITY###
+###DELIVERY_COUNTRY###
+Telefon:	###DELIVERY_TELEPHONE###
+Email:	###DELIVERY_EMAIL###
+Bemerkungen
+###DELIVERY_NOTE_DISPLAY###
+Versand und Bezahlung
+Versandart:	###SHIPPING_TITLE###
+Versandkosten:	###PRICE_SHIPPING_TAX###
+Bezahlungsart:	###PAYMENT_TITLE###
+
+GESAMTPREIS: ###PRICE_TOTAL_TAX### EUR
+(enthaltene MwSt: ###PRICE_TOTAL_ONLY_TAX### EUR)
+Die Ware wird per Postpaket versendet.
+Bitte überweisen Sie den Rechnungsbetrag nach Erhalt der Rechung auf unser Konto.
+
+Die Ware wird im Büro abgeholt.
+Die Bezahlung erfolgt bar bei Abholung der Ware.
+Es fallen keine Versandkosten an.
+
+Die Ware wird per Nachnahme versendet.
+Die Bezahlung erfolgt bar bei Entgegennahme der Ware
+
+Bestätigung über Ihre Bestellung
+Vielen Dank für Ihre Bestellung bei xxx.
+Die genauen Angaben zu Ihrer Bestellung finden Sie nochmals aufgeführt.
+
+Rechnungs- und Versandinformationen:
+Bestellnummer: ###ORDER_UID###
+Bestelldatum: ###ORDER_DATE###
+
+Ihre Rückfragen zur Bestellung können schneller bearbeitet werden, wenn Sie uns die Bestellnummer mitteilen.
+
+Die Bestätigung der Bestellung ist an die Email-Adresse
+###CUSTOMER_RECIPIENTS_EMAIL### geschickt worden.
+Drucken Sie diese Seite für Ihre Unterlagen aus.
+
+Zahlungsart
+Sie haben folgende Zahlungsart gewählt: Vorauskasse
+Die Ware wird per Postpaket versendet.
+Bitte überweisen Sie den Rechnungsbetrag auf unser Konto.
+Sie haben folgende Zahlungsart gewählt: Selbstabholer:
+
+Die Ware wird im Büro abgeholt.
+Die Bezahlung erfolgt bar bei Abholung der Ware.
+Es fallen keine Versandkosten an.
+
+Sie haben folgende Zahlungsart gewählt: Nachnahme:
+Die Waren werden Ihnen zugesandt und Sie bezahlen bei Erhalt.
+Übersicht über Ihre Produkte
+Stück	 	Produkt	Preis	Gesamt
+###FIELD_QTY###	###PRODUCT_IMAGE###	###PRODUCT_TITLE###	###PRICE_TAX### EUR	###PRICE_TOTAL_TAX### EUR
+Rechnungsadresse
+Name/Unternehmen:	###PERSON_NAME###
+Adresse:	###PERSON_ADDRESS_DISPLAY###
+###PERSON_ZIP### ###PERSON_CITY###
+###PERSON_COUNTRY###
+Telefon:	###PERSON_TELEPHONE###
+Email:	###PERSON_EMAIL###
+Lieferanschrift
+Kontakt:	###DELIVERY_NAME###
+Adresse:	###DELIVERY_ADDRESS_DISPLAY###
+###DELIVERY_ZIP### ###DELIVERY_CITY###
+###DELIVERY_COUNTRY###
+Telefon:	###DELIVERY_TELEPHONE###
+Email:	###DELIVERY_EMAIL###
+Bemerkungen
+###DELIVERY_NOTE_DISPLAY###
+Versand und Bezahlung
+Versandart:	###SHIPPING_TITLE###
+Versandkosten:	###PRICE_SHIPPING_TAX###
+Bezahlungsart:	###PAYMENT_TITLE###
+
+GESAMTPREIS: ###PRICE_TOTAL_TAX### EUR
+(enthaltene MwSt: ###PRICE_TOTAL_ONLY_TAX### EUR)
+Die Ware wird per Postpaket versendet.
+Bitte überweisen Sie den Rechnungsbetrag nach Erhalt der Rechung auf unser Konto.
+Die Ware wird im Büro abgeholt.
+Die Bezahlung erfolgt bar bei Abholung.
+Es fallen keine Versandkosten an.
+
+Die Ware wird per Nachnahme versendet.
+Die Bezahlung erfolgt bar bei Entgegennahme der Ware
+Wichtige Informationen
+Die Auslieferung
+Die Auslieferung: Die bestellten Artikel werden in der Regel innerhalb einer Woche nach Eingang der Bestellung ausgeliefert. Die gelieferte Ware bleibt bis zur vollständigen Bezahlung Eigentum von xxx.
+
+Widerspruchsrecht
+Bei Fernabsatzverträgen hat der Käufer das Recht, den Kaufvertrag ohne Begründung innerhalb von 2 Wochen ab Eingang der Ware zu widerrufen. Der Käufer ist in diesem Fall verpflichtet, die Ware an den Absender zurückzusenden. Bis zu einem Warenwert von 40,- Euro trägt der Käufer die Kosten der Rücksendung. Dieses Widerrufsrecht gilt nicht bei Lieferung von Zeitungen oder Zeitschriften.
+
+Nicht beschädigte oder falsch ausgelieferte Ware kann innerhalb von 14 Tagen zurückgegeben werden. Davon ausgeschlossen sind DVD's und Videos.
+
+Erfüllungsort und Gerichtsstand ist xxx.
+
+Ihre Ansprechpartnerin
+xxx xxx
+xxxstraße x
+xxx Wien
+
+Telefon: xxx
+Fax: xxx
+Email: xxx@example.com
+
+BASKET_TEMPLATE_EMPTY
+If the basket is empty this subpart is displayed
+Ihr Warenkorb ist noch leer.
+BASKET_REQUIRED_INFO_MISSING
+If payment is initiated but the required information fields are not filled in correctly, this happens.
+Leider ist ein Problem aufgetreten
+###ERROR_DETAILS###
+Bitte gehen Sie zurück und kontrollieren Sie Ihre Eingaben.
+EMAIL_PLAINTEXT_TEMPLATE
+Subpart used as template for the order-emails. First line is used as subject for the mail.
+
+Bestellung auf www.beispiel.at / Bestellnr: ####ORDER_UID###
+
+************************************************************************
+BESTELLBESTÄTIGUNG
+************************************************************************
+
+Vielen Dank für Ihre Bestellung auf www.meinedomaine.at.
+Diese Benachrichtigung erfolgt automatisch und gilt als Nachweis, dass
+Ihre Bestellung eingegangen ist. Der Kaufvertrag im rechtlichen Sinne
+kommt erst zustande, wenn wir Ihre Bestellung verschicken, dafür
+gegebenenfalls eine Rechnung erstellt und Sie die Lieferung
+angenommen haben.
+
+Die genauen Angaben zu Ihrer Bestellung finden Sie nochmals
+aufgeführt.
+
+Bestelldatum : ###ORDER_DATE###
+Bestellnummer: ###ORDER_UID###
+
+Ihre Rückfragen zur Bestellung können schneller bearbeitet
+werden, wenn Sie uns die Bestellnummer mitteilen.
+
+************************************************************************
+RECHNUNGS- UND VERSANDINFORMATIONEN
+************************************************************************
+Rechnungsadresse:
+###PERSON_NAME###
+###PERSON_ADDRESS_DISPLAY###
+###PERSON_ZIP### ###PERSON_CITY###
+###PERSON_COUNTRY###
+
+E-Mail: ###PERSON_EMAIL###
+Telefon: ###PERSON_TELEPHONE###
+
+------------------------------------------------------------------------
+
+Lieferadresse:
+###DELIVERY_NAME###
+###DELIVERY_ADDRESS_DISPLAY###
+###DELIVERY_ZIP### ###DELIVERY_CITY###
+###DELIVERY_COUNTRY###
+
+E-Mail: ###DELIVERY_EMAIL###
+Telefon: ###DELIVERY_TELEPHONE###
+
+------------------------------------------------------------------------
+
+Bemerkung:
+###DELIVERY_NOTE_DISPLAY###
+
+------------------------------------------------------------------------
+
+
+***************************************************************************
+GESAMTSUMMER UND VERSAND
+***************************************************************************
+
+Versandart:		###SHIPPING_TITLE###
+Versandkosten:		###PRICE_SHIPPING_TAX###
+Bezahlungsart:		###PAYMENT_TITLE###
+
+Gesamtsumme dieser Bestellung:	###PRICE_TOTAL_TAX### EUR
+enthaltene MwSt: ###PRICE_TOTAL_ONLY_TAX###
+
+
+
+Die Ware wird per Postpaket versendet.
+Bitte überweisen Sie den Rechnungsbetrag nach Erhalt der Rechung auf unser Konto.
+
+
+
+Die Ware wird im Büro abgeholt. Die Bezahlung erfolgt bar bei Abholung der Ware.
+Es fallen keine Versandkosten an.
+
+
+
+Die Ware wird per Nachnahme versendet.
+Die Bezahlung erfolgt bar bei Entgegennahme der Ware.
+
+
+
+***************************************************************************
+EINZELHEITEN DER BESTELLUNG
+***************************************************************************
+Bestellte Artikel:
+
+
+
+Artikelname:			###PRODUCT_TITLE###
+Preis:				###PRICE_TAX### EUR
+Stück:				###FIELD_QTY###
+Preis insgesamt:		###PRICE_TOTAL_TAX### EUR
+
+
+
+
+*****************************************************************************
+AUSLIEFERUNG
+*****************************************************************************
+
+Die Auslieferung: Die bestellten Artikel werden in der Regel innerhalb
+einer Woche nach Eingang der Bestellung ausgeliefert. Die gelieferte Ware
+bleibt bis zur vollständigen Bezahlung Eigentum von xxx.
+
+
+*****************************************************************************
+WIDERSPRUCHSRECHT
+*****************************************************************************
+
+Bei Fernabsatzverträgen hat der Käufer das Recht, den Kaufvertrag ohne
+Begründung innerhalb von 2 Wochen ab Eingang der Ware zu widerrufen.
+Der Käufer ist in diesem Fall verpflichtet, die Ware an den Absender
+zurückzusenden. Bis zu einem Warenwert von 40,- Euro trägt der Käufer die
+Kosten der Rücksendung. Dieses Widerrufsrecht gilt nicht bei Lieferung
+von Zeitungen oder Zeitschriften.
+
+Nicht beschädigte oder falsch ausgelieferte Ware kann innerhalb von 14 Tagen
+zurückgegeben werden. Davon ausgeschlossen sind DVD's und Videos.
+
+Erfüllungsort und Gerichtsstand ist xxx.
+
+
+Ihre Ansprechpartnerin:
+xxx xxx
+xxxstraße x
+1050 Wien
+
+Telefon:		xxx
+Fax:			xxx
+E-Mail:		xxx@example.com
+URL:		www.xxx.at
+************************************************************************
+
+
+
+
+
+		###ITEM_SINGLE_PRE_HTML###
+
+			###LIST_LINK###
+
+		###ITEM_SINGLE_POST_HTML###

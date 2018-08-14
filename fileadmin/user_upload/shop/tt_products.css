@@ -1,0 +1,717 @@
+/*
+-----------------------------------------------------------------------------------------------
+     ALLGEMEINES ZEUGS
+-----------------------------------------------------------------------------------------------
+*/
+
+.clearer {
+	clear: both;
+}
+
+.required-star {
+	color: #AED91A;
+}
+
+input:focus, textarea:focus, input:active, textarea:active, option:focus, option:active {
+	background-color:#EFEFEF;
+	font-weight:normal;
+}
+
+.tt-products h1 {
+	color:#AED91A;
+	font-size:16px;
+	font-weight:bold;
+	margin-bottom: 25px;
+}
+
+.tt-products h3 {
+	color: #999999;
+	font-size:12px;
+	margin-bottom:12px;
+	margin-top:12px;
+}
+
+.tt-products a:link { text-decoration: none; color: #999999;}
+.tt-products a:visited { text-decoration: none; color: #999999;}
+.tt-products a:hover { text-decoration: none; color: #AED91A;}
+.tt-products a:active { text-decoration: none; color: #AED91A;}
+
+/*
+-----------------------------------------------------------------------------------------------
+     KATEGORIE NAVIGATION
+-----------------------------------------------------------------------------------------------
+*/
+
+.tx-ttproducts-pi1-listcat-wrap {
+	margin-left: 15px;
+}
+
+#katnav {
+	border: 1px #CCCCCC dotted;
+	padding: 6px;
+	margin-bottom: 12px;
+}
+
+#katnav-titel {
+	font-weight: bold;
+	color: #666666;
+	font-size: 12px;
+}
+
+.tt_products_item_catlist {
+ 	margin:0em;
+    padding:0em;
+}
+
+ul#cat1 {
+	list-style-type: none;
+	list-style-image:none;
+	margin: 0px;
+	padding: 0px;
+	position:relative;
+	left: -6px;
+}
+
+ul#cat1 ul li {
+	list-style-type: none;
+	list-style-image:none;
+	margin: 0px;
+	padding: 0px;
+	position:relative;
+	left: -9px;
+}
+
+ul#cat1 li {
+	line-height: 18px;
+}
+
+ul#cat1 a {
+	display: block;
+	background-image:url(icons/arrow-right-off.gif);
+	background-repeat:no-repeat;
+	background-position: 5px 4px;
+	padding-left: 17px;	
+}
+
+ul#cat1 a:link { color:#414141; text-decoration:none }
+ul#cat1 a:visited { color:#414141; text-decoration:none  }
+ul#cat1 a:hover { color:#AED91A; text-decoration:none  }
+ul#cat1 a:active { color:#AED91A; text-decoration:none  }
+
+ul#cat1 a.act {
+	display: block;
+	background-image:url(icons/arrow-right-on.gif);
+	background-repeat:no-repeat;
+	background-position: 5px 4px;
+	padding-left: 17px;
+} 
+
+ul#cat1 a.act:link { color:#AED91A; text-decoration:none }
+ul#cat1 a.act:visited { color:#AED91A; text-decoration:none  }
+ul#cat1 a.act:hover { color:#AED91A; text-decoration:none  }
+ul#cat1 a.act:active { color:#AED91A; text-decoration:none  }
+
+
+/*
+-----------------------------------------------------------------------------------------------
+     LIST VIEW
+-----------------------------------------------------------------------------------------------
+*/
+
+.shop-list-item {
+	padding-bottom: 20px;
+}
+
+
+h2.shop-list-category-title {
+	border-bottom:1px dotted #AED91A;
+	color:#000000;
+	font-size:14px;
+	font-weight:bold;
+	margin-bottom: 10px;
+	padding-bottom:5px;
+}
+
+h3.shop-list-product-title {
+	color: #AED91A;
+	font-size:12px;
+	font-weight:bold;
+	margin: 0px;
+	margin-bottom: 10px;
+}
+
+h3.shop-list-product-title a:link { text-decoration: none; color: #AED91A;}
+h3.shop-list-product-title a:visited { text-decoration: none; color: #AED91A; }
+h3.shop-list-product-title a:hover { text-decoration: none; color: #AED91A; }
+h3.shop-list-product-title a:active { text-decoration: none; color: #AED91A; }
+
+p.shop-list-product-subtitle {
+	margin: 0px;
+	margi-bottom: 10px;
+}
+
+.shop-list-product-img {
+	float: left;
+	width: 120px;
+	/*border: 1px solid #e9e9e9;*/
+	text-align:center;
+}
+
+.shop-list-product-information {
+	float: right;
+	width: 320px;
+}
+
+.shop-list-price {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.shop-list-price-numbers {
+	font-weight:bold;
+
+}
+
+.shop-list-choose-anzahl {
+	margin-bottom: 10px;
+}
+
+.shop-list-input-qty {
+	border: 1px solid #bdbdbd;
+	margin-left: 3px;
+	margin-right: 3px;
+	text-align: right;
+	width: 30px;
+}
+
+.shop-list-submit {
+	border: 1px solid #bdbdbd;
+	background-color:#f4f4f4;
+}
+
+h4.shop-list-button-detailansicht {
+	margin: 0px;
+	margin-bottom: 10px;
+	font-size: 11px;
+	background-image:url(icons/arrow-right-on.gif);
+	background-repeat:no-repeat;
+	background-position: 0px 5px;
+	padding-left:10px;
+}	
+
+h4.shop-list-button-detailansicht a:link { text-decoration: none; color: #AED91A;}
+h4.shop-list-button-detailansicht a:visited { text-decoration: none; color: #AED91A;}
+h4.shop-list-button-detailansicht a:hover { text-decoration: none; color: #AED91A;}
+h4.shop-list-button-detailansicht a:active { text-decoration: none; color: #AED91A;}
+
+
+.shop-list-page_navigation {
+	font-size: 12px;
+	text-align: right;
+	margin-bottom: 10px;
+	color: #AED91A;
+}
+
+.shop-list-page_navigation a:link { text-decoration: none; color: #CCCCCC;}
+.shop-list-page_navigation a:visited { text-decoration: none; color: #CCCCCC;}
+.shop-list-page_navigation a:hover { text-decoration: none; color: #AED91A;}
+.shop-list-page_navigation a:active { text-decoration: none; color: #AED91A;}
+
+
+/*
+-----------------------------------------------------------------------------------------------
+     SINGLE VIEW
+-----------------------------------------------------------------------------------------------
+*/
+
+.shop-single-product-title {
+	border-bottom:1px dotted #AED91A;
+	color:#AED91A;
+	font-size:14px;
+	font-weight:bold;
+	margin-bottom: 15px;
+	padding-bottom:5px;
+}
+
+.shop-single img {
+	margin-bottom: 5px;
+}
+
+.shop-single-product-img {
+	margin-bottom: 15px;
+}	
+
+p.shop-single-product-subtitle {
+	margin: 0px;
+	margin-bottom: 15px;
+	font-style:oblique;
+}
+
+.shop-single-product-beschreibung {
+	margin-bottom: 20px;
+}
+
+table.shop-single-price-table {
+	font-size: 12px;
+	border: none;
+	border-collapse:collapse;
+	margin-bottom: 15px;
+}
+
+.shop-single-price-table td {
+	padding-right: 5px;
+	font-size: 12px;
+}
+
+.shop-single-enthaltene-mwst {
+	font-size: 11px;
+}
+
+.shop-single-input-qty {
+	border: 1px solid #bdbdbd;
+	margin-left: 3px;
+	margin-right: 3px;
+	text-align: right;
+	width: 30px;
+}
+
+.shop-single-submit {
+	border: 1px solid #bdbdbd;
+	background-color:#f4f4f4;
+}
+
+.shop-single-backtolist {
+	font-size: 11px;
+	background-image:url(icons/arrow-right-on.gif);
+	background-repeat:no-repeat;
+	background-position: 0px 5px;
+	padding-left:10px;
+	float: right;
+	margin-top: 15px;
+	margin-bottom: 25px;
+}
+
+.shop-single-email-frage {
+	font-size: 11px;
+	background-image:url(icons/arrow-right-on.gif);
+	background-repeat:no-repeat;
+	background-position: 0px 5px;
+	padding-left:10px;	
+	margin-top: 15px;
+	float: left;
+	margin-bottom: 25px;
+
+}
+
+/*
+-----------------------------------------------------------------------------------------------
+     MINI BASKET
+-----------------------------------------------------------------------------------------------
+*/
+
+.shop-minibasket-image {
+	float: left;
+	padding: 5px;
+	width: 38px;
+	height: 32px
+
+}
+
+.shop-minibasket-infozone {
+	float: left;
+	padding-top: 5px;
+	font-size: 11px;
+	width: 120px;
+}
+
+.shop-minibasket-link-basket {
+	margin-top: 5px;
+	background-image:url(icons/arrow-right-on.gif);
+	background-repeat:no-repeat;
+	background-position: 0px 5px;
+	padding-left:10px;
+}
+
+.shop-minibasket-warenwert {
+	font-weight:bold;
+}
+
+/*
+-----------------------------------------------------------------------------------------------
+     BASKET
+-----------------------------------------------------------------------------------------------
+*/
+
+table.shop-basket-product-table {
+	border: 1px solid #bdbdbd;
+	border-collapse:collapse;
+	witdh: 100%;
+}
+
+.shop-basket-product-table td {
+	border: 1px solid #bdbdbd;
+	padding: 5px;
+}
+
+.shop-basket-product-table-headercell {
+	background-color: #f9f9f9;
+}
+
+.shop-basket-product-table-headercell {
+	background-color:#f9f9f9;
+	color:#666666;
+	font-weight:bold;
+}
+
+.shop-basket-product-table-cell-1 input {
+	border: 1px solid #bdbdbd;
+	margin-left: 3px;
+	margin-right: 3px;
+	text-align: right;
+	width: 30px;
+}
+
+.shop-basket-product-table-cell-1 {
+	width: 40px;
+}
+
+.shop-basket-product-table-cell-2 {
+	width: 60px;
+}
+
+.shop-basket-product-table-cell-3 {
+	font-weight:bold;
+}
+
+.shop-basket .shop-basket-product-table-cell-3 a:link { text-decoration: none; color: #AED91A; font-weight: bold;}
+.shop-basket .shop-basket-product-table-cell-3 a:visited { text-decoration: none; color: #AED91A; font-weight: bold;}
+.shop-basket .shop-basket-product-table-cell-3 a:hover { text-decoration: none; color: #AED91A; font-weight: bold;}
+.shop-basket .shop-basket-product-table-cell-3 a:active { text-decoration: none; color: #AED91A; font-weight: bold;}
+
+
+.shop-basket-product-table-cell-4 {
+	width: 75px;
+}
+
+.shop-basket-product-table-cell-5 {
+	width: 75px;
+}
+
+.shop-basket-howtodelete-txt {
+	margin-top: 10px;
+}
+
+.shop-basket-titel-versandart {
+
+}
+
+h2.shop-basket-titel-versandart, h2.shop-basket-titel-gesamtbetrag {
+	border-bottom:1px dotted #AED91A;
+	color:#000000;
+	font-size:14px;
+	font-weight:bold;
+	margin-bottom: 10px;
+	padding-bottom:5px;
+	margin-top: 20px;
+}
+
+.shop-basket-shipping-selector {
+	margin-bottom: 10px;
+}
+
+.shop-basket-shipping-price {
+	font-weight:bold;
+
+}
+
+.shop-basket-price-total-1 {
+	color: #AED91A;
+	font-size:14px;
+	font-weight: bold;
+}
+
+.shop-basket-price-total-2 {
+	font-size: 11px;
+	margin-top: 10px;
+}
+
+.shop-basket-price-total-3 {
+	font-size: 11px;
+}
+
+.shop-basket-submit-buttons {
+	margin-top: 20px;
+}
+
+.shop-basket input[type=submit] {
+	border: 1px solid #bdbdbd;
+	background-color:#f4f4f4;
+}
+
+/*
+-----------------------------------------------------------------------------------------------
+     BASKET INFO
+-----------------------------------------------------------------------------------------------
+*/
+
+h2.shop-info-ranschrift-title, h2.shop-info-title, h2.shop-info-delivery-address-title, h2.shop-info-delivery-notes-title, h2.shop-info-trading-conditions-title {
+	border-bottom:1px dotted #AED91A;
+	color:#000000;
+	font-size:14px;
+	font-weight:bold;
+	margin-bottom: 10px;
+	padding-bottom:5px;
+	margin-top: 20px;
+}
+
+.shop-info-start-txt {
+
+}
+
+/* billing adress */
+
+.shop-info-billing-address label {
+	width: 130px;
+	float: left;
+}
+
+.shop-info-billing-address input[type=text] {
+	border: 1px solid #bdbdbd;
+	margin-bottom: 10px;
+	width: 300px;
+	height: 16px;
+}
+
+.shop-info-billing-country {
+	margin-bottom: 10px;
+}
+
+.shop-info-delivery-address-info {
+	margin-bottom: 20px;
+}
+
+/* info login */
+
+.shop-info-billing-address-feuser dt {
+	width: 130px;
+	float: left;
+}
+
+.shop-info-billing-address-feuser dd {
+	margin-bottom: 10px;
+	font-weight:bold;
+}
+
+.shop-info-billing-address-feuser dl {
+	margin-bottom: 20px;
+}
+
+/* delivery adress */
+
+
+.shop-info-delivery-address label {
+	width: 130px;
+	float: left;
+}
+
+.shop-info-delivery-address input[type=text] {
+	border: 1px solid #bdbdbd;
+	margin-bottom: 10px;
+	width: 300px;
+	height: 16px;
+}
+
+/* delivery notes */
+
+.shop-info-delivery-notes-input {
+	border:1px solid #BDBDBD;
+	margin-bottom: 20px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+/* trading conditions */
+
+.shop-info-trading-conditions {
+	margin-bottom: 20px;
+}
+
+.shop-info-trading-conditions a:link { text-decoration: none; color: #999999;}
+.shop-info-trading-conditions a:visited { text-decoration: none; color: #999999;}
+.shop-info-trading-conditions a:hover { text-decoration: none; color: #AED91A;}
+.shop-info-trading-conditions a:active { text-decoration: none; color: #AED91A;}
+
+.shop-info-trading-conditions-check {
+	float: left;
+	position:relative;
+	top: -3px;
+}
+
+.shop-info-form-control input[type=submit] {
+	border: 1px solid #bdbdbd;
+	background-color:#f4f4f4;
+}
+
+/*
+-----------------------------------------------------------------------------------------------
+     BASKET INFO MISSING
+-----------------------------------------------------------------------------------------------
+*/
+
+.shop-basket-required-info-missing h2 {
+	border-bottom:1px dotted #AED91A;
+	color:#000000;
+	font-size:14px;
+	font-weight:bold;
+	margin-bottom: 10px;
+	padding-bottom:5px;
+	margin-top: 20px;
+}
+
+.shop-basket-required-info-missing-details {
+	margin-bottom: 15px;
+	color: #AED91A;
+}
+
+.shop-basket-required-info-missing-back {
+	border: 1px solid #bdbdbd;
+	background-color:#f4f4f4;
+	margin-top: 20px;
+}
+
+/*
+-----------------------------------------------------------------------------------------------
+     BASKET PAYMENT
+-----------------------------------------------------------------------------------------------
+*/
+
+.shop-basket-payment h2 {
+	border-bottom:1px dotted #AED91A;
+	color:#000000;
+	font-size:14px;
+	font-weight:bold;
+	margin-bottom: 10px;
+	padding-bottom:5px;
+	margin-top: 20px;
+}
+
+.shop-basket-payment a:link { text-decoration: none; color: #999999;}
+.shop-basket-payment a:visited { text-decoration: none; color: #999999;}
+.shop-basket-payment a:hover { text-decoration: none; color: #AED91A;}
+.shop-basket-payment a:active { text-decoration: none; color: #AED91A;}
+
+.shop-basket-payment .shop-basket-product-table-cell-3 {
+	color: #AED91A;
+}
+
+table.shop-payment-billing-address-table {
+	border: none;
+	border-collapse:collapse;
+	margin-bottom: 0px;
+}
+
+.shop-payment-billing-address-table td {
+	padding-right: 5px;
+	padding-bottom: 10px;
+	
+	font-size: 12px;
+}
+
+.shop-payment-billing-address-cell-label {
+	font-weight: bold;
+	width: 150px;
+}
+
+.shop-payment-billing-address-email-infotxt {
+	font-size: 11px;
+}
+
+.shop-payment-billing-final-price {
+	color: #AED91A;
+	font-size:14px;
+	font-weight: bold;
+}
+
+.shop-payment-billing-note {
+	margin-bottom: 30px;
+	
+}
+
+.shop-basket-payment input[type=submit] {
+	margin-top: 20px;
+	border: 1px solid #bdbdbd;
+	background-color:#f4f4f4;
+}
+
+/*
+-----------------------------------------------------------------------------------------------
+     CONFIRMATION
+-----------------------------------------------------------------------------------------------
+*/
+.shop-confirmation a:link { text-decoration: none; color: #999999;}
+.shop-confirmation a:visited { text-decoration: none; color: #999999;}
+.shop-confirmation a:hover { text-decoration: none; color: #AED91A;}
+.shop-confirmation a:active { text-decoration: none; color: #AED91A;}
+
+.shop-confirmation {
+	margin-bottom: 20px;
+
+}
+
+.shop-confirmation h2 {
+	border-bottom:1px dotted #AED91A;
+	color:#000000;
+	font-size:14px;
+	font-weight:bold;
+	margin-bottom: 10px;
+	padding-bottom:5px;
+	margin-top: 20px;
+}
+
+.shop-confirmation-produkte {
+
+}
+
+.shop-confirmation-radresse {
+
+}
+
+
+.shop-confirmation-ladresse {
+
+}
+
+.shop-confirmation-bemerkung {
+
+}
+
+
+.shop-confirmation-versand {
+
+}
+
+.shop-confirmation-ansprechpartner {
+
+}
+
+/*
+-----------------------------------------------------------------------------------------------
+     SUCHE
+-----------------------------------------------------------------------------------------------
+*/
+
+#tx-ttproducts-pi1-search {
+	margin-top: 20px;
+}
+
+input {
+	border: 1px solid #bdbdbd;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+input[type=submit] {
+	border: 1px solid #bdbdbd;
+	background-color:#f4f4f4;
+}
+

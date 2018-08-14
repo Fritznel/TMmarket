@@ -1,0 +1,53 @@
+(add new changes on top of this file)
+
+2017-03-28 Franz Holzinger  <franz@ttproducts.de>
+
+    * add composer.json file
+
+2017-03-11 Franz Holzinger  <franz@ttproducts.de>
+
+    * ready for TYPO3 8.x
+
+2016-08-23 Franz Holzinger  <franz@ttproducts.de>
+
+	* ready for TYPO3 7.99 and PHP 7.99
+
+2016-01-18 Franz Holzinger  <franz@ttproducts.de>
+
+	* ready for TYPO3 7.7
+
+2015-07-24 Franz Holzinger  <franz@ttproducts.de>
+
+	* ready for TYPO3 7.4
+
+2015-06-13 Franz Holzinger  <franz@ttproducts.de>
+
+	* ready for TYPO3 7.2
+
+2014-02-25 Franz Holzinger  <franz@ttproducts.de>
+
+	* workaround for bug #55727
+
+2014-01-09 Franz Holzinger  <franz@ttproducts.de>
+
+	* Update for TYPO3 6.2.0beta3 and later
+
+2013-10-01 Franz Holzinger  <franz@ttproducts.de>
+
+	* Update for TYPO3 6.1.5 and later
+
+2013-06-03 Franz Holzinger  <franz@ttproducts.de>
+
+	* Update for TYPO3 4.7.7 and 6.0.6
+
+2012-01-07 Franz Holzinger  <franz@ttproducts.de>
+
+	* Update for TYPO3 4.6.3
+
+2011-12-06 Franz Holzinger  <franz@ttproducts.de>
+
+	* Update for TYPO3 4.5.8
+
+2010-01-22 Franz Holzinger  <franz@ttproducts.de>
+
+	* Initial release built from class.t3lib_tsparser_ext.php 5482 2009-05-22

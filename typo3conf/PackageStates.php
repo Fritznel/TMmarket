@@ -23,6 +23,9 @@ return [
         'frontend' => [
             'packagePath' => 'typo3/sysext/frontend/',
         ],
+        'css_styled_content' => [
+            'packagePath' => 'typo3/sysext/css_styled_content/',
+        ],
         'fluid_styled_content' => [
             'packagePath' => 'typo3/sysext/fluid_styled_content/',
         ],
@@ -124,6 +127,21 @@ return [
         ],
         'viewpage' => [
             'packagePath' => 'typo3/sysext/viewpage/',
+        ],
+        'migration_core' => [
+            'packagePath' => 'typo3conf/ext/migration_core/',
+        ],
+        'div2007' => [
+            'packagePath' => 'typo3conf/ext/div2007/',
+        ],
+        'table' => [
+            'packagePath' => 'typo3conf/ext/table/',
+        ],
+        'tsparser' => [
+            'packagePath' => 'typo3conf/ext/tsparser/',
+        ],
+        'tt_products' => [
+            'packagePath' => 'typo3conf/ext/tt_products/',
         ],
         'extension_builder' => [
             'packagePath' => 'typo3conf/ext/extension_builder/',

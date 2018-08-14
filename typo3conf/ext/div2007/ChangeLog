@@ -1,0 +1,709 @@
+
+2018-07-14 Franz Holzinger  <franz@ttproducts.de>
+    * remove the last blank inside of the generated div tag of method wrapContentCode
+
+2018-07-12 Franz Holzinger  <franz@ttproducts.de>
+    * new feature: add method \JambageCom\Div2007\Utility\TableUtility::getAllSubPages which returns the recursive page ids for a given root page
+
+2018-07-10 Franz Holzinger  <franz@ttproducts.de>
+    * Bugfix #10 for PHP 7.2
+
+2018-07-03 Franz Holzinger  <franz@ttproducts.de>
+    * new feature: add class \JambageCom\Div2007\Utility\MarkerUtility which converts a multidimensional array into markers.
+
+2018-06-28 Franz Holzinger  <franz@ttproducts.de>
+    * copy: \JambageCom\Div2007\Utility\FrontendUtility::listBrowser ->  \JambageCom\Div2007\Utility\BrowserUtility::render
+    * copy: \JambageCom\Div2007\Utility\FrontendUtility::autoCache ->  \JambageCom\Div2007\Utility\BrowserUtility::autoCache
+    * copy: \JambageCom\Div2007\Utility\FrontendUtility::linkTPKeepCtrlVars ->  \JambageCom\Div2007\Utility\BrowserUtility::linkTPKeepCtrlVars
+    * copy: \JambageCom\Div2007\Utility\FrontendUtility::linkTP ->  \JambageCom\Div2007\Utility\BrowserUtility::linkTP
+
+2018-06-06 Franz Holzinger  <franz@ttproducts.de>
+    * introduce the new TYPO3 6.x namespaces in almost all files
+
+2018-05-31 Franz Holzinger  <franz@ttproducts.de>
+    * do not use references inside of the FlexformUtility methods
+
+2018-05-23 Franz Holzinger  <franz@ttproducts.de>
+    * fix bug in FrontendUtility::init : The global variable $TYPO3_CONF_VARS has not been declared. This leads to wrong results with realurl and ajax eID under tt_products. The page id is empty and then all TypoScript is missing.
+
+2018-05-18 Franz Holzinger  <franz@ttproducts.de>
+    * new feature: copy all image files except the apps from the TYPO3 system extension t3skin and the folder typo3_src-7.6.27/typo3/sysext/t3skin/images/icons/ into div2007/Resources/Public/Images/Icons/ . see #79259 EXT:t3skin removed
+
+2018-05-17 Franz Holzinger  <franz@ttproducts.de>
+    * bugfix in tx_div2007_core: method newHtmlParser requires a parameter for the exact method type. TYPO3 7 and 8 have in some cases a new class \TYPO3\CMS\Core\Service\MarkerBasedTemplateService for string substitution methos like substituteSubpart.
+    * bugfix in tx_div2007::getFrontEndUser: TYPO3 8 has set the TSFE fe_user->user array even when no FE user has been logged in. The value of username must be checked, too.
+
+2018-05-16 Franz Holzinger  <franz@ttproducts.de>
+    * bugfix in MailUtility: pay attention that the Swiftmailer has no namespace
+    * bugfix in MailUtility: Swiftmailer::embed requires the full TYPO3 path PATH_site
+    
+2018-05-07 Franz Holzinger  <franz@ttproducts.de>
+    * bugfix #9: Remove class alias maps also form the composer.json file.
+ 
+2018-05-04 Franz Holzinger  <franz@ttproducts.de>
+    * replacing function: LocalisationBase::getLL -> TranslationBase::getLabel
+    * copy: tx_div2007_alpha5::getExternalCObject_fh003 ->  \JambageCom\Div2007\Utility\ObsoleteUtility::getExternalCObject
+    * copy: tx_div2007_alpha5::fixImageCodeAbsRefPrefix_fh001 -> \JambageCom\Div2007\Utility\FrontendUtility::fixImageCodeAbsRefPrefix
+    * copy: tx_div2007_alpha5::unserialize_fh002 ->  \JambageCom\Div2007\Utility\SystemUtility::unserialize
+    * copy: tx_div2007_alpha5::sL_fh002 ->  \JambageCom\Div2007\Base\LocalisationBase::sL and \JambageCom\Div2007\Base\TranslationBase::sL
+    * copy: class.tx_div2007_error.php -> Classes/Utility/ErrorUtility.php
+    * copy: tx_div2007_staticinfotables::getTitleFromIsoCode -> \JambageCom\Div2007\Utility\StaticInfoTablesUtility::getTitleFromIsoCode
+    * copy: tx_div2007_staticinfotables::getCurrentLanguage -> \JambageCom\Div2007\Utility\StaticInfoTablesUtility::getCurrentLanguage
+    * copy: tx_div2007_staticinfotables::getTCAlabelField -> \JambageCom\Div2007\Utility\StaticInfoTablesUtility::getTCAlabelField
+    * copy: tx_div2007_staticinfotables::getIsoCodeField -> \JambageCom\Div2007\Utility\StaticInfoTablesUtility::getIsoCodeField
+    * copy: tx_div2007_alpha::phpFunc -> \JambageCom\Div2007\UtilitySystemUtility->phpFunc
+    * bugfix: class.tx_div2007_core must not use t3lib_div::makeInstance but GeneralUtility::makeInstance
+
+2018-05-02 Franz Holzinger  <franz@ttproducts.de>
+    * deprecate LocalisationBase.php. Replace it by TranslationBase.php
+    * removed feature: The Migrations class folder. All migration classes have been divided into different versions of the extension migration_core. - see https://stackoverflow.com/questions/50109006/determine-the-typo3-version-in-migrations-classes-for-the-composer. Therefor the extension migration_core is suggested now. It is not necessary for extensions which do not use classes from TYPO3 4.5 any more.
+    * fix issue #7 : move the migration classes into extension migration_core
+
+2018-05-01 Franz Holzinger  <franz@ttproducts.de>
+    * add texts for the DSGVO / GDPR compliant privacy policy agreements taken from extension agency
+    * new feature: LocalisationBase::init loads the div2007 internal language file by default and adds its texts to the texts of the calling extension.
+    * add a setup default configuration with an example example_text for the overwriting of the texts in the language file
+
+2018-04-27 Franz Holzinger  <franz@ttproducts.de>
+    * important change: The API for Security classes has been inhanced by code error parameters. This allows the caller to determine by himself how to handle error cases.
+    * new feature: add methods createTime and addTimeZone
+    * new feature: add an error code constants class Constants\ErrorCode
+
+2018-04-20 Franz Holzinger  <franz@ttproducts.de>
+    * new feature: add the TYPO3 7.6.23 method XHTML_clean under \JambageCom\Div2007\Utility\HtmlUtility::XHTML_clean as a HTML to XHTML converter. However this seems not to work yet. Some initialization calls must be done before.
+
+2018-04-18 Franz Holzinger  <franz@ttproducts.de>
+    * Replace self method calls by static method calls in Utility classes in order to allow inheritance for static classes.
+
+2018-04-04 Franz Holzinger  <franz@ttproducts.de>
+    * new feature: enhance the TransmissionSecurity with support for 2 dimensional arrays.
+
+2018-03-31 Franz Holzinger  <franz@ttproducts.de>
+    * new feature: add method \JambageCom\Div2007\Utility\SystemUtility::fetchFeGroups which reads all FE groups and readFeGroupsRecords for all FE group records of a logged in front end user.
+    * new feature: add modified session handler utility classes Typo3SessionHandler and PhpSessionHandler originally from the extension captcha.
+    * new features: add classes \JambageCom\Div2007\Security\StorageSecurity and \JambageCom\Div2007\Security\TransmissionSecurity which are copied from extension sr_feuser_register
+
+2018-03-19 Franz Holzinger  <franz@ttproducts.de>
+    * new feature: add lookupFilename to LocalisationBase
+    * bugfix to captcha extension: $_SESSION is broken. Use the TYPO3 session instead of the PHP session.
+
+2018-03-19 Franz Holzinger  <franz@ttproducts.de>
+    * new feature: HtmlUtility::determineXhtmlFix can be called without prior initialization
+
+2018-03-17 Franz Holzinger  <franz@ttproducts.de>
+    * bugfix for captcha functions: No error for an empty $captchaWord if the captcha extension is not activated.
+
+2018-03-15 Franz Holzinger  <franz@ttproducts.de>
+    * bugfix for captcha functions: An empty $captchaWord must cause an error.
+
+2018-03-13 Franz Holzinger  <franz@ttproducts.de>
+    * bugfix for func_get_arg():  Argument 2 not passed to function at /div2007/class.tx_div2007_ff.php
+
+2018-03-12 Franz Holzinger  <franz@ttproducts.de>
+    * modification of the updateform JavaScript: use the value '1' instead of 'on' for a checkbox true value.
+
+2018-03-08 Franz Holzinger  <franz@ttproducts.de>
+    * copy tx_div2007_alpha5::userProcess_fh002 into \JambageCom\Div2007\Utility\SystemUtility::userProcess
+
+2018-03-07 Franz Holzinger  <franz@ttproducts.de>
+    * new feature: StatusProviderBase taken from extension sr_feuser_register StatusProvider
+
+2018-02-22 Franz Holzinger  <franz@ttproducts.de>
+    * deprecate the files class.tx_div2007_alpha.php, class.tx_div2007_alpha5.php, class.tx_div2007_email.php and class.tx_div2007_alpha_language_base.php. The Classes folder has replacement files for the functions of these files.
+
+2018-02-22 Franz Holzinger  <franz@ttproducts.de>
+    * accouncement: 1.7.20 is the last version which supports TYPO3 4.5 - 6.1 and PHP < 5.5 .
+      Starting with 1.8.0 TYPO3 6.2 and PHP 5.5.0 are the minimum requirements for extension div2007.
+
+2018-02-22 Franz Holzinger  <franz@ttproducts.de>
+    * copy tx_div2007_alpha5::RTEcssText into \JambageCom\Div2007\Utility\FrontendUtility::RTEcssText
+
+2018-02-20 Franz Holzinger  <franz@ttproducts.de>
+    * copy tx_div2007_alpha5::displayHelpPage_fh003 into \JambageCom\Div2007\Utility\ViewUtility::displayHelpPage
+
+2018-02-07 Franz Holzinger  <franz@ttproducts.de>
+    * fix Warning: Ambiguous class resolution, t3lib_extMgm, t3lib_parsehtml, t3lib_div, tslib_cObj, tslib_fe
+    * Remove the file class.tx_div2007_compatibility6.php.
+    * Empty and deprecate method activateCompatibility6 from class.tx_div2007_core.php
+
+2018-01-31 Franz Holzinger  <franz@ttproducts.de>
+    * copy tx_div2007_alpha5::getTypoLink_fh003 into \JambageCom\Div2007\Utility\FrontendUtility::getTypoLink
+    * copy tx_div2007_alpha5::getTypoLink_URL_fh003 into \JambageCom\Div2007\Utility\FrontendUtility::getTypoLink_URL
+
+2018-01-15 Franz Holzinger  <franz@ttproducts.de>
+    * copy tx_div2007_alpha5::getSetupOrFFvalue_fh004 into \JambageCom\Div2007\Utility\ConfigUtility::getSetupOrFFvalue
+
+2018-01-11 Franz Holzinger  <franz@ttproducts.de>
+    * copy tx_div2007_alpha5::loadLL_fh002 into \JambageCom\Div2007\Base\LocalisationBase::loadLL
+
+2018-01-05 Franz Holzinger  <franz@ttproducts.de>
+    * bugfix issue#5: callUserFunction for call of hook t3lib/class.t3lib_page.php must pass a variable and not a constant also in TableUtility
+
+
+
+************
+
+
+
+23-12-17 Franz Holzinger  <franz@ttproducts.de>
+    * new feature: add boolean return values to the Captcha functions
+    * new feature: generateXhtmlFix and getXhtmlFix which gets a replacement string for XHTML support or empty otherwise
+    * new feature: add constant DIV2007_LANGUAGE_SUBPATH which stands for /Resources/Private/Language
+    * new feature: ControlUtility::readGP to read in the GET and PUT data
+    * new feature: add language textes for the TCA of the fields tstamp and crdate
+
+08-11-17 Franz Holzinger  <franz@ttproducts.de>
+    * new feature: Captcha classes
+
+21-10-17 Franz Holzinger  <franz@ttproducts.de>
+    * add method getLL to LocalisationBase instead of tx_div2007_alpha5::getLL_fh003
+    * add class BrowserBase instead of class.tx_div2007_alpha_browse_base
+    * add browser and link functions to FrontendUtility: listBrowser, autoCache, classParam, getClassName, linkTPKeepCtrlVars, linkTP
+
+11-10-17 Franz Holzinger  <franz@ttproducts.de>
+    * add new method getClientIp to get the IP address of the client browser
+
+27-09-17 Franz Holzinger  <franz@ttproducts.de>
+    * apply pull request #6: substUrlsInPlainText PHP 7 compatibility for preg_replace and tx_div2007_spl_arrayObject
+
+15-09-17 Franz Holzinger  <franz@ttproducts.de>
+    * bugfix for TYPO3 8.7: the initFE for an eID call must use \TYPO3\CMS\Frontend\Utility\EidUtility::initTCA() instead of  \TYPO3\CMS\Core\Core\Bootstrap::getInstance()->loadCachedTca()
+
+13-09-17 Franz Holzinger  <franz@ttproducts.de>
+    * bugfix issue#5: callUserFunction for call of hook t3lib/class.t3lib_page.php must pass a variable and not a constant
+
+09-09-17 Franz Holzinger  <franz@ttproducts.de>
+    * modifications to StaticInfoTablesUtility
+    * add JavaScript jQuery.disableReturn.js to disable the RETURN key under jQuery
+
+06-09-17 Franz Holzinger  <franz@ttproducts.de>
+    * new version due to TER security incident TYPO3-PSA-2017-001
+
+26-08-17 Franz Holzinger  <franz@ttproducts.de>
+    * copy hooks/class.tx_div2007_hooks_cms.php -> Classes/Base/CmsHookBase.php
+    * copy class.tx_div2007_ff.php -> Classes/Utility/FlexformUtility.php
+    * modifications of CmsHookBase and FlexformUtility for namespace
+
+12-08-17 Franz Holzinger  <franz@ttproducts.de>
+    * bugfix: wrong class_exists check for ClassAliasMapGenerator in LegacyClassesForIde
+
+15-06-17 Franz Holzinger  <franz@ttproducts.de>
+    * add class JambageCom\Div2007\Database\CoreQuery which replaces the TYPO3 core ContentObjectRenderer or tslib_cObj methods DBgetDelete, DBgetUpdate, DBgetInsert, DBmayFEUserEdit and DBmayFEUserEditSelect
+
+31-05-17 Franz Holzinger  <franz@ttproducts.de>
+    * add method HtmlUtility::useXHTML to decide if the html tags should be formatted as xhtml or not
+
+20-04-17 Franz Holzinger  <franz@ttproducts.de>
+    * bugfix: new method getSubpart must be static and needs no error return parameter
+
+18-04-17 Franz Holzinger  <franz@ttproducts.de>
+    * bugfix for TYPO3 8.x: The file ClassAliasMap.php must return an array with the class maps.
+    * add method getSubpart to the TYPO3 6 core compatibility
+
+07-04-17 Franz Holzinger  <franz@ttproducts.de>
+    * bugfix for TYPO3 8.x: Do not use the missing global $TT variable
+    see /typo3/sysext/core/Classes/TimeTracker/NullTimeTracker.php
+
+05-04-17 Franz Holzinger  <franz@ttproducts.de>
+    * bugfix for TYPO3 8.x ClassAliasMap for composer.json Tx_Fluid_Core_ViewHelper in \TYPO3Fluid\Fluid\Core\ViewHelper instead of \TYPO3\CMS\Fluid\Core\ViewHelper
+    * bugfix for TYPO3 8.x: modify ClassAliasMap to available classes and interfaces
+
+04-04-17 Franz Holzinger  <franz@ttproducts.de>
+    * bugfix for the composer.json
+    * add the class-alias-maps for the migrations code to the composer.json
+    * create the file ClassAliasMap.php for composer.json
+    * add more getter and setter methods the LocalisationBase.php
+    * separate the result of the file ClassAliasMap.php into ClassAliasMapResult.php in order to support PHP < 5.5.
+
+28-03-17 Franz Holzinger  <franz@ttproducts.de>
+    * needed for TYPO3 8.x: replace renderCharset by 'UTF-8'
+    * add method csConv and compat_version for TYPO3 8.x and backwards compatibility
+    * add paramter table to FrontendUtility::getContentObjectRenderer
+    * add a composer.json file
+    * add core methods compat_version and csConv
+    * add new constant DIV2007_LANGUAGE_LGL for TCA references to language xml or xlf files of EXT:lang
+
+08-03-17 Franz Holzinger  <franz@ttproducts.de>
+    * bugfix in linkTP_keepCtrlVars: the pivars must be overruled for a link even if they did not exist before
+    * adapted method list_browseresults_fh004
+    * add method getLanguage to tx_div2007_alpha_language_base
+    * add files to Git:    ControlUtility.php, MailUtility.php, XmlElement.php, XmlUtility.php
+
+04-03-17 Franz Holzinger  <franz@ttproducts.de>
+    * add method getLanguage to tx_div2007_alpha_language_base. This fetches the config.language setup.
+
+27-12-16 Franz Holzinger  <franz@ttproducts.de>
+	* bugfix: function loadLL_fh002 must not delete existing LOCAL_LANG entries if parts are overridden by a LOCAL_LANG setup
+	* new feature: add a class FileAbstractionUtility.php for the File Abstraction Layer
+
+16-11-16 Franz Holzinger  <franz@ttproducts.de>
+	* bugfix: t3lib_div::cHashParams needs a parameter string and not an array as parameter
+
+04-11-16 Franz Holzinger  <franz@ttproducts.de>
+	 * feature: Add new file PhpUtility.php which has a method to make a syntax check on a PHP code. This is needed if you use the eval function.
+	 * add the function getForeignTableInfo to the TableUtility.php. This is needed for IRRE mm tables.
+
+20-10-16 Franz Holzinger  <franz@ttproducts.de>
+	* bugfix for PHP 7: Non-static method TYPO3\\CMS\\Frontend\\Page\\CacheHashCalculator::calculateCacheHash() should not be called statically
+
+20-09-16 Franz Holzinger  <franz@ttproducts.de>
+	 * feature: Add a tab API addTab to the FrontendUtility. It bases on the files tab.css and jsfunc.tab.js. Use the subpart markers ###TAB_HEADER_1###, ... ###TAB_HEADER_n### and ###TAB_BOX_1###, ... ###TAB_BOX_n### inside of the subpart marker ###TAB_MENU### to generate your tab menu.
+	 * feature: Add a sys_category Sytem Category utility
+
+31-08-16 Franz Holzinger  <franz@ttproducts.de>
+	 * feature: Add new file MailUtility.php which needs TYPO3 6.2 and bases on the code from class.tx_div2007_email.php
+
+19-07-16 Franz Holzinger  <franz@ttproducts.de>
+	 * bugfix: function embedMedia must also support the TYPO3 7.6.9 class TYPO3\CMS\Core\Mail\MailMessage
+
+08-07-16 Franz Holzinger  <franz@ttproducts.de>
+	 * new feature: class TcaUtility to remove fields from the TCA of a table
+
+06-07-16 Franz Holzinger  <franz@ttproducts.de>
+	 * Bugfix: remove class t3lib_extobjbase from file class.tx_div2007_compatibility6.php due to redefinition error for LegacyClassesForIde.php
+
+02-07-16 Franz Holzinger  <franz@ttproducts.de>
+	 * Set the default charset for emails to utf-8 if config.renderCharset has not been set.
+
+18-06-16 Franz Holzinger  <franz@ttproducts.de>
+	 * remove PHP 4 notifications
+	 * add the missing public scope qualifier to functions
+	 * modifications for the Coding Guidelines
+
+17-06-16 Franz Holzinger  <franz@ttproducts.de>
+	 * new feature: Add the function CONTENT Object getUpdateJS which has been removed in TYPO3 7 as FrontendUtility::getUpdateJS with a modification in order to use the HTML form id instead of the HTML form name as a parameter.
+	 * new feature: add a TestUtility for testing purposes of the right usage of namespaces
+
+09-06-16 Franz Holzinger  <franz@ttproducts.de>
+	 * bug fix for TYPO3 7: tx_div2007_selfAwareness::getExtensionKey must use $GLOBALS['TYPO3_LOADED_EXT'] instead of $GLOBALS['TYPO3_CONF_VARS']['EXT']['extList']
+
+31-05-16 Franz Holzinger  <franz@ttproducts.de>
+	 * Security issue TYPO3-EXT-SA-2016-015: Non-Persistent Cross-Site Scripting
+
+10-05-16 Franz Holzinger  <franz@ttproducts.de>
+	 * bug fix: The classes defined in class.tx_div2007_compatibility6 must not be redefined in Migrations/Code/LegacyClassesForIde.php
+
+06-05-16 Franz Holzinger  <franz@ttproducts.de>
+	* bug fix: remove unfindable migration classes. remove "access denied" message from Migrations file
+
+03-05-16 Franz Holzinger  <franz@ttproducts.de>
+	* bug fix: initFE must set the global $TSFE variable
+
+14-03-16 Franz Holzinger  <franz@ttproducts.de>
+	* bug fix for PHP Warning: Illegal string offset version. getExtensionInfo must use include instead of include_once
+
+14-03-16 Franz Holzinger  <franz@ttproducts.de>
+	* bug fix: Do not use the Div2007 namespace for InvalidArgumentException and t3lib_div
+	* new feature: enableFields set $noVersionPreview default to TRUE
+
+25-02-16 Franz Holzinger  <franz@ttproducts.de>
+	* bug fix for PHP Warning: Illegal string offset version. getExtensionInfo must use include instead of include_once
+
+06-02-16 Franz Holzinger  <franz@ttproducts.de>
+	* bug fix for TYPO3 6.1: mergeRecursiveWithOverrule is not available in the class ArrayUtility
+	* bug fix for PHP Warning: Illegal string offset version in php file after call to getExtensionInfo
+
+21-01-16 Franz Holzinger  <franz@ttproducts.de>
+	* bug fix for TYPO3 7: replace include by include_once
+
+14-12-15 Franz Holzinger  <franz@ttproducts.de>
+	* new feature: FrontendUtility used by Ajax to initialize the Frontend for an eID parameter call
+
+09-12-15 Franz Holzinger  <franz@ttproducts.de>
+	* bugfix: mergeRecursiveWithOverrule must also be executed under TYPO3 before 6.0.0
+
+01-12-15 Franz Holzinger  <franz@ttproducts.de>
+	* add class StaticInfoUtility for the extension static_info_tables
+
+17-10-15 Franz Holzinger  <franz@ttproducts.de>
+	* bug fix: wrong parameter 3 in call of array_merge_recursive_overrule under PHP 5.2
+
+28-09-15 Franz Holzinger  <franz@ttproducts.de>
+	* bug fix missing closing parenthesis with hook class
+
+28-09-15 Franz Holzinger  <franz@ttproducts.de>
+	* bug fix: path to class MailMessage misses the Core folder
+	* add class file tx_div2007_compatibility6.php to add basic class of TYPO3 7.4 to make extension compatible to TYPO3 6.2 and 4.5
+
+17-09-15 Franz Holzinger  <franz@ttproducts.de>
+	* bug fix: add the static keyword to the function calls of tx_div2007_ff
+
+20-08-15 Franz Holzinger  <franz@ttproducts.de>
+	* bug fix: Do not enclose the sender name of an email in double quotes in any case. This would lead to lost and returned emails in the case of German umlauts. This happens under TYPO3 6.2.
+
+24-07-15 Franz Holzinger  <franz@ttproducts.de>
+	* tested under TYPO3 7.4.0
+	* improve the verification of the Swift Mailer if the email has been sent. Debug the unsent recipients.
+
+17-06-15 Franz Holzinger  <franz@ttproducts.de>
+	* Add file class.tx_div2007_core_php53.php for functions which must never be visible to PHP before 5.3 because of PHP error messages.
+	* add method tx_div2007_core::mergeRecursiveWithOverrule
+
+13-06-15 Franz Holzinger  <franz@ttproducts.de>
+	* Change the TSConfig for the TCA markers ###PAGE_TSCONFIG_ID### and ###PAGE_TSCONFIG_IDLIST### in order to use the page id of the current page if unset.
+	* add method calculateCacheHash by a call to t3lib_cacheHash or CacheHashCalculator
+	* set TYPO3 version range to 7.2.99
+	* add method generateHash from extension agency
+
+16-03-15 Franz Holzinger  <franz@ttproducts.de>
+	* more classes from extension lib: tx_div2007_viewBase, tx_div2007_link, tx_div2007_phpTemplateEngine
+	* Do not use makeInstance and autoloading from div2007 any further
+
+30-01-15 Franz Holzinger  <franz@ttproducts.de>
+	* add more functions to the table utility class
+	* add function enableFields
+	* use uppercase PHP constants like PATH_BE_DIV2007
+
+06-05-14 Franz Holzinger  <franz@ttproducts.de>
+	* do not use t3lib_div::requireOnce inside of loadTcaAdditions_fh002 because the global variable $_EXTKEY is not global there
+
+09-04-14 Franz Holzinger  <franz@ttproducts.de>
+	* support for PHP 5.5
+
+08-02-14 Franz Holzinger  <franz@ttproducts.de>
+	* bug fix: no usage of PackageManager before TYPO3 6.2
+	* bug fix: allow PHP 5.2 for tx_div2007_alpha5::initFE
+
+23-01-14 Franz Holzinger  <franz@ttproducts.de>
+	* add tx_div2007_core::getSystemFields taken from TYPO3\CMS\Vidi\Tca\TcaService
+	* fix bug for static_info_tables: selectItemsTCA must be able to change the paramters
+
+19-11-13 Franz Holzinger  <franz@ttproducts.de>
+	* fix bug with reading of a locallang file
+
+03-11-13 Franz Holzinger  <franz@ttproducts.de>
+	* fix bug: add missing return values to some functions of tx_div2007_core
+
+29-10-13 Franz Holzinger  <franz@ttproducts.de>
+	* fix bug with call of static_info_tables: consider the cn_short_local for selected country in the transactor API
+	* make the check for the TYPO3 version independant of the TYPO3 version
+	* do not include any ext_tables.php under TYPO3 6.2
+	* This extension runs under TYPO3 6.2
+
+11-10-13 Franz Holzinger  <franz@ttproducts.de>
+	* fix bug in call of the email validation of tx_div2007_email::sendMail
+
+26-09-13 Franz Holzinger  <franz@ttproducts.de>
+	* Remove replacement of the t3lib_div and t3lib_extMgm classes from tx_div2007_core, because they are available under TYPO3 6.2 as alias inside of GeneralUtility and ExtensionManagementUtility.
+
+23-09-13 Franz Holzinger  <franz@ttproducts.de>
+	* add Classes/Utility folder and the classes ExtensionUtility and TableUtility needed for calls from inside of namespace classes
+
+19-09-13 Franz Holzinger  <franz@ttproducts.de>
+	* add class file tx_div2007_core for a TYPO3 version independant call to the most frequently used former functions of t3lib_div and other t3lib classes
+	* modify class tx_div2007_div in order not to rely on t3lib_dv
+	* replace all calls to t3lib_div and other TYPO3 classes by the class tx_div2007_core
+	* new method initFE used for Ajax calls
+
+17-07-13 Franz Holzinger  <franz@ttproducts.de>
+	* fix bug in PHP 5.2 which does not recognize namespace class names like \TYPO3\CMS\Core\Utility\VersionNumberUtility
+
+11-07-13 Franz Holzinger  <franz@ttproducts.de>
+	* new class tx_div2007_staticinfotables which is a copy of the lost class tx_staticinfotables_div from static_info_tables
+
+09-07-13 Franz Holzinger  <franz@ttproducts.de>
+	* add function getCategoryTableContents_fh001
+	* use TYPO3 6.x compatible method convertVersionNumberToInteger to fetch the TYPO3 version number
+	* sendMail returns the boolean FALSE if no email could be sent
+
+10-06-13 Franz Holzinger  <franz@ttproducts.de>
+	* enhanced function getLL_fh003 to fetch the string from a preconfigured language
+
+03-05-13 Franz Holzinger  <franz@ttproducts.de>
+	* new feature: function classParam_fh002 allows CSS class names and adds the tx_ prefix to the extension key
+
+12-04-13 Franz Holzinger  <franz@ttproducts.de>
+	* fix bug: method getFrontEndUser must return the field inside of the FE user array
+	* integrate div2007 from TYPO3 4.7.10
+
+14-03-13 Franz Holzinger  <franz@ttproducts.de>
+	* add method tx_div2007_alpha5::getCsConvObj to fetch an object for the character set conversion
+
+02-03-13 Franz Holzinger  <franz@ttproducts.de>
+	* fix bug: do not send the emails twice
+
+19-02-13 Franz Holzinger  <franz@ttproducts.de>
+	* fix change in TYPO3 6.0.2: use the send method for sending of emails
+
+10-10-12 Franz Holzinger  <franz@ttproducts.de>
+	* add new class tx_div2007_store to store the latest cOject and other data
+
+16-08-12 Franz Holzinger  <franz@ttproducts.de>
+	* fix security issue in t3lib_div::quoteJSvalue as in TYPO3 4.7.4
+
+28-07-12 Franz Holzinger  <franz@ttproducts.de>
+	* include t3lib_div from TYPO3 4.7.2
+
+27-04-12 Franz Holzinger  <franz@ttproducts.de>
+	* extract tx_div2007_objectBase from file class.tx_div2007_object.php
+	* add the include file to class.tx_div2007_object.php because the autoloader does not work in TYPO3 4.7 rc2
+	* remove unnecessary quoting of the email sender name containing a space when the Swift Mailer is active
+
+20-04-12 Franz Holzinger  <franz@ttproducts.de>
+	* set version to stable
+	* include t3lib_div from TYPO3 4.7 rc2
+
+19-04-12 Franz Holzinger  <franz@ttproducts.de>
+	* bugfix in getLL_fh002 for TYPO3 4.6.: Do not use an empty string for localization but show the default language.
+	* add autoloader file ext_autoload.php
+	* add improved function getForeignTableInfo_fh003
+
+08-03-12 Franz Holzinger  <franz@ttproducts.de>
+	* improvement in getExtensionInfo_fh002: the extension needs not have been installed before
+	* add class for the sending of emails with support for the Swift Mailer
+
+28-01-12 Franz Holzinger  <franz@ttproducts.de>
+	* new feature: allow the usage of a pibase object instead of class.tx_div2007_alpha_language_base
+
+23-01-12 Franz Holzinger  <franz@ttproducts.de>
+	* add new classes for email and error message generation
+	* change function calls for PHP5
+
+09-01-12 Franz Holzinger  <franz@ttproducts.de>
+	* replace deprecated t3lib_div::intInRange by t3lib_utility_Math::forceIntegerInRange
+	* replace deprecated t3lib_div::testInt by t3lib_utility_Math::canBeInterpretedAsInteger
+	* bugfix getLL_fh002: do not require the parameter $usedLang
+	* make typoVersion compatible to TYPO3 4.6
+
+16-11-11 Franz Holzinger  <franz@ttproducts.de>
+	* enhance loadLL_fh002 with the advanced features from loadLL_fh001.
+
+15-11-11 Franz Holzinger  <franz@ttproducts.de>
+	* fix bug with TYPO3 4.6: add modified methods list_browseresults_fh003, loadLL_fh002 and getLL_fh002
+	* fetch tx_div from TYPO3 4.6 as tx_div2007_div
+
+06-10-11 Franz Holzinger  <franz@ttproducts.de>
+	* fix bug in foreign_table_where_query: an array must be checked if it is an array before the members are accessed
+	* add modified method wrapContentCode_fh004 which also includes a class attribute for the wrapped div tag
+
+19-07-11 Franz Holzinger  <franz@ttproducts.de>
+	* add tx_div2007_controller, tx_div2007_context, tx_div2007_configurations, tx_div2007_parameters
+	* replace deprecated method makeInstanceClassName by a call of makeInstance with the parameters of the constructor
+	* add the static statement to the functions in class.tx_div2007_alpha5.php
+
+26-05-11 Franz Holzinger  <franz@ttproducts.de>
+	* add parameter path to getExtensionInfo_fh002
+	* method getTypoLink_fh003 which confirms already set parameters in the parameter $conf
+
+13-05-11 Franz Holzinger  <franz@ttproducts.de>
+	* add variable $loadTcaAdditions to loadTcaAdditions_fh001. Use this in your file ext_tables.php to not include the $TCA modificationd and other stuff of your own extension.
+
+23-04-11 Franz Holzinger  <franz@ttproducts.de>
+	* add constants DIV2007_EXTkey and PATH_BE_div2007
+	* rename tx_lib_spl_arrayIterator into tx_div2007_spl_arrayIterator
+
+31-03-11 Franz Holzinger  <franz@ttproducts.de>
+	* add getter methods to class class.tx_div2007_alpha_language_base
+
+14-03-11 Franz Holzinger  <franz@ttproducts.de>
+	* fix bug: replace all tx_div calls by tx_div2007
+
+28-02-11 Franz Holzinger  <franz@ttproducts.de>
+	* new function slashName from tt_products to slash the name for emails
+
+19-02-11 Franz Holzinger  <franz@ttproducts.de>
+	* include object files in function tx_div2007_objectBase
+
+15-02-11 Franz Holzinger  <franz@ttproducts.de>
+	* remove reference from parameter $conf of function phpFunc
+
+11-02-11 Franz Holzinger  <franz@ttproducts.de>
+	* fetch tx_div from TYPO3 4.5 as tx_div2007_div
+
+10-02-11 Franz Holzinger  <franz@ttproducts.de>
+	* borrow the file class.tx_lib_t3Loader.php from the 'lib' extension
+	* copy spl/class.tx_lib_spl_arrayIterator.php, spl/class.tx_lib_spl_arrayObject.php, class.tx_lib_selfAwareness.php and class.tx_lib_object.php from extension lib
+
+25-11-10 Franz Holzinger  <franz@ttproducts.de>
+	* give error output if function getLL is called with no object as parameter
+	* include the file typo3conf/extTables.php after the loadTcaAdditions_fh001 to allow modifications
+	* getExternalCObject_fh002 adapted for PHP 5.
+
+25-05-10 Franz Holzinger  <franz@ttproducts.de>
+	* ready for PHP 5.3: replace ereg_replace by preg_replace
+
+01-04-10 Franz Holzinger  <franz@ttproducts.de>
+	* method wrapContentCode_fh003 which does never have a trailing - in the resulting id number
+
+06-03-10 Franz Holzinger  <franz@ttproducts.de>
+	* fix bug: method getSetupOrFFvalue_fh003 to use the cObject instead of the language Object
+	* This is the first version which requires PHP5.
+
+05-03-10 Franz Holzinger  <franz@ttproducts.de>
+	* fix bug: method getSetupOrFFvalue_fh002 must not use a pibase object
+	* This is the latest version for PHP4.
+
+15-01-10 Franz Holzinger  <franz@ttproducts.de>
+	* allow the usage of method loadLL_fh001 also if no scriptRelPath has been set in the language object
+	* add parameter $addQueryString to method tx_div2007_alpha5::list_browseresults_fh002 to pass these parameters in the browser
+
+11-11-09 Franz Holzinger  <franz@ttproducts.de>
+	* no htmlspecialchars for texts of the record browser
+	* no pi_base function calls inside of tx_div2007_div
+
+16-09-09 Franz Holzinger  <franz@ttproducts.de>
+	* modify function getFilesInDir: the key of the returned array is sequential and not based on a md5 sum
+	*    This saves memory and allows to index it by a number which is sequential.
+
+15-09-09 Franz Holzinger  <franz@ttproducts.de>
+	* new function wrapInBaseClass_fh001 to replace pi_wrapInBaseClass
+
+28-07-09 Franz Holzinger  <franz@ttproducts.de>
+	* consider if typo3CacheManager is available or not
+
+18-07-09 Franz Holzinger  <franz@ttproducts.de>
+	* new feature: copy t3lib_div of TYPO3 4.3 into tx_div2007_div.
+
+01-04-09 Franz Holzinger  <franz@ttproducts.de>
+	* new class file class.tx_div2007_alpha_browse_base.php for a record browser
+	* use renderCharset for a read in language file in loadLL_fh001
+
+06-03-09 Franz Holzinger  <franz@ttproducts.de>
+	* new class file class.tx_div2007_alpha5.php for changes in PHP5 of the former class.tx_div2007_alpha.php
+	* getSetupOrFFvalue_fh002 for fetching the flexform code independantly from the pi_base class
+
+03-03-09 Franz Holzinger  <franz@ttproducts.de>
+	* wrapContentCode_fh002 which uses the uid of the content element to generate a wrap with a unique HTML id
+
+02-02-09 Franz Holzinger  <franz@ttproducts.de>
+	* alternative to unserialize, still experimental
+
+28-01-09 Franz Holzinger  <franz@ttproducts.de>
+	* phpFunc: PHP function call for stdWrap userFunc
+
+09-01-09 Franz Holzinger  <franz@ttproducts.de>
+	* enhance loadLL_fh001 to allow a file parameter which already contains a relative typo3 path generated from setup  EXT:ext_key
+
+08-12-22 Franz Holzinger  <contact@fholzinger.com>
+	* additional class tx_div2007_ff_php4 with PHP4 compatibility
+	* method tx_div2007_alpha::getLL_fh001 which returns the used language string
+
+08-11-10 Franz Holzinger  <contact@fholzinger.com>
+	* new function getClassName from pi_base
+
+08-10-22 Franz Holzinger  <contact@fholzinger.com>
+	* getter function for the $LOCAL_LANG and $LLkey
+
+08-09-20 Franz Holzinger  <contact@fholzinger.com>
+	* no PHP5 key words
+	* new getTypoLink_URL_fh002 which uses cObject parameter instead of pibase
+
+08-09-17 Franz Holzinger  <contact@fholzinger.com>
+	* add init function for FE
+	* new link functions which use the cObject as parameter instead of pibase
+
+08-09-05 Franz Holzinger  <contact@fholzinger.com>
+	* fix bug in loadTcaAdditions_fh001: the $i variable could have been overwritten by an included file
+
+08-08-21 Franz Holzinger  <contact@fholzinger.com>
+	* dummy class tx_div2007_cobj which extends tslib_cObj.
+	  Now you can use "$local_cObj = &tx_div2007_core::getUserObj('&tx_div2007_cobj');" to save time and memory.
+
+08-06-20 Franz Holzinger  <contact@fholzinger.com>
+	* store the $conf for the language_base object to allow _LOCAL_LANG language override in setup
+
+08-06-13 Franz Holzinger  <contact@fholzinger.com>
+	* also allow page type 5 for flexform to CODE field display hook
+
+08-06-02 Franz Holzinger  <contact@fholzinger.com>
+	* fix bug: Do not use PHP5 specific things in class tx_div2007_alpha
+
+08-04-27 Franz Holzinger  <contact@fholzinger.com>
+	* new hook function for TYPO3 4.2. This will display the corresponding CODE for a flexform
+
+08-04-23 Franz Holzinger  <kontakt@fholzinger.com>
+
+	* new functions to get infos from TCA
+
+08-04-11 Franz Holzinger  <kontakt@fholzinger.com>
+
+	* rename filename of class tx_div2007_alpha_language_base
+
+08-03-06 Franz Holzinger  <kontakt@fholzinger.com>
+
+	* change most functions to have a langObj instead of a pibase as parameter
+	* new class tx_div2007_alpha_language_base which shall make pi_base obsolete
+
+08-01-16 Franz Holzinger  <kontakt@fholzinger.com>
+
+	* fix bugs in displayHelpPage_fh001
+
+07-11-30 Elmar Hinz  <elmar.hinz@team-red.net>
+
+	* Setting it to version 0.1.0 in sync with 0.1.0 of lib.
+
+07-10-05 Franz Holzinger  <kontakt@fholzinger.com>
+
+	* added some more functions stolen from tslib_pibase: RTEcssText and getLL. So you can get now rid of tslib_pibase using tx_div_alpha for most cases instead of pi_RTEcssText and pi_getLL.
+
+07-10-03 Franz Holzinger  <kontakt@fholzinger.com>
+
+	* added function userProcess_fh001 into tx_div_alpha. The userProcess function is e.g. used with itemMarkerArrayFunc in tt_products.
+
+07-08-05 Elmar Hinz  <elmar.hinz@team-red.net>
+
+	* Version 0.0.13.
+	* Milestone -1 alpha
+	* Many preparations for the action pipeline, but still half the way
+	* For this reason this version will not published to TER
+
+07-08-05 Franz Holzinger  <kontakt@fholzinger.com>
+
+	* added all functions from fh_library into tx_div_alpha in a modified naming scheme
+
+07-08-05 Elmar Hinz  <elmar.hinz@team-red.net>
+
+	* Version 0.0.12.
+	* Milestone -2 alpha
+	* First version of a documentation
+	* Added class tx_lib_alpha
+	* Added class tx_lib_ff
+	* Added functions user, getFrontendUser, getGlobal, session,
+	getBrowserSession, getUserSession
+	* Renaming function resolvePathWithEXT to resolvePathWithExtPrefix
+
+07-06-04 Elmar Hinz  <elmar.hinz@team-red.net>
+
+	* Publishing version 0.0.10.
+	* Added function autoLoadAll.
+	* Added function clearAllCaches.
+	* Switched dependencies of lib and div.
+
+07-01-29 Elmar Hinz  <elmar.hinz@team-red.net>
+
+	* publishing version 0.0.9
+	* definition of hash and list data structures
+	* functions to transform the data structures
+
+07-01-20 Elmar Hinz  <elmar.hinz@team-red.net>
+
+	* publishing version 0.0.8
+	* explode function
+
+07-01-15 Elmar Hinz  <elmar.hinz@team-red.net>
+
+	* publishing version 0.0.7
+	* to be sure it works still synchron with lib
+
+06-09-06 Franz Holzinger   <kontakt@fholzinger.com>
+
+	* loadTcaAdditions to add the TCA fields coming from some other extensions
+
+06-04-06 Elmar Hinz  <elmar.hinz@team-red.net>
+
+	* Guess Key
+	* Accessing tx_lib::t3loader
+
+06-03-23 Elmar Hinz  <elmar.hinz@team-red.net>
+
+
+	* Function loadClass
+
+
+06-03-17 Elmar Hinz  <elmar.hinz@team-red.net>
+
+	* Better icon
+
+06-03-16 ECT: Elmar Hinz, ....  <elmar.hinz@team-red.net>
+
+	* Initial release

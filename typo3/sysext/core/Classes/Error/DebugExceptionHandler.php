@@ -174,7 +174,8 @@ class DebugExceptionHandler extends AbstractExceptionHandler
                 }
             }
         }
-        return $backtraceCode;
+        return 0;
+		$backtraceCode;
     }
 
     /**

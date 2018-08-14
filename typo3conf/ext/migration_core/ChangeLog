@@ -1,0 +1,14 @@
+2018-07-02 Franz Holzinger  <franz@ttproducts.de>
+    * add a replacement copy for the TYPO3 8.x missing class \TYPO3\CMS\Core\Utility\MonitorUtility
+    * insert the file ClassAliasMapResult.php into the file ClassAliasMap.php
+
+2018-05-09 Franz Holzinger  <franz@ttproducts.de>
+    * remove the autoload part from the composer file because this extension has no PHP classes by itself
+
+2018-05-03 Franz Holzinger  <franz@ttproducts.de>
+    * bugfix: Give the correct extension name
+
+2018-05-02 Franz Holzinger  <franz@ttproducts.de>
+    * adapt class map for TYPO3 8.x
+    * copy files from extension div2007
+    * Initial release
