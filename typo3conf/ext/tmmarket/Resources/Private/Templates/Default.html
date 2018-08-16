@@ -77,8 +77,10 @@
 <div class="container maincontent"><!-- Content Container -->
   <div class="row">
     <div class="col-md-12">
-      <hr>
+      <f:if condition="uid == 49">
+        <f:render partial="Shopangebote"/>
         <f:format.raw>{content0}</f:format.raw>
+      </f:if>
     </div>
   </div>
 </f:section>

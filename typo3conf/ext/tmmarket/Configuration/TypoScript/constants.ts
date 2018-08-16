@@ -3,8 +3,6 @@ siteTitle = Cange Global Supermarket
 
 ##Für den shop!##
 
-plugin.tt_products.file.templateFile = fileadmin/products_template.tmpl
-
 #### CONSTANTS ####
 
 # Seiten IDs in Konstanten auslagern
@@ -29,34 +27,34 @@ id_shopsyskategorien = 57
 ############
 
 # Sysfolder mit den Produkten #
-plugin.tt_products.pid_list = {$id_shopsysprodukte}
+plugin.tt_products.pid_list = 0
 
 # Rootseite des Shops
-plugin.tt_products.PIDstoreRoot = {$id_shoproot}
+plugin.tt_products.PIDstoreRoot = 0
 
 # Seiten ID für Listenansicht
-plugin.tt_products.PIDlistDisplay = {$id_shopkategorien}
+plugin.tt_products.PIDlistDisplay = 52
 
 # Seiten ID für Warenkorbabsicht
-plugin.tt_products.PIDbasket = {$id_shopwarenkorb}
+plugin.tt_products.PIDbasket = 58
 
 # Seiten ID für Einzelansicht
-plugin.tt_products.PIDitemDisplay = {$id_shopdetail}
+plugin.tt_products.PIDitemDisplay = 53
 
 # Seiten ID für Kontrolle und Bezahlung
-plugin.tt_products.PIDpayment = {$id_shopkontrolle}
+plugin.tt_products.PIDpayment = 51
 
 # Seiten ID für Bestellung abschließen
-plugin.tt_products.PIDfinalize = {$id_shopabschliessen}
+plugin.tt_products.PIDfinalize = 56
 
 # Seiten ID für AGB
-plugin.tt_products.PIDagb = {$id_shopagb}
+plugin.tt_products.PIDagb = 59
 
 # AGB im selben Fenster öffnen
 plugin.tt_products.AGBtarget = _parent
 
 # Seiten ID für Suche
-plugin.tt_products.PIDsearch = {$id_shopsuche}
+plugin.tt_products.PIDsearch = 54
 
 ###################################
 ### Email und Web Einstellungen ###
@@ -75,20 +73,20 @@ plugin.tt_products.orderEmail_fromName = Cange Supermarket
 plugin.tt_products.orderEmail_to = fritznel.aedifex@gmail.com
 
 # Domaine auf der der Shop läuft
-plugin.tt_products.domain = https://localhost/TMmarket/typo3/Shop
+plugin.tt_products.domain = https://localhost/TMmarket/typo3/
 
 ################################
 ### Template Datei einbinden ###
 ################################
 
-plugin.tt_products.file.templateFile = fileadmin/template_dateien/templates_ext/shop/tt_products_css.html
+plugin.tt_products.file.templateFile = fileadmin/user_upload/shop/tt_products_css.html
 
 ############################
 ### Grafik Einstellungen ###
 ############################
 
 # Eigens Symbol für den Shoppingcart definieren
-plugin.tt_products.basketPic = fileadmin/template_dateien/templates_ext/shop/icons/basket-big.gif
+plugin.tt_products.basketPic = fileadmin/user_upload/shop/icons/basket-big.gif
 
 # Maximale Breite der Bilder in der Listenansicht
 plugin.tt_products.maxW_list = 120
@@ -108,7 +106,7 @@ plugin.tt_products.maxW_basket = 60
 ################
 
 # maximale Anzahl des selben Produktes
-plugin.tt_products.basketMaxQuantity = 20
+plugin.tt_products.basketMaxQuantity = 50
 
 # Pflichtfelder
 plugin.tt_products.requiredInfoFields = name, address, city, zip, email
@@ -137,3 +135,10 @@ plugin.tx_staticinfotables_pi1.countryZoneCode = AT-3
 
 # Default Währung festlegen
 plugin.tx_staticinfotables_pi1.currencyCode = EUR
+plugin.tt_products.TAXpercentage = 19
+plugin.tt_products.noZeroDecimalPoint = 0
+plugin.tt_products.percentNoZeroDecimalPoint = 0
+plugin.tt_products.debug = 0
+plugin.tt_products.test = 815
+plugin.tt_products.currencySymbol = HT
+plugin.tt_products.rootPageID = 49

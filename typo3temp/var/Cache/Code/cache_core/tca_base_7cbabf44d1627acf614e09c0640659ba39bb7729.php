@@ -11716,7 +11716,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531519200,
+              'lower' => 1531692000,
             ),
           ),
         ),
@@ -12859,7 +12859,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531519200,
+              'lower' => 1531692000,
             ),
           ),
         ),
@@ -13711,7 +13711,7 @@ return array (
             'range' => 
             array (
               'upper' => false,
-              'lower' => 1531519200,
+              'lower' => 1531692000,
             ),
           ),
         ),
@@ -13909,7 +13909,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531519200,
+              'lower' => 1531692000,
             ),
           ),
         ),
@@ -14491,7 +14491,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531519200,
+              'lower' => 1531692000,
             ),
           ),
         ),
@@ -14754,7 +14754,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531519200,
+              'lower' => 1531692000,
             ),
           ),
         ),
@@ -15108,7 +15108,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531519200,
+              'lower' => 1531692000,
             ),
           ),
         ),
@@ -15331,7 +15331,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531519200,
+              'lower' => 1531692000,
             ),
           ),
         ),
@@ -15511,7 +15511,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531519200,
+              'lower' => 1531692000,
             ),
           ),
         ),
@@ -15784,7 +15784,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531519200,
+              'lower' => 1531692000,
             ),
           ),
         ),
@@ -16167,7 +16167,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531519200,
+              'lower' => 1531692000,
             ),
           ),
         ),
@@ -16434,7 +16434,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531519200,
+              'lower' => 1531692000,
             ),
           ),
         ),

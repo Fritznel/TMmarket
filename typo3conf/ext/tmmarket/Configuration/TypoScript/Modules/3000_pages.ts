@@ -21,7 +21,8 @@ page.includeCSS {
   30 = EXT:tmmarket/Resources/Public/Css/sm-simple.css
   40 = EXT:tmmarket/Resources/Public/Css/smartmenu.css
   50 = EXT:tmmarket/Resources/Public/Css/mystyles.css
-
+##von mir SHOP
+  60 = fileadmin/user_upload/shop/tt_products.css
 }
 ##JavaScript einbinden
 page.includeJSFooterlibs {
@@ -41,6 +42,7 @@ page.includeJSFooter {
   30 = EXT:tmmarket/Resources/Public/JavaScript/custom.js
 }
 
+
 page.10 = FLUIDTEMPLATE
 page.10 {
   layoutRootPath = EXT:tmmarket/Resources/Private/Layouts/
@@ -48,6 +50,7 @@ page.10 {
 
   file = EXT:tmmarket/Resources/Private/Templates/Default.html
 
+  
   variables {
 
     content0 = CONTENT
@@ -103,5 +106,7 @@ page.10 {
       wrap = <h2 class="nav-brand">|</h2>
     }
 
+  }
+}
   }
 }
