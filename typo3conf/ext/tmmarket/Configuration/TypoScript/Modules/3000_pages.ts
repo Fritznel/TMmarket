@@ -50,8 +50,10 @@ page.10 {
 
   file = EXT:tmmarket/Resources/Private/Templates/Default.html
 
-  
+
   variables {
+    lib.currentPageId = TEXT
+    lib.currentPageId.data = TSFE:id
 
     content0 = CONTENT
     content0 {

@@ -1,6 +1,7 @@
 rootId = 1
 siteTitle = Cange Global Supermarket
 
+
 ##Für den shop!##
 
 #### CONSTANTS ####
@@ -27,34 +28,34 @@ id_shopsyskategorien = 57
 ############
 
 # Sysfolder mit den Produkten #
-plugin.tt_products.pid_list = 0
+plugin.tt_products.pid_list = {$id_shopsysprodukte}
 
 # Rootseite des Shops
-plugin.tt_products.PIDstoreRoot = 0
+plugin.tt_products.PIDstoreRoot = {$id_shoproot}
 
 # Seiten ID für Listenansicht
-plugin.tt_products.PIDlistDisplay = 52
+plugin.tt_products.PIDlistDisplay = {$id_shopkategorien}
 
 # Seiten ID für Warenkorbabsicht
-plugin.tt_products.PIDbasket = 58
+plugin.tt_products.PIDbasket = {$id_shopwarenkorb}
 
 # Seiten ID für Einzelansicht
-plugin.tt_products.PIDitemDisplay = 53
+plugin.tt_products.PIDitemDisplay = {$id_shopdetail}
 
 # Seiten ID für Kontrolle und Bezahlung
-plugin.tt_products.PIDpayment = 51
+plugin.tt_products.PIDpayment = {$id_shopkontrolle}
 
 # Seiten ID für Bestellung abschließen
-plugin.tt_products.PIDfinalize = 56
+plugin.tt_products.PIDfinalize = {$id_shopabschliessen}
 
 # Seiten ID für AGB
-plugin.tt_products.PIDagb = 59
+plugin.tt_products.PIDagb = {$id_shopagb}
 
 # AGB im selben Fenster öffnen
 plugin.tt_products.AGBtarget = _parent
 
 # Seiten ID für Suche
-plugin.tt_products.PIDsearch = 54
+plugin.tt_products.PIDsearch = {$id_shopsuche}
 
 ###################################
 ### Email und Web Einstellungen ###

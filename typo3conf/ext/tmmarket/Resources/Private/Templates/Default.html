@@ -63,10 +63,15 @@
 <div class="container maincontent"><!-- Content Container -->
   <div class="row">
     <div class="col-md-8">
+      <f:if condition="{data.uid}=='52'">
+        <f:render partial="Shopkategorien"/>
+        <f:format.raw>{content1}</f:format.raw>
+      </f:if>
       <f:format.raw>{content1}</f:format.raw>
     </div>
     <div class="col-md-4">
       <f:cObject typoscriptObjectPath="lib.subnavigation" />
+
       <f:format.raw>{content0}</f:format.raw>
    </div>
   </div>
@@ -77,8 +82,24 @@
 <div class="container maincontent"><!-- Content Container -->
   <div class="row">
     <div class="col-md-12">
-      <f:if condition="uid == 49">
+      <f:if condition="{data.uid}=='51'">
+        <f:render partial="Bezahlung"/>
+        <f:format.raw>{content0}</f:format.raw>
+      </f:if>
+      <f:if condition="{data.uid}=='53'">
+        <f:render partial="Detailansicht"/>
+        <f:format.raw>{content0}</f:format.raw>
+      </f:if>
+      <f:if condition="{data.uid}=='55'">
         <f:render partial="Shopangebote"/>
+        <f:format.raw>{content0}</f:format.raw>
+      </f:if>
+      <f:if condition="{data.uid}=='56'">
+        <f:render partial="Abschliessen"/>
+        <f:format.raw>{content0}</f:format.raw>
+      </f:if>
+      <f:if condition="{data.uid}=='58'">
+        <f:render partial="Warenkorb"/>
         <f:format.raw>{content0}</f:format.raw>
       </f:if>
     </div>
