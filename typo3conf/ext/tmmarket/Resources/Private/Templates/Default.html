@@ -4,15 +4,18 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
   <div class="container">
+    <!--TYPO3SEARCH_BEGIN-->
     <h1 class="display-3">Kaba Lavichè!</h1>
     <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
     <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+<!--TYPO3SEARCH_END-->
   </div>
 </div>
 </f:section>
 <f:section name="Multicolumn">
 <div class="container maincontent"><!-- Content Container -->
 <!-- Content Bereich Product Kategorien -->
+<!--TYPO3SEARCH_BEGIN-->
   <div class="row">
     <div class="col-md-4">
       <f:format.raw>{content1}</f:format.raw>
@@ -54,6 +57,7 @@
         veritatis!</p>
     </div>
   </div>
+  <!--TYPO3SEARCH_end-->
 </f:section>
 
 <f:section name="2spalten">
@@ -61,7 +65,9 @@
 <f:cObject typoscriptObjectPath="lib.rootline"/>
 
 <div class="container maincontent"><!-- Content Container -->
+
   <div class="row">
+    <!--TYPO3SEARCH_BEGIN-->
     <div class="col-md-8">
       <f:if condition="{data.uid}=='52'">
         <f:render partial="Shopkategorien"/>
@@ -69,17 +75,22 @@
       </f:if>
       <f:format.raw>{content1}</f:format.raw>
     </div>
+    <!--TYPO3SEARCH_end-->
     <div class="col-md-4">
-      <f:cObject typoscriptObjectPath="lib.subnavigation" />
 
+      <f:cObject typoscriptObjectPath="lib.subnavigation" />
+      <!--TYPO3SEARCH_begin-->
       <f:format.raw>{content0}</f:format.raw>
+      <!--TYPO3SEARCH_end-->
    </div>
   </div>
+
 </f:section>
 <f:section name="1spalte">
 <!-- Rootline -->
 <f:cObject typoscriptObjectPath="lib.rootline"/>
 <div class="container maincontent"><!-- Content Container -->
+  <!--TYPO3SEARCH_begin-->
   <div class="row">
     <div class="col-md-12">
       <f:if condition="{data.uid}=='51'">
@@ -90,9 +101,14 @@
         <f:render partial="Detailansicht"/>
         <f:format.raw>{content0}</f:format.raw>
       </f:if>
-      <f:if condition="{data.uid}=='55'">
-        <f:render partial="Shopangebote"/>
+      <f:if condition="{data.uid}=='54'">
+        <f:render partial="Shopsuche"/>
         <f:format.raw>{content0}</f:format.raw>
+      </f:if>
+      <f:if condition="{data.uid}=='55'">
+        <f:render partial="Shopen"/>
+        <f:format.raw>{content0}</f:format.raw>
+        <f:format.raw>{product1}</f:format.raw>
       </f:if>
       <f:if condition="{data.uid}=='56'">
         <f:render partial="Abschliessen"/>
@@ -102,6 +118,11 @@
         <f:render partial="Warenkorb"/>
         <f:format.raw>{content0}</f:format.raw>
       </f:if>
+      <f:if condition="{data.uid}=='64'">
+        <f:format.raw>{content0}</f:format.raw>
+      </f:if>
+
     </div>
   </div>
+  <!--TYPO3SEARCH_end-->
 </f:section>

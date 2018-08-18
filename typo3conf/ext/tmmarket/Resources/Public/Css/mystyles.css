@@ -101,7 +101,7 @@ body.subpage .mainnav {
 	border-bottom: 1px solid rgba(0,0,0,.1);
 }
 
-.mysubnav  a.current {
+.mysubnav a.current {
 	font-weight: bold;
 }
 
@@ -286,6 +286,10 @@ ul.tx-indexedsearch-browsebox, .tx-indexedsearch-browsebox li {
 	margin: 0 .5rem 0 0;
 }
 
+.tx-indexedsearch-redMarkup {
+	display: inline-block;
+	background: rgba(255,255,0,.5);
+}
 .tx-indexedsearch-redMarkup {
 	display: inline-block;
 	background: rgba(255,255,0,.5);

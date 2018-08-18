@@ -1,0 +1,21 @@
+
+renderingOptions:
+  submitButtonLabel: Submit
+type: Form
+identifier: testformular
+label: Testformular
+prototypeName: standard
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: 'previous Page'
+      nextButtonLabel: 'next Page'
+    type: Page
+    identifier: page-1
+    label: Page
+    renderables:
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-1
+        label: Text

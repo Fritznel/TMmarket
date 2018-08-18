@@ -13,7 +13,35 @@ page.stylesheet=fileadmin/user_upload/shop/tt_products.css
 
 # Default Stylesheet deaktivieren
 plugin.tt_products._CSS_DEFAULT_STYLE =
+plugin.tt_products.statusCodes {
+# 1: Eingehende Bestellung
+1 = Bestellung
+# 2-49: Nutzung durch Shopadmin
+2 = Ihre Bestellung ist eingegangen
+10 = Der Shop erwartet Waren eines Drittanbieters
+11 = Der Shop erwartet Ihren Zahlungseingang
+12 = Der Shop erwartet Ihre Materiallieferung
+13 = Die Bestellung ist bezahlt
+20 = Ihre Bestellung wurde versandt
+21 = Geschenkgutscheine wurden versandt
+30 = Die Waren mussten für Sie bestellt werden.
+# 50-99: Nutzung durch den Kunden
+# 50-59: Generelle, statische Meldungen vom Kunden (Drop-Down Kommentar-Header)
+50 = Kunde möchte Bestellung stornieren
+51 = Nachricht des Kunden an den Shop
+# 60-69: Spezielle Meldungen
+60 = Send gift certificate message to receiver
+# 100-299 : Bestellung abgeschlossen.
+100 = Die Bestellung ist versandt und abgeschlossen
+101 = Die Bestellung ist abgeschlossen
+200 = Die Bestellung wurd storniert
 
+statusDate_stdWrap.strftime= %e-%m-%y %H:%M
+orderDate_stdWrap.strftime= %e-%m-%y
+}
+
+stdSearchFieldExt = subtitle
+}
 
 ### Bezahlungsoptionen ###
 
@@ -29,9 +57,13 @@ plugin.tt_products.payment {
 
   # Bezahlung mit Rechnung
   10.title = Rechnung
+  10.priceTax =
+  10.calculationScript = EXT:tt_products/pi1/products_comp_calcScript.inc
 
   # Barzahlung
   20.title = Barzahlung
+  20.image.file =
+  20.priceTax =
 
   # Bezahlung per Nachnahme
   30.title = Nachnahme

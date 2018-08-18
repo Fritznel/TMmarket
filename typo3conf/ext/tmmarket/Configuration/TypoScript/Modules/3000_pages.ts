@@ -55,6 +55,17 @@ page.10 {
     lib.currentPageId = TEXT
     lib.currentPageId.data = TSFE:id
 
+    #eigenes plugin
+    product0 = PLUGIN
+    product0 {
+      table = tt_products
+      select.where = pid = 47
+      select.orderBy = sorting
+    }
+    product1 < .product0
+    product1.select.where = pid = 55
+    #ende eingenes plugin
+
     content0 = CONTENT
     content0 {
           table = tt_content
