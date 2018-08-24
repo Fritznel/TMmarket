@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2005-2008 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2005-2008 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -37,7 +37,8 @@
  *
  */
 
- 
+
+
 
 class tx_ttproducts_damcategory_view extends tx_ttproducts_category_view {
 	public $piVar = 'damcat';

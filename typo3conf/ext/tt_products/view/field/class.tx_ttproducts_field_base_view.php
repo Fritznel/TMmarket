@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2007-2009 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2007-2008 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -37,6 +37,7 @@
  */
 
 
+
 abstract class tx_ttproducts_field_base_view implements tx_ttproducts_field_view_int, t3lib_Singleton {
 	private $bHasBeenInitialised = FALSE;
 	public $modelObj;
@@ -44,7 +45,6 @@ abstract class tx_ttproducts_field_base_view implements tx_ttproducts_field_view
 	public $conf;		// original configuration
 	public $config;		// modified configuration
 	public $langObj;
-
 
 	public function init ($langObj, $modelObj)	{
 		$this->langObj = $langObj;
@@ -56,16 +56,13 @@ abstract class tx_ttproducts_field_base_view implements tx_ttproducts_field_view
 		$this->bHasBeenInitialised = TRUE;
 	}
 
-
 	public function needsInit ()	{
 		return !$this->bHasBeenInitialised;
 	}
 
-
 	public function getModelObj ()	{
 		return $this->modelObj;
 	}
-
 
 	public function getRepeatedRowSubpartArrays (
 		&$subpartArray,
@@ -117,12 +114,16 @@ abstract class tx_ttproducts_field_base_view implements tx_ttproducts_field_view
 		$markerObj = t3lib_div::makeInstance('tx_ttproducts_marker');
 		$upperField = strtoupper($fieldname);
 		$templateAreaList = $markerKey . '_' . $upperField . '_LIST';
-
 		$t = array();
 		$t['listFrameWork'] = $this->cObj->getSubpart($templateCode, '###' . $templateAreaList . '###');
+// 			$t['listFrameWork'] = $this->cObj->substituteMarkerArrayCached(
+// 				$t['listFrameWork'],
+// 				$markerArray,
+// 				$subpartArray,
+// 				$wrappedSubpartArray
+// 			);
 
 		$templateAreaSingle = $markerKey . '_' . $upperField . '_SINGLE';
-
 		$t['singleFrameWork'] = $this->cObj->getSubpart($t['listFrameWork'], '###' . $templateAreaSingle . '###');
 
 		if ($t['singleFrameWork'] != '') {
@@ -177,7 +178,6 @@ abstract class tx_ttproducts_field_base_view implements tx_ttproducts_field_view
 						$content .= $newContent;
 					}
 				}
-
 				$newContent = $this->cObj->substituteMarkerArrayCached(
 					$t['listFrameWork'],
 					array(),

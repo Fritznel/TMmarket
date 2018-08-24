@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2007-2008 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2007-2008 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -41,7 +41,6 @@ class tx_ttproducts_css implements t3lib_Singleton {
 	var $pibase; // reference to object of pibase
 	public $conf;
 	protected $isCssStyled;
-	private $bIncluded = FALSE;
 
 	/**
 	 * Getting all tt_products_cat categories into internal array
@@ -55,7 +54,7 @@ class tx_ttproducts_css implements t3lib_Singleton {
 	} // init
 
 	public function isCSSStyled ()	{
-		if (isset($this->conf) && is_array($this->conf) && $this->isCssStyled && $this->conf['file']!='')	{
+		if (isset($this->conf) && is_array($this->conf) && $this->isCssStyled && $this->conf['file'] != '')	{
 			$rc = TRUE;
 		} else {
 			$rc = FALSE;
@@ -63,15 +62,7 @@ class tx_ttproducts_css implements t3lib_Singleton {
 		return $rc;
 	}
 
-	public function setIncluded () {
-		$this->bIncluded = TRUE;
-	}
-
-	public function getIncluded () {
-		return $this->bIncluded;
-	}
-
-	public function getConf ($tablename='', $theCode='ALL')	{
+	public function &getConf ($tablename = '', $theCode = 'ALL')	{
 
 		$cnf = t3lib_div::makeInstance('tx_ttproducts_config');
 		$cssConf = $cnf->getSpecialConf('CSS', $tablename, $theCode);

@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2006-2007 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2006-2007 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -37,7 +37,7 @@
  */
 
 
-class tx_ttproducts_activity_base implements t3lib_Singleton {
+class tx_ttproducts_activity_base {
 	public $cnf;
 	public $pibase;
 	public $conf;
@@ -60,12 +60,6 @@ class tx_ttproducts_activity_base implements t3lib_Singleton {
 	} // init
 
 
-	/**
-	 * Do all the things to be done for this activity
-	 */
-	function doProcessing ()	{
-		// override this
-	}
 }
 
 

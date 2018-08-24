@@ -18,7 +18,6 @@ if (
 }
 
 
-
 switch ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][TT_PRODUCTS_EXT]['articleMode']) {
     case '0':
         $GLOBALS['TCA'][$table]['interface']['showRecordFieldList'] = str_replace(',subtitle,', ',subtitle,uid_product,', $GLOBALS['TCA'][$table]['interface']['showRecordFieldList']);

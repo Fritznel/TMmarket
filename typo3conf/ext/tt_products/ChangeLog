@@ -1,8 +1,10 @@
-2018-08-10 Franz Holzinger <franz@ttproducts.de>
-    * new feature: Many improvements for version 2.9.1 in TYPO3 TER
+
 
 2018-08-09 Franz Holzinger <franz@ttproducts.de>
     * bugfix #35: Do not try to generate the missing view class for the table tt_products_emails.
+
+2018-08-08 Franz Holzinger <franz@ttproducts.de>
+    * bugfix: marker detection with IMAGE markers which contain colons
 
 2018-06-29 Franz Holzinger <franz@ttproducts.de>
     * bugfix issue #34: If no agency extension is installed then the email and other validity checks must give an appropriate error message

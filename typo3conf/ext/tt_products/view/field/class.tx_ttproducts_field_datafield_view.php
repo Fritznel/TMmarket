@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2012 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2007-2011 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -40,6 +40,7 @@
 
 class tx_ttproducts_field_datafield_view extends tx_ttproducts_field_base_view {
 
+
 	public function getLinkArray (
 		&$wrappedSubpartArray,
 		$tagArray,
@@ -49,6 +50,7 @@ class tx_ttproducts_field_datafield_view extends tx_ttproducts_field_base_view {
 		$fieldname,
 		$tableConf
 	) {
+
 		if (isset($tagArray[$marker])) {
 
 			if (
@@ -94,6 +96,7 @@ class tx_ttproducts_field_datafield_view extends tx_ttproducts_field_base_view {
 		);
 	}
 
+
 	public function &getItemSubpartArrays (
 		&$templateCode,
 		$markerKey,
@@ -104,11 +107,10 @@ class tx_ttproducts_field_datafield_view extends tx_ttproducts_field_base_view {
 		&$subpartArray,
 		&$wrappedSubpartArray,
 		&$tagArray,
-		$theCode = '',
-		$basketExtra = array(),
-		$id = '1'
-	) {
-		$this->getRepeatedSubpartArrays (
+		$theCode='',
+		$id='1'
+	)	{
+		$this->getRepeatedSubpartArrays(
 			$subpartArray,
 			$wrappedSubpartArray,
 			$templateCode,
@@ -143,7 +145,6 @@ class tx_ttproducts_field_datafield_view extends tx_ttproducts_field_base_view {
 				}
 
 				$marker = $markerKey.'_LINK_'.$upperField;
-
 				$this->getLinkArray(
 					$wrappedSubpartArray,
 					$tagArray,
@@ -197,7 +198,7 @@ class tx_ttproducts_field_datafield_view extends tx_ttproducts_field_base_view {
 			$markerArray,
 			$marker1,
 			$tagArray,
-			$theCode,
+            $theCode,
 			'datasheetIcon',
 			$value
 		);
@@ -216,6 +217,7 @@ class tx_ttproducts_field_datafield_view extends tx_ttproducts_field_base_view {
 		$dataFile
 	) {
 		$imageConf['file'] = $dirname . '/' . $dataFile;
+// 		$iconImgCode = $this->cObj->IMAGE($imageConf);
         $imageObj = t3lib_div::makeInstance('tx_ttproducts_field_image_view');
         $iconImgCode =
             $imageObj->getImageCode(
@@ -223,7 +225,6 @@ class tx_ttproducts_field_datafield_view extends tx_ttproducts_field_base_view {
                 $imageConf,
                 $theCode
             ); // neu
-
 
 		if (isset($tagArray[$marker])) {
 			$markerArray['###' . $marker . '###'] = $iconImgCode; // new marker now
@@ -281,6 +282,8 @@ class tx_ttproducts_field_datafield_view extends tx_ttproducts_field_base_view {
                             $imageConf,
                             $theCode
                         ); // neu
+// 					$iconImgCode = $this->cObj->IMAGE($imageConf);
+
 					$markerArray['###' . $marker . '###'] = $iconImgCode;
 				} else {
 					$markerArray['###' . $marker . '###'] = '';
@@ -303,64 +306,56 @@ class tx_ttproducts_field_datafield_view extends tx_ttproducts_field_base_view {
 	 * 				for the tt_producst record, $row
 	 * @access private
 	 */
-	function getRowMarkerArray (
+	public function getRowMarkerArray (
 		$functablename,
 		$fieldname,
-		$row,
+		&$row,
 		$markerKey,
 		&$markerArray,
 		$tagArray,
 		$theCode,
 		$id,
-		$basketExtra,
 		&$bSkip,
-		$bHtml=true,
+		$bHtml=TRUE,
 		$charset='',
 		$prefix='',
 		$suffix='',
 		$imageRenderObj=''
 	)	{
-		$val = $row[$fieldname];
+		$value = $row[$fieldname];
 		$marker1 = 'ICON_' . strtoupper($fieldname);
-		$marker2 = $markerKey . '1';
+		$dirname = $this->modelObj->getDirname($row, $fieldname);
+		$dataFileArray = t3lib_div::trimExplode(',', $value);
 
-		if (isset($imageRenderObj) && $val && (isset($tagArray[$marker1]) || isset($tagArray[$marker2])))	{
+		$this->getIconMarker (
+			$markerArray,
+			$marker1,
+			$tagArray,
+            $theCode,
+			$imageRenderObj,
+			''
+		);
 
-            $imageObj = t3lib_div::makeInstance('tx_ttproducts_field_image_view');
-			$imageConf = $this->conf[$imageRenderObj . '.'];
-			$dirname = $this->modelObj->getDirname($row, $fieldname);
+		if (count($dataFileArray) && $dataFileArray[0])	{
+			foreach ($dataFileArray as $k => $dataFile)	{
+				$marker = $markerKey . '_' . $upperField . ($k+1);
 
-			if (isset($tagArray[$marker1]) && isset($this->conf['datasheetIcon.']))	{
-				if ($this->conf['datasheetIcon.']['file'] != '{$plugin.tt_products.file.datasheetIcon}')	{
-					$imageConf['file'] = $this->conf['datasheetIcon.']['file'];
-                    $iconImgCode =
-                        $imageObj->getImageCode(
-                            $this->cObj,
-                            $imageConf,
-                            $theCode
-                        ); // neu
-					$markerArray['###' . $marker1 . '###'] = $iconImgCode;
-				} else {
-					$markerArray['###' . $marker1 . '###'] = '';
-				}
-			} else {
-				$markerArray['###' . $marker1 . '###'] = '';
+				$this->getSingleValueArray(
+					$markerArray,
+					$marker,
+					$tagArray,
+					$theCode,
+					$imageConf,
+					$dirname,
+					$dataFile
+				);
 			}
-			if (isset($tagArray[$marker2]))	{
-				$imageConf['file'] = $dirname . '/' . $val;
-                $iconImgCode =
-                    $imageObj->getImageCode(
-                        $this->cObj,
-                        $imageConf,
-                        $theCode
-                    ); // neu
-				$markerArray['###' . $marker2 . '###'] = $iconImgCode; // new marker now
-			}
-		} else {
-			if (isset($tagArray[$marker1]))	{
-				$markerArray['###' . $marker1 . '###'] = '';
-			}
-			if (isset($tagArray[$marker2]))	{
+		}
+
+		for ($i = 1; $i <= 50; ++$i) {
+			$marker2 = $markerKey . $i;
+
+			if (isset($tagArray[$marker2]) && !isset($markerArray['###' . $marker2 . '###'])) {
 				$markerArray['###' . $marker2 . '###'] = '';
 			}
 		}

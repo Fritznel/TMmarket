@@ -71,9 +71,8 @@
     <div class="col-md-8">
       <f:if condition="{data.uid}=='52'">
         <f:render partial="Shopkategorien"/>
-        <f:format.raw>{content1}</f:format.raw>
+        <f:format.raw>{content2}</f:format.raw>
       </f:if>
-      <f:format.raw>{content1}</f:format.raw>
     </div>
     <!--TYPO3SEARCH_end-->
     <div class="col-md-4">
@@ -97,6 +96,10 @@
         <f:render partial="Bezahlung"/>
         <f:format.raw>{content0}</f:format.raw>
       </f:if>
+      <f:if condition="{data.uid}=='52'">
+        <f:render partial="Shopkategorien"/>
+        <f:format.raw>{content0}</f:format.raw>
+      </f:if>
       <f:if condition="{data.uid}=='53'">
         <f:render partial="Detailansicht"/>
         <f:format.raw>{content0}</f:format.raw>
@@ -108,6 +111,14 @@
       <f:if condition="{data.uid}=='55'">
         <f:render partial="Shopen"/>
         <f:format.raw>{content0}</f:format.raw>
+        <!--<f:format.raw>{content1}</f:format.raw>
+        <f:format.raw>{content2}</f:format.raw>
+        <f:format.raw>{content3}</f:format.raw>
+        <f:format.raw>{content4}</f:format.raw>
+        <f:format.raw>{content5}</f:format.raw>
+        <f:format.raw>{content6}</f:format.raw>
+        <f:format.raw>{content7}</f:format.raw>
+        <f:format.raw>{content8}</f:format.raw>-->
         <f:format.raw>{product1}</f:format.raw>
       </f:if>
       <f:if condition="{data.uid}=='56'">
@@ -119,6 +130,7 @@
         <f:format.raw>{content0}</f:format.raw>
       </f:if>
       <f:if condition="{data.uid}=='64'">
+      <f:render partial="Shopsuche"/>
         <f:format.raw>{content0}</f:format.raw>
       </f:if>
 

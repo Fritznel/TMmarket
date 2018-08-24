@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2007-2009 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2007-2009 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -50,16 +50,7 @@ class tx_ttproducts_pricecalc_base implements t3lib_Singleton {
 		return $rc;
 	}
 
-	function getCalculatedData (
-		&$itemArray,
-		&$conf,
-		$type,
-		&$priceReduction,
-		&$discountArray,
-		$priceTotalTax,
-		$bUseArticles,
-		$bMergeArticles = TRUE
-	) {
+	function getCalculatedData (&$itemArray, &$conf, $type, &$priceReduction, $priceTotalTax, $bUseArticles) {
 	} // getCalculatedData
 
 }

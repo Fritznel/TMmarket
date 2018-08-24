@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2005-2010 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2005-2008 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -52,13 +52,16 @@ class tx_ttproducts_account_view extends tx_ttproducts_table_base_view {
 	 * @return	array
 	 * @access private
 	 */
-	function getMarkerArray ($row, &$markerArray, $bIsAllowed)	{
+	function getMarkerArray (&$markerArray)	{
 		global $TCA;
 
-		if ($bIsAllowed)	{
-			$acNumber = $row['ac_number'];
-			$acOwnerName = $row['owner_name'];
-			$acBic = $row['bic'];
+		include_once (PATH_BE_ttproducts.'lib/class.tx_ttproducts_form_div.php');
+
+		$modelObj = $this->getModelObj();
+		if ($modelObj->bIsAllowed)	{
+			$acNumber = $modelObj->acArray['ac_number'];
+			$acOwnerName = $modelObj->acArray['owner_name'];
+			$acBic = $modelObj->acArray['bic'];
 		} else {
 			$acNumber = '';
 			$acOwnerName = '';

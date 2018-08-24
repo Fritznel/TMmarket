@@ -1,8 +1,10 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!-- saved from url=(0092)http://www.thomas-hirt.at/fileadmin/template_dateien/templates_ext/shop/tt_products_css.html -->
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
-	<title>tt_products Beispiel-Template für</title>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>tt_products Beispiel-Template f&uuml;r</title>
 </head>
 
 <body>
@@ -18,27 +20,27 @@ This subpart is used to display the regular list of products. It's also used by 
 	<div class="shop-list-page_navigation">
 		<span class="page_prev"><!--###LINK_PREV###-->vorherige Seite<!--###LINK_PREV###--></span>
         <!-- ###LINK_BROWSE### begin -->###BROWSE_LINKS###<!-- ###LINK_BROWSE### end-->
-        <span class="page_next"><!--###LINK_NEXT###-->nächste Seite<!--###LINK_NEXT###--></span>
+        <span class="page_next"><!--###LINK_NEXT###-->n&auml;chste Seite<!--###LINK_NEXT###--></span>
 	</div>
 
 	<!-- ###ITEM_CATEGORY_AND_ITEMS### -->
     <!-- ###ITEM_CATEGORY### begin -->
 
      <h2 class="shop-list-category-title">###CATEGORY_TITLE###</h2>
-     
+
      <!-- ###ITEM_CATEGORY### end -->
 	    <!-- ###ITEM_LIST### begin -->
 	      <!-- ###ITEM_SINGLE### begin-->
-        
-    		<form method="post" action="http://www.thomas-hirt.at/fileadmin/template_dateien/templates_ext/shop/tt_products_css.html###FORM_URL###" name="###FORM_NAME###">
+
+    		<form method="post" action="###FORM_URL###" name="###FORM_NAME###" >
 	        <div class="shop-list-item">
             	<div class="shop-list-product-img">###PRODUCT_IMAGE###</div>
                 <div class="shop-list-product-information">
                     <h3 class="shop-list-product-title"><!--###LINK_ITEM###-->###PRODUCT_TITLE###<!--###LINK_ITEM###--></h3>
                     <p class="shop-list-product-subtitle">###PRODUCT_SUBTITLE###</p>
                     <div class="shop-list-price">Preis: <span class="shop-list-price-numbers">###PRICE_TAX### EUR</span></div>
-                    <h4 class="shop-list-button-detailansicht"><!--###LINK_ITEM###-->Detailansicht<!--###LINK_ITEM###--></h4>  				
-                    <div class="shop-list-choose-anzahl">Stück:<input class="shop-list-input-qty" size="3" maxlength="3" type="text" name="###FIELD_NAME###" value="###FIELD_QTY###"><input type="submit" name="submit" value="in den Warenkorb" class="shop-list-submit"></div>
+                    <h4 class="shop-list-button-detailansicht"><!--###LINK_ITEM###-->Detailansicht<!--###LINK_ITEM###--></h4>
+                    <div class="shop-list-choose-anzahl">St&uuml;ck:<input class="shop-list-input-qty" size="3" maxlength="3" type="text" name="###FIELD_NAME###" value="###FIELD_QTY###"><input type="submit" name="submit" value="in den Warenkorb" class="shop-list-submit"></div>
                 </div>
                 <div class="clearer"></div>
 			</div>
@@ -50,45 +52,45 @@ This subpart is used to display the regular list of products. It's also used by 
 	<div class="shop-list-page_navigation">
 		<span class="page_prev"><!--###LINK_PREV###-->vorherige Seite<!--###LINK_PREV###--></span>
         <!-- ###LINK_BROWSE### begin -->###BROWSE_LINKS###<!-- ###LINK_BROWSE### end-->
-        <span class="page_next"><!--###LINK_NEXT###-->nächste Seite<!--###LINK_NEXT###--></span>
+        <span class="page_next"><!--###LINK_NEXT###-->n&auml;chste Seite<!--###LINK_NEXT###--></span>
 	</div>
 </div>
 <!-- ###ITEM_LIST_TEMPLATE### end -->
-<br><br>
+<br /><br />
 
 <!--------------------------------------- ITEM_SINGLE_DISPLAY --------------------------------------------------------------------------->
 
 <h3>ITEM_SINGLE_DISPLAY</h3>
 <em>This subpart is used to display single products.</em>
 
-<!-- ###ITEM_SINGLE_DISPLAY### begin
+<!-- ###ITEM_SINGLE_DISPLAY_RECORDINSERT### begin
 	This subpart is used to display single products.-->
-    
+
 <div class="shop-single">
 	<h2 class="shop-single-product-title">###PRODUCT_TITLE###</h2>
     <p class="shop-single-product-subtitle">###PRODUCT_SUBTITLE###</p>
-	<form method="post" name="###FORM_NAME###" action="http://www.thomas-hirt.at/fileadmin/template_dateien/templates_ext/shop/tt_products_css.html###FORM_URL###">
+	<form method="post" name="###FORM_NAME###" action="###FORM_URL###">
 	<div class="shop-single-product-img">###PRODUCT_IMAGE###</div>
   	<div class="shop-single-product-beschreibung">###PRODUCT_NOTE###</div>
         <table class="shop-single-price-table">
-            <tbody><tr>
+            <tr>
                 <td valign="top"><b>Preis:</b></td>
                 <td valign="top">
                     <b>###PRICE_TAX### EUR</b>
-                    <br>
+                    <br />
                     <span class="shop-single-enthaltene-mwst">(enthaltene MwSt: ###PRICE_ONLY_TAX### EUR)</span>
                 </td>
             </tr>
-        </tbody></table>
-    <div class="shop-single-choose-anzahl">Stück:<input class="shop-list-input-qty" size="3" maxlength="3" type="text" name="###FIELD_NAME###" value="###FIELD_QTY###"><input type="submit" name="submit" value="in den Warenkorb" class="shop-single-submit"></div>
-    <div class="shop-single-email-frage"> <a href="mailto:###SHOPADMIN_EMAIL###?subject=Frage%20zum%20Artikel:%20%23%23%23PRODUCT_TITLE%23%23%23&amp;body=Ich%20habe%20folgenden%20Artikel%20gesehen:%20%23%23%23PRODUCT_TITLE%23%23%23%20%0AMeine%20Fragen:">Fragen zum Artikel</a></div>
-  	<div class="shop-single-backtolist"><!--###LINK_ITEM###-->zurück zur Liste<!--###LINK_ITEM###--></div>
+        </table>
+    <div class="shop-single-choose-anzahl">St&uuml;ck:<input class="shop-list-input-qty" size="3" maxlength="3" type="text" name="###FIELD_NAME###" value="###FIELD_QTY###"><input type="submit" name="submit" value="in den Warenkorb" class="shop-single-submit"></div>
+    <div class="shop-single-email-frage"> <a href="mailto:###SHOPADMIN_EMAIL###?subject=Frage zum Artikel: ###PRODUCT_TITLE###&body=Ich habe folgenden Artikel gesehen: ###PRODUCT_TITLE### %0AMeine Fragen: ">Fragen zum Artikel</a></div>
+  	<div class="shop-single-backtolist"><!--###LINK_ITEM###-->zur&uuml;ck zur Liste<!--###LINK_ITEM###--></div>
 	</form>
     <div class="clearer"></div>
 </div>
-<!-- ###ITEM_SINGLE_DISPLAY### end -->
+<!-- ###ITEM_SINGLE_DISPLAY_RECORDINSERT### end -->
 
-!------------------------------------------------------ Categories: menu ----------------------------------------------------------------&gt;
+!------------------------------------------------------ Categories: menu ---------------------------------------------------------------->
 
 <!----------------------------------------------------------------------------------->
 <!-- ###ITEM_CATEGORY_MENU_TEMPLATE### begin
@@ -129,11 +131,11 @@ This subpart is used to display the regular list of products. It's also used by 
 	Subpart for the search-form
 	-->
     <div class="tt_products_item_search">
-    	<form method="post" action="http://www.thomas-hirt.at/fileadmin/template_dateien/templates_ext/shop/tt_products_css.html###FORM_URL###">
+    	<form method="post" action="###FORM_URL###">
         	<div>
 	            <label for="swords">Suchen nach: </label>
-	                <input size="30" maxlength="100" type="text" id="swords" name="swords" value="###SWORDS###">
-	            <input type="submit" name="order" value="Search">
+	                <input size="30" maxlength="100" type="text" id="###swords###" name="swords" value="###SWORDS###" />
+	            <input type="submit" name="order" value="Search" />
             </div>
         </form>
     </div>
@@ -163,23 +165,23 @@ Andrea: Warenkorbansicht Anfang -->
 
 <div class="shop-basket">
 <h1>Warenkorb</h1>
-  <form method="post" action="http://www.thomas-hirt.at/fileadmin/template_dateien/templates_ext/shop/tt_products_css.html###FORM_URL###">
-    
+  <form method="post" action="###FORM_URL###">
+
     <table width="100%" class="shop-basket-product-table">
-		<tbody><tr>
-        	<td valign="top" class="shop-basket-product-table-headercell">Stück</td>
+		<tr>
+        	<td valign="top" class="shop-basket-product-table-headercell">St&uuml;ck</td>
             <td valign="top" class="shop-basket-product-table-headercell">&nbsp;</td>
             <td valign="top" class="shop-basket-product-table-headercell">Produkt</td>
             <td valign="top" class="shop-basket-product-table-headercell">Preis</td>
             <td valign="top" class="shop-basket-product-table-headercell">Gesamt</td>
     	</tr>
-    
+
     <!-- ###ITEM_CATEGORY_AND_ITEMS### begin -->
- 
+
     <!-- ###ITEM_LIST### begin -->
     <!-- ###ITEM_SINGLE### begin-->
     	<tr>
-       	  <td valign="top" class="shop-basket-product-table-cell-1"><input size="2" maxlength="4" type="text" name="###FIELD_NAME_BASKET###" value="###FIELD_QTY###"></td>
+       	  <td valign="top" class="shop-basket-product-table-cell-1"><INPUT size="2" maxlength="4" type="text" name="###FIELD_NAME_BASKET###" value="###FIELD_QTY###"></td>
             <td valign="top" class="shop-basket-product-table-cell-2">###PRODUCT_IMAGE###</td>
             <td valign="top" class="shop-basket-product-table-cell-3"><!--###LINK_ITEM###-->###PRODUCT_TITLE###<!--###LINK_ITEM###--></td>
             <td valign="top" class="shop-basket-product-table-cell-4">###PRICE_TAX### EUR</td>
@@ -188,32 +190,32 @@ Andrea: Warenkorbansicht Anfang -->
    	<!-- ###ITEM_SINGLE### end -->
     <!-- ###ITEM_LIST### end -->
     <!-- ###ITEM_CATEGORY_AND_ITEMS### end -->
-    </tbody></table>
-    <div class="shop-basket-howtodelete-txt">Um einen Artikel aus dem Warenkorb zu entfernen, geben Sie im Feld "Stück" eine "0" ein und klicken Sie dann auf "Warenkorb aktualisieren".</div>
-    
+    </table>
+    <div class="shop-basket-howtodelete-txt">Um einen Artikel aus dem Warenkorb zu entfernen, geben Sie im Feld &quot;St&uuml;ck&quot; eine &quot;0&quot; ein und klicken Sie dann auf &quot;Warenkorb aktualisieren&quot;.</div>
+
     <h2 class="shop-basket-titel-versandart">Versandart &amp; Bezahlung</h2>
-    <p class="">Bitte wählen Sie eine Versandart</p>
-    <div class="shop-basket-shipping-selector">###SHIPPING_SELECTOR###</div> 
+    <p class="">Bitte w&auml;hlen Sie eine Versandart</p>
+    <div class="shop-basket-shipping-selector">###SHIPPING_SELECTOR###</div>
     <div class="shop-basket-shipping-price">Versandkosten: ###PRICE_SHIPPING_TAX### EUR</div>
-   
+
     <div class="shop-basket-shipping-message">
         <!-- ###MESSAGE_SHIPPING###
         This whole subpart, message_payment is substituted with the subpart 'message_payment_[number-of-method-in-typoscript]'
         -->
         <!-- ###MESSAGE_SHIPPING_10### -->
-        <p> Die Ware wird per Postpaket versendet.<br> 
-        Bitte überweisen Sie den Rechnungsbetrag nach Erhalt der Rechung auf unser Konto.</p>
+        <p> Die Ware wird per Postpaket versendet.</br>
+        Bitte &uuml;berweisen Sie den Rechnungsbetrag nach Erhalt der Rechung auf unser Konto.</p>
         <!-- ###MESSAGE_SHIPPING_10### -->
 
         <!-- ###MESSAGE_SHIPPING_20### -->
-        <p>Die Ware wird im Büro abgeholt.<br>
-        Die Bezahlung erfolgt bar bei Abholung der Ware.<br>
+        <p>Die Ware wird im B&uuml;ro abgeholt.<br />
+        Die Bezahlung erfolgt bar bei Abholung der Ware.<br />
         <b>Es fallen keine Versandkosten an.</b></p>
         <!-- ###MESSAGE_SHIPPING_20### -->
 
          <!-- ###MESSAGE_SHIPPING_30### -->
-        <p> Die Ware wird per Nachnahme versendet.<br> 
-        Die Bezahlung erfolgt bar bei Entgegennahme der Ware<br>
+        <p> Die Ware wird per Nachnahme versendet.</br>
+        Die Bezahlung erfolgt bar bei Entgegennahme der Ware</br>
         </p>
         <!-- ###MESSAGE_SHIPPING_30### -->
         <!-- ###MESSAGE_SHIPPING### -->
@@ -222,7 +224,7 @@ Andrea: Warenkorbansicht Anfang -->
         This whole subpart, message_payment is substituted with the subpart 'message_payment_[number-of-method-in-typoscript]'
         -->
         <!-- ###MESSAGE_PAYMENT_10### -->
-        
+
         <!-- ###MESSAGE_PAYMENT_10### -->
 
         <!-- ###MESSAGE_PAYMENT_20### -->
@@ -230,7 +232,7 @@ Andrea: Warenkorbansicht Anfang -->
         <!-- ###MESSAGE_PAYMENT_20### -->
 
         <!-- ###MESSAGE_PAYMENT_30### -->
-        
+
         <!-- ###MESSAGE_PAYMENT_30### -->
         <!-- ###MESSAGE_PAYMENT### -->
     </div>
@@ -243,12 +245,12 @@ Andrea: Warenkorbansicht Anfang -->
     <div class="shop-basket-submit-buttons">
 		<input type="hidden" name="mode_update" value="1">
 		<input type="submit" id="button3" name="products_update" value="Warenkorb aktualisieren">
-		<input type="submit" id="button3" name="products_clear_basket" value="Warenkorb löschen">
-        <input type="submit" id="button3" name="products_info" value="weiter zur Eingabe Ihrer Daten" onclick="this.form.action=&#39;###FORM_URL_INFO###&#39;;">
+		<input type="submit" id="button3" name="products_clear_basket" value="Warenkorb l&ouml;schen">
+        <input type="submit" id="button3" name="products_info" value="weiter zur Eingabe Ihrer Daten" onclick="this.form.action='###FORM_URL_INFO###';">
     </div>
 
   </form>
-  
+
 </div>
 <!-- ###BASKET_TEMPLATE### end -->
 
@@ -263,15 +265,15 @@ If the minimum price in basket has not been reached this subpart is displayed on
 If the basket is empty this subpart is displayed
 -->
 <br>
-<b>Es müssen mindestens Waren für 20 Euro gekauft werden.</b>
+<B>Es m&uuml;ssen mindestens Waren f&uuml;r 20 Euro gekauft werden.</B>
 <!-- ###BASKET_TEMPLATE_MINPRICE_ERROR### end -->
 
 
 <!---------------------------------------------- BASKET_INFO_TEMPLATE ------------------------------------------------------------------->
 
 <h2>BASKET_INFO_TEMPLATE</h2>
-<p><em>Subpart used if the GPvar "products_info" was set.<br>
-This is normally used to let people enter address information separately from the real basket.<br>
+<p><em>Subpart used if the GPvar "products_info" was set.<br />
+This is normally used to let people enter address information separately from the real basket.<br />
 Exact same features as BASKET_TEMPLATE.</em></p>
 <!-- ###BASKET_INFO_TEMPLATE### begin
 Subpart used if the GPvar "products_info" was set.
@@ -279,25 +281,25 @@ Subpart used if the GPvar "products_info" was set.
 Exact same features as BASKET_TEMPLATE.
 -->
 <div class="shop-info">
-    <form method="post" action="http://www.thomas-hirt.at/fileadmin/template_dateien/templates_ext/shop/tt_products_css.html###FORM_URL###">
+    <form method="post" action="###FORM_URL###">
         <!-- ###BILLING_ADDRESS### start -->
         <h1>Eingabe Ihrer Daten</h1>
-        <div class="shop-info-start-txt"> Bitte geben Sie hier Ihren Namen und die Adresse ein. Die bestellten Artikel werden an diese Adresse geschickt. Falls die Bestellung an eine andere Stelle geliefert werden soll, tragen Sie diese Adresse bitte in das Feld Lieferanschrift ein.<br><br>
-        Felder mit <span class="required-star">*</span> müssen ausgefüllt werden!</div>
+        <div class="shop-info-start-txt"> Bitte geben Sie hier Ihren Namen und die Adresse ein. Die bestellten Artikel werden an diese Adresse geschickt. Falls die Bestellung an eine andere Stelle geliefert werden soll, tragen Sie diese Adresse bitte in das Feld Lieferanschrift ein.<br /><br />
+        Felder mit <span class="required-star">*</span> m&uuml;ssen ausgef&uuml;llt werden!</div>
         <h2 class="shop-info-ranschrift-title">Rechnungsadresse</h2>
         <div class="shop-info-billing-address">
             <label for="billing_name">Name/Unternehmen:<span class="required-star"> *</span></label>
-            <input type="text" name="recs[personinfo][name]" size="30" id="billing_name" value="###PERSON_NAME###"><br>
-            <label for="billing_address">Straße: <span class="required-star">*</span></label>
-            <input type="text" name="recs[personinfo][address]" size="30" id="billing_address" value="###PERSON_ADDRESS###"><br>
+            <input type="text" name="recs[personinfo][name]" size="30" id="billing_name" value="###PERSON_NAME###" /><br  />
+            <label for="billing_address">Stra&szlig;e: <span class="required-star">*</span></label>
+            <input type="text" name="recs[personinfo][address]" size="30" id="billing_address" value="###PERSON_ADDRESS###" /><br  />
             <label for="billing_zip">PLZ/Stadt: <span class="required-star"> *</span></label>
-            <input type="text" name="recs[personinfo][zip]" size="5" id="billing_zip" value="###PERSON_ZIP###" style="width: 60px; margin-right: 3px;"><input type="text" name="recs[personinfo][city]" size="20" id="billing_city" value="###PERSON_CITY###" style="width: 237px;"><br>
+            <input type="text" name="recs[personinfo][zip]" size="5" id="billing_zip" value="###PERSON_ZIP###" style="width: 60px; margin-right: 3px;"/><input type="text" name="recs[personinfo][city]" size="20" id="billing_city" value="###PERSON_CITY###" style="width: 237px;" /><br />
             <label for="billing_country">Land: <span class="required-star">*</span></label>
             <div class="shop-info-billing-country">###PERSON_COUNTRY_CODE###</div>
             <label for="billing_email">Email: <span class="required-star"> *</span></label>
-            <input type="text" name="recs[personinfo][email]" size="30" id="billing_email" value="###PERSON_EMAIL###"><br>
+            <input type="text" name="recs[personinfo][email]" size="30" id="billing_email" value="###PERSON_EMAIL###" /><br  />
             <label for="billing_telephone">Telefon: <span class="required-star">*</span></label>
-            <input type="text" name="recs[personinfo][telephone]" size="30" id="billing_telephone" value="###PERSON_TELEPHONE###"><br>
+            <input type="text" name="recs[personinfo][telephone]" size="30" id="billing_telephone" value="###PERSON_TELEPHONE###" /><br  />
         </div>
         <!-- ###BILLING_ADDRESS### end-->
 
@@ -308,52 +310,52 @@ Exact same features as BASKET_TEMPLATE.
             <dl class="shop-info-billing-address-feuser">
                 <dt class="shop-info-billing-name-feuser-label">Name/Unternehmen:</dt>
                     <dd class="shop-info-billing-name-feuser">###PERSON_NAME###</dd>
-                  
+
                 <dt class="shop-info-billing-address-feuser-label">Adresse:</dt>
                     <dd class="shop-info-billing-address-feuser">###PERSON_ADDRESS_DISPLAY###</dd>
-                                        
+
                 <dt class="shop-info-billing-email-feuser-label">Email:</dt>
-              
+
                     <dd class="shop-info-billing-email-feuser">###PERSON_EMAIL###</dd>
                 <dt class="shop-info-billing-telephone-label">Telefon:</dt>
                     <dd class="shop-info-billing-telephone">###PERSON_TELEPHONE###</dd>
             </dl>
         <!-- ###BILLING_ADDRESS_LOGIN### end-->
         <h2 class="shop-info-delivery-address-title">abweichende Lieferanschrift</h2>
-            <p class="shop-info-delivery-address-info">Falls die Bestellung nicht an die Rechnungsadresse geschickt werden soll, tragen Sie bitte hier die Lieferadresse ein. In das Emailfeld können Sie für das Bestätigungsschreiben eine weitere Emailadresse eingeben.
+            <p class="shop-info-delivery-address-info">Falls die Bestellung nicht an die Rechnungsadresse geschickt werden soll, tragen Sie bitte hier die Lieferadresse ein. In das Emailfeld k&ouml;nnen Sie f&uuml;r das Best&auml;tigungsschreiben eine weitere Emailadresse eingeben.
             </p>
             <div class="shop-info-delivery-address">
                 <label for="delivery_name">Kontaktperson: </label>
-                    <input type="text" name="recs[delivery][name]" size="30" id="delivery_name" value="###DELIVERY_NAME###"><br>
-                <label for="delivery_address">Straße: </label>
-                    <input type="text" name="recs[delivery][address]" size="30" id="delivery_address" value="###DELIVERY_ADDRESS###"><br>
+                    <input type="text" name="recs[delivery][name]" size="30" id="delivery_name" value="###DELIVERY_NAME###" /><br />
+                <label for="delivery_address">Stra&szlig;e: </label>
+                    <input type="text" name="recs[delivery][address]" size="30" id="delivery_address" value="###DELIVERY_ADDRESS###" /><br />
                 <label for="delivery_zip">PLZ/Stadt: </label>
-                    <input type="text" name="recs[delivery][zip]" size="5" id="delivery_zip" value="###DELIVERY_ZIP###" style="width: 60px; margin-right: 3px;"><input type="text" name="recs[delivery][city]" size="20" id="delivery_city" value="###DELIVERY_CITY###" style="width: 237px;"><br>
+                    <input type="text" name="recs[delivery][zip]" size="5" id="delivery_zip" value="###DELIVERY_ZIP###" style="width: 60px; margin-right: 3px;"/><input type="text" name="recs[delivery][city]" size="20" id="delivery_city" value="###DELIVERY_CITY###" style="width: 237px;"/><br />
                 <label for="delivery_country">Land: </label>
-                    <input type="text" name="recs[delivery][country]" size="30" id="delivery_country" value="###DELIVERY_COUNTRY###"><br>
+                    <input type="text" name="recs[delivery][country]" size="30" id="delivery_country" value="###DELIVERY_COUNTRY###" /><br />
                 <label for="delivery_email">Email: </label>
-                    <input type="text" name="recs[delivery][email]" size="30" id="delivery_email" value="###DELIVERY_EMAIL###"><br>
+                    <input type="text" name="recs[delivery][email]" size="30" id="delivery_email" value="###DELIVERY_EMAIL###" /><br />
                 <label for="delivery_telephone">Telefon: </label>
-                    <input type="text" name="recs[delivery][telephone]" size="30" id="delivery_telephone" value="###DELIVERY_TELEPHONE###">
+                    <input type="text" name="recs[delivery][telephone]" size="30" id="delivery_telephone" value="###DELIVERY_TELEPHONE###" />
             </div>
 
-      
+
         <div class="shop-info-delivery-notes">
         <h2 class="shop-info-delivery-notes-title">Bemerkungen</h2>
         <p class="shop-info-delivery-notes-infotxt">Bitte tragen Sie hier Ihre Fragen zur Bestellung ein.</p>
         <textarea cols="32" rows="5" name="recs[delivery][note]" id="delivery_notes" class="shop-info-delivery-notes-input">###DELIVERY_NOTE###</textarea>
         </div>
-        
+
         <div class="shop-info-trading-conditions">
-            <h2 class="shop-info-trading-conditions-title">Allgemeine Geschäftsbedingungen</h2>
-            <p class="shop-info-trading-conditions-infotxt1">Hiermit bestätige ich, dass ich die <a href="http://www.thomas-hirt.at/typo3-extension-testbereich/tt-products-shop/agb.html">Allgemeinen Geschäftsbedingungen</a><br> gelesen und akzeptiert habe:</p>
-            <div class="shop-info-trading-conditions-check"><input type="checkbox" name="recs[personinfo][agb]" value="###PERSON_AGB###" id="checkboxagb"><span class="required-star">* </span></div>
-            <div class="shop-info-trading-conditions-infotxt2">Ich bin mit den allgemeinen Geschäftsbedingungen einverstanden</div>
+            <h2 class="shop-info-trading-conditions-title">Allgemeine Gesch&auml;ftsbedingungen</h2>
+            <p class="shop-info-trading-conditions-infotxt1">Hiermit best&auml;tige ich, dass ich die <a href="http://www.thomas-hirt.at/typo3-extension-testbereich/tt-products-shop/agb.html">Allgemeinen Gesch&auml;ftsbedingungen</a><br /> gelesen und akzeptiert habe:</p>
+            <div class="shop-info-trading-conditions-check"><input type="checkbox" name="recs[personinfo][agb]" value="###PERSON_AGB###" id="checkboxagb"/><span class="required-star">* </span></div>
+            <div class="shop-info-trading-conditions-infotxt2">Ich bin mit den allgemeinen Gesch&auml;ftsbedingungen einverstanden</div>
         </div>
-        
+
         <div class="shop-info-form-control">
-        <input type="submit" name="products_update" value="zurück zum Warenkorb">
-        <input type="submit" name="products_payment" value="weiter zu Bestätigung Ihrer Bestellung">
+        <input type="submit" name="products_update" value="zur&uuml;ck zum Warenkorb" />
+        <input type="submit" name="products_payment" value="weiter zu Best&auml;tigung Ihrer Bestellung" />
         </div>
     </form>
 </div>
@@ -372,10 +374,10 @@ Exact same features as BASKET_TEMPLATE.
     </div>
     <div class="clearer"></div>
     <!-- Da ###LINK_BASKET### bei mir nicht zu einem Link umgewandelt wird kommt in diese Zeile der tatsächliche Link zum Warenkorb -->
-    <div class="shop-minibasket-link-basket"><a href="http://www.thomas-hirt.at/typo3-extension-testbereich/tt-products-shop/warenkorb.html">zum Warenkorb</a></div>
-</div>    
+    <div class="shop-minibasket-link-basket"><a href="https://localhost/TMmarket/index.php?id=58">zum Warenkorb</a></div>
+</div>
 <!-- ###BASKET_OVERVIEW_TEMPLATE### end -->
-   
+
 <!-- ###BASKET_OVERVIEW_EMPTY### begin -->
 
 <div class="shop-minibasket">
@@ -403,11 +405,11 @@ Exact same features as BASKET_TEMPLATE
 -->
 
 <div class="shop-basket-payment">
-	<h1>Übersicht über Ihre Bestellung</h1>
-  
+	<h1>&Uuml;bersicht &uuml;ber Ihre Bestellung</h1>
+
 	<table width="100%" class="shop-basket-product-table">
-		<tbody><tr>
-        	<td valign="top" class="shop-basket-product-table-headercell">Stück</td>
+		<tr>
+        	<td valign="top" class="shop-basket-product-table-headercell">St&uuml;ck</td>
             <td valign="top" class="shop-basket-product-table-headercell">&nbsp;</td>
             <td valign="top" class="shop-basket-product-table-headercell">Produkt</td>
             <td valign="top" class="shop-basket-product-table-headercell">Preis</td>
@@ -415,7 +417,7 @@ Exact same features as BASKET_TEMPLATE
     	</tr>
 
   <!-- ###ITEM_CATEGORY_AND_ITEMS### begin -->
-  
+
   <!-- ###ITEM_LIST### begin -->
   <!-- ###ITEM_SINGLE### begin-->
 
@@ -430,18 +432,18 @@ Exact same features as BASKET_TEMPLATE
   <!-- ###ITEM_SINGLE### end -->
   <!-- ###ITEM_LIST### end -->
   <!-- ###ITEM_CATEGORY_AND_ITEMS### end -->
-    </tbody></table>
-     
+    </table>
+
     <h2>Rechnungsadresse</h2>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="shop-payment-billing-address-table">
-      <tbody><tr>
+      <tr>
         <td valign="top" class="shop-payment-billing-address-cell-label">Name/Unternehmen:</td>
         <td valign="top">###PERSON_NAME###</td>
       </tr>
       <tr>
         <td valign="top" class="shop-payment-billing-address-cell-label">Adresse:</td>
-        <td valign="top">###PERSON_ADDRESS_DISPLAY###<br>
-        ###PERSON_ZIP### ###PERSON_CITY###<br>###PERSON_COUNTRY###</td>
+        <td valign="top">###PERSON_ADDRESS_DISPLAY###<br />
+        ###PERSON_ZIP### ###PERSON_CITY###<br />###PERSON_COUNTRY###</td>
       </tr>
       <tr>
         <td valign="top" class="shop-payment-billing-address-cell-label">Telefon:</td>
@@ -449,20 +451,20 @@ Exact same features as BASKET_TEMPLATE
       </tr>
       <tr>
         <td valign="top" class="shop-payment-billing-address-cell-label">Email:</td>
-        <td valign="top">###PERSON_EMAIL###<br>
-        <span class="shop-payment-billing-address-email-infotxt">(An diese Email-Adresse wird die Bestätigung<br> Ihrer Bestellung geschickt!)</span></td>
+        <td valign="top">###PERSON_EMAIL###<br />
+        <span class="shop-payment-billing-address-email-infotxt">(An diese Email-Adresse wird die Best&auml;tigung<br /> Ihrer Bestellung geschickt!)</span></td>
       </tr>
-    </tbody></table>
+    </table>
     <h2>Lieferanschrift</h2>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="shop-payment-billing-address-table">
-      <tbody><tr>
+      <tr>
         <td valign="top" class="shop-payment-billing-address-cell-label">Kontakt:</td>
         <td valign="top">###DELIVERY_NAME###</td>
       </tr>
       <tr>
         <td valign="top" class="shop-payment-billing-address-cell-label">Adresse:</td>
-        <td valign="top">###DELIVERY_ADDRESS_DISPLAY###<br>
-        ###DELIVERY_ZIP### ###DELIVERY_CITY###<br>###DELIVERY_COUNTRY###</td>
+        <td valign="top">###DELIVERY_ADDRESS_DISPLAY###<br />
+        ###DELIVERY_ZIP### ###DELIVERY_CITY###<br />###DELIVERY_COUNTRY###</td>
       </tr>
       <tr>
         <td valign="top" class="shop-payment-billing-address-cell-label">Telefon:</td>
@@ -472,12 +474,12 @@ Exact same features as BASKET_TEMPLATE
         <td valign="top" class="shop-payment-billing-address-cell-label">Email:</td>
         <td valign="top">###DELIVERY_EMAIL###</td>
       </tr>
-    </tbody></table>
+    </table>
     <h2>Bemerkungen</h2>
     <div class="shop-payment-billing-note">###DELIVERY_NOTE_DISPLAY###</div>
     <h2>Versand und Bezahlung</h2>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="shop-payment-billing-address-table">
-      <tbody><tr>
+      <tr>
         <td valign="top" class="shop-payment-billing-address-cell-label">Versandart: </td>
         <td valign="top">###SHIPPING_TITLE###</td>
       </tr>
@@ -490,38 +492,38 @@ Exact same features as BASKET_TEMPLATE
         <td valign="top">###PAYMENT_TITLE###</td>
       </tr>
       <tr>
-      	<td colspan="2"><span class="shop-payment-billing-final-price"><br>GESAMTPREIS: ###PRICE_TOTAL_TAX### EUR</span>
-        <br>
+      	<td colspan="2"><span class="shop-payment-billing-final-price"><br />GESAMTPREIS: ###PRICE_TOTAL_TAX### EUR</span>
+        <br />
         <span class="shop-single-enthaltene-mwst">(enthaltene MwSt: ###PRICE_TOTAL_ONLY_TAX### EUR)</span>
         </td>
       </tr>
-    </tbody></table>
+    </table>
     <!-- ###MESSAGE_SHIPPING###
         This whole subpart, message_payment is substituted with the subpart 'message_payment_[number-of-method-in-typoscript]'
         -->
         <!-- ###MESSAGE_SHIPPING_10### -->
-        <p> Die Ware wird per Postpaket versendet.<br> 
-        Bitte überweisen Sie den Rechnungsbetrag nach Erhalt der Rechung auf unser Konto.</p>
+        <p> Die Ware wird per Postpaket versendet.</br>
+        Bitte &uuml;berweisen Sie den Rechnungsbetrag nach Erhalt der Rechung auf unser Konto.</p>
         <!-- ###MESSAGE_SHIPPING_10### -->
 
         <!-- ###MESSAGE_SHIPPING_20### -->
-        <p>Die Ware wird im Büro abgeholt.<br>
-        Die Bezahlung erfolgt bar bei Abholung der Ware.<br>
+        <p>Die Ware wird im B&uuml;ro abgeholt.<br />
+        Die Bezahlung erfolgt bar bei Abholung der Ware.<br />
         <b>Es fallen keine Versandkosten an.</b></p>
         <!-- ###MESSAGE_SHIPPING_20### -->
-        
+
         <!-- ###MESSAGE_SHIPPING_30### -->
-         <p> Die Ware wird per Nachnahme versendet.<br> 
-        Die Bezahlung erfolgt bar bei Entgegennahme der Ware<br>
+         <p> Die Ware wird per Nachnahme versendet.</br>
+        Die Bezahlung erfolgt bar bei Entgegennahme der Ware</br>
         <!-- ###MESSAGE_SHIPPING_30### -->
     <!-- ###MESSAGE_SHIPPING### -->
-    </p><form method="post" action="http://www.thomas-hirt.at/fileadmin/template_dateien/templates_ext/shop/tt_products_css.html###FORM_URL###" name="###FORM_NAME###" id="paymentForm" style="margin-bottom: 30px;">
-      <input type="submit" name="products_update" value="zurück zum Warenkorb">
-      <input type="hidden" name="products_cmd" value="cardno">
-      <input type="submit" name="products_finalize" value="Bestellung abschließen!" onclick="document.forms[0].action=&#39;###FORM_URL_THANKS###&#39;; document.forms[0].target=&#39;###FORM_URL_TARGET###&#39;;">
+    <form method="post" action="###FORM_URL###" name="###FORM_NAME###" id="paymentForm" style="margin-bottom: 30px;">
+      <input type="submit" name="products_update" value="zur&uuml;ck zum Warenkorb">
+      <input type="hidden" name="products_cmd" value="cardno" />
+      <input type="submit" name="products_finalize" value="Bestellung abschlie&szlig;en!" onclick="document.forms[0].action='###FORM_URL_THANKS###'; document.forms[0].target='###FORM_URL_TARGET###';">
   	</form>
 </div>
-  
+
 <!-- ###BASKET_PAYMENT_TEMPLATE### end -->
 
 <!----------------------------- BASKET_ORDERCONFIRMATION_TEMPLATE ----------------------------------------------------------------------->
@@ -530,45 +532,45 @@ Exact same features as BASKET_TEMPLATE
 Subpart used if the order is finalized and this is thus the confirmation shown.-->
 
 <div class="shop-confirmation">
-	<h1>Bestätigung über Ihre Bestellung</h1>
-    <p>Vielen Dank für Ihre Bestellung bei xxx. <br>Die genauen Angaben zu Ihrer Bestellung finden Sie nochmals aufgeführt.<br><br>
-    <strong>Rechnungs- und Versandinformationen:</strong><br>
-    Bestellnummer: <strong>###ORDER_UID###</strong><br>
-    Bestelldatum: ###ORDER_DATE###<br><br>
-    Ihre Rückfragen zur Bestellung können schneller bearbeitet werden, wenn Sie uns die Bestellnummer mitteilen.<br><br>
-    
-    Die Bestätigung der Bestellung ist an die Email-Adresse<br> 
-    <a href="mailto:###CUSTOMER_RECIPIENTS_EMAIL###">###CUSTOMER_RECIPIENTS_EMAIL###</a> geschickt worden.<br>
-    <a class="print" href="javascript:window.print();">Drucken</a> Sie diese Seite für Ihre Unterlagen aus. 
-    </p>   
- 
-  	<div id="shop-confirmation-zahlungsart"> 
+	<h1>Best&auml;tigung &uuml;ber Ihre Bestellung</h1>
+    <p>Vielen Dank f&uuml;r Ihre Bestellung bei xxx. <br />Die genauen Angaben zu Ihrer Bestellung finden Sie nochmals aufgef&uuml;hrt.<br /><br />
+    <strong>Rechnungs- und Versandinformationen:</strong><br />
+    Bestellnummer: <strong>###ORDER_UID###</strong><br />
+    Bestelldatum: ###ORDER_DATE###<br /><br />
+    Ihre R&uuml;ckfragen zur Bestellung k&ouml;nnen schneller bearbeitet werden, wenn Sie uns die Bestellnummer mitteilen.<br /><br />
+
+    Die Best&auml;tigung der Bestellung ist an die Email-Adresse<br />
+    <a href="mailto:###CUSTOMER_RECIPIENTS_EMAIL###">###CUSTOMER_RECIPIENTS_EMAIL###</a> geschickt worden.<br />
+    <a class="print" href="javascript:window.print();">Drucken</a> Sie diese Seite f&uuml;r Ihre Unterlagen aus.
+    </p>
+
+  	<div id="shop-confirmation-zahlungsart">
     <h2>Zahlungsart</h2>
     <!-- ###MESSAGE_PAYMENT### begin -->
     	<!-- ###MESSAGE_PAYMENT_10### begin Message for payment method 10, Ueberweisung -->
-        Sie haben folgende Zahlungsart gewählt: <b>Vorauskasse</b>      
-       <p> Die Ware wird per Postpaket versendet.<br> 
-        Bitte überweisen Sie den Rechnungsbetrag auf unser Konto.<br>
+        Sie haben folgende Zahlungsart gew&auml;hlt: <b>Vorauskasse</b>
+       <p> Die Ware wird per Postpaket versendet.</br>
+        Bitte &uuml;berweisen Sie den Rechnungsbetrag auf unser Konto.</br>
          <!-- ###MESSAGE_PAYMENT_10### end -->
-  		
+
         <!-- ###MESSAGE_PAYMENT_20### begin -->
-        Sie haben folgende Zahlungsart gewählt: <b>Selbstabholer:</b>
-        </p><p>Die Ware wird im Büro abgeholt.<br>
-        Die Bezahlung erfolgt bar bei Abholung der Ware.<br>
+        Sie haben folgende Zahlungsart gew&auml;hlt: <b>Selbstabholer:</b>
+        <p>Die Ware wird im B&uuml;ro abgeholt.<br />
+        Die Bezahlung erfolgt bar bei Abholung der Ware.<br />
         <b>Es fallen keine Versandkosten an.</b></p>
         <!-- ###MESSAGE_PAYMENT_20### end -->
-    	
+
         <!-- ###MESSAGE_PAYMENT_30### begin -->
-        Sie haben folgende Zahlungsart gewählt: <b>Nachnahme:</b>
+        Sie haben folgende Zahlungsart gew&auml;hlt: <b>Nachnahme:</b>
         <p>Die Waren werden Ihnen zugesandt und Sie bezahlen bei Erhalt.
         <!-- ###MESSAGE_PAYMENT_30### end -->
-  	</p></div>
+  	</div>
     <!-- ###MESSAGE_PAYMENT### end -->
-    <h2>Übersicht über Ihre Produkte</h2>
+    <h2>&Uuml;bersicht &uuml;ber Ihre Produkte</h2>
     <div class="shop-confirmation-produkte">
 	<table width="100%" class="shop-basket-product-table">
-		<tbody><tr>
-        	<td valign="top" class="shop-basket-product-table-headercell">Stück</td>
+		<tr>
+        	<td valign="top" class="shop-basket-product-table-headercell">St&uuml;ck</td>
             <td valign="top" class="shop-basket-product-table-headercell">&nbsp;</td>
             <td valign="top" class="shop-basket-product-table-headercell">Produkt</td>
             <td valign="top" class="shop-basket-product-table-headercell">Preis</td>
@@ -576,7 +578,7 @@ Subpart used if the order is finalized and this is thus the confirmation shown.-
     	</tr>
 
       <!-- ###ITEM_CATEGORY_AND_ITEMS### begin -->
-      
+
       <!-- ###ITEM_LIST### begin -->
       <!-- ###ITEM_SINGLE### begin-->
 
@@ -587,24 +589,24 @@ Subpart used if the order is finalized and this is thus the confirmation shown.-
             <td valign="top" class="shop-basket-product-table-cell-4">###PRICE_TAX### EUR</td>
             <td valign="top" class="shop-basket-product-table-cell-5">###PRICE_TOTAL_TAX### EUR</td>
     	</tr>
-    
+
       <!-- ###ITEM_SINGLE### end -->
       <!-- ###ITEM_LIST### end -->
       <!-- ###ITEM_CATEGORY_AND_ITEMS### end -->
-    </tbody></table>
+    </table>
     </div>
     <div class="shop-confirmation-radresse">
     <h2>Rechnungsadresse</h2>
     <div class="shop-payment-billing-address">
         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="shop-payment-billing-address-table">
-          <tbody><tr>
+          <tr>
             <td valign="top" class="shop-payment-billing-address-cell-label">Name/Unternehmen:</td>
             <td valign="top">###PERSON_NAME###</td>
           </tr>
           <tr>
             <td valign="top" class="shop-payment-billing-address-cell-label">Adresse:</td>
-            <td valign="top">###PERSON_ADDRESS_DISPLAY###<br>
-            ###PERSON_ZIP### ###PERSON_CITY###<br>###PERSON_COUNTRY###</td>
+            <td valign="top">###PERSON_ADDRESS_DISPLAY###<br />
+            ###PERSON_ZIP### ###PERSON_CITY###<br />###PERSON_COUNTRY###</td>
           </tr>
           <tr>
             <td valign="top" class="shop-payment-billing-address-cell-label">Telefon:</td>
@@ -614,19 +616,19 @@ Subpart used if the order is finalized and this is thus the confirmation shown.-
             <td valign="top" class="shop-payment-billing-address-cell-label">Email:</td>
             <td valign="top">###PERSON_EMAIL###</td>
           </tr>
-        </tbody></table>
+        </table>
     </div>
     <div class="shop-confirmation-ladresse">
     <h2>Lieferanschrift</h2>
         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="shop-payment-billing-address-table">
-          <tbody><tr>
+          <tr>
             <td valign="top" class="shop-payment-billing-address-cell-label">Kontakt:</td>
             <td valign="top">###DELIVERY_NAME###</td>
           </tr>
           <tr>
             <td valign="top" class="shop-payment-billing-address-cell-label">Adresse:</td>
-            <td valign="top">###DELIVERY_ADDRESS_DISPLAY###<br>
-            ###DELIVERY_ZIP### ###DELIVERY_CITY###<br>###DELIVERY_COUNTRY###</td>
+            <td valign="top">###DELIVERY_ADDRESS_DISPLAY###<br />
+            ###DELIVERY_ZIP### ###DELIVERY_CITY###<br />###DELIVERY_COUNTRY###</td>
           </tr>
           <tr>
             <td valign="top" class="shop-payment-billing-address-cell-label">Telefon:</td>
@@ -636,7 +638,7 @@ Subpart used if the order is finalized and this is thus the confirmation shown.-
             <td valign="top" class="shop-payment-billing-address-cell-label">Email:</td>
             <td valign="top">###DELIVERY_EMAIL###</td>
           </tr>
-        </tbody></table>
+        </table>
     </div>
     <div class="shop-confirmation-bemerkung">
         <h2>Bemerkungen</h2>
@@ -645,7 +647,7 @@ Subpart used if the order is finalized and this is thus the confirmation shown.-
     <div class="shop-confirmation-versand">
         <h2>Versand und Bezahlung</h2>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="shop-payment-billing-address-table">
-      <tbody><tr>
+      <tr>
         <td valign="top" class="shop-payment-billing-address-cell-label">Versandart: </td>
         <td valign="top">###SHIPPING_TITLE###</td>
       </tr>
@@ -658,52 +660,52 @@ Subpart used if the order is finalized and this is thus the confirmation shown.-
         <td valign="top">###PAYMENT_TITLE###</td>
       </tr>
       <tr>
-      	<td colspan="2"><span class="shop-payment-billing-final-price"><br>GESAMTPREIS: ###PRICE_TOTAL_TAX### EUR</span>
-        <br>
+      	<td colspan="2"><span class="shop-payment-billing-final-price"><br />GESAMTPREIS: ###PRICE_TOTAL_TAX### EUR</span>
+        <br />
         <span class="shop-single-enthaltene-mwst">(enthaltene MwSt: ###PRICE_TOTAL_ONLY_TAX### EUR)</span>
         </td>
       </tr>
-    </tbody></table>
+    </table>
     <!-- ###MESSAGE_SHIPPING###
         This whole subpart, message_payment is substituted with the subpart 'message_payment_[number-of-method-in-typoscript]'
         -->
         <!-- ###MESSAGE_SHIPPING_10### -->
-        <p> Die Ware wird per Postpaket versendet.<br> 
-        Bitte überweisen Sie den Rechnungsbetrag nach Erhalt der Rechung auf unser Konto.<br>
+        <p> Die Ware wird per Postpaket versendet.</br>
+        Bitte &uuml;berweisen Sie den Rechnungsbetrag nach Erhalt der Rechung auf unser Konto.</br>
         </p>
         <!-- ###MESSAGE_SHIPPING_10### -->
 
         <!-- ###MESSAGE_SHIPPING_20### -->
-        <p>Die Ware wird im Büro abgeholt.<br>
-        Die Bezahlung erfolgt bar bei Abholung.<br>
+        <p>Die Ware wird im B&uuml;ro abgeholt.<br />
+        Die Bezahlung erfolgt bar bei Abholung.<br />
         <b>Es fallen keine Versandkosten an.</b></p>
         <!-- ###MESSAGE_SHIPPING_20### -->
-        
+
         <!-- ###MESSAGE_SHIPPING_30### -->
-         <p> Die Ware wird per Nachnahme versendet.<br> 
-        Die Bezahlung erfolgt bar bei Entgegennahme der Ware<br>
+         <p> Die Ware wird per Nachnahme versendet.</br>
+        Die Bezahlung erfolgt bar bei Entgegennahme der Ware</br>
         <!-- ###MESSAGE_SHIPPING_30### -->
     <!-- ###MESSAGE_SHIPPING### -->
-    </p></div>
+    </div>
     <div class="shop-confirmation-bedingungen">
     <h2>Wichtige Informationen</h2>
-    <p><b>Die Auslieferung</b><br>
-    Die Auslieferung: Die bestellten Artikel werden in der Regel innerhalb einer Woche nach Eingang der Bestellung ausgeliefert. Die gelieferte Ware bleibt bis zur vollständigen Bezahlung Eigentum von xxx.</p>
-	<p><b>Widerspruchsrecht</b><br>
-    Bei Fernabsatzverträgen hat der Käufer das Recht, den Kaufvertrag ohne Begründung innerhalb von 2 Wochen ab Eingang der Ware zu widerrufen. Der Käufer ist in diesem Fall verpflichtet, die Ware an den Absender zurückzusenden. Bis zu einem Warenwert von 40,- Euro trägt der Käufer die Kosten der Rücksendung. Dieses Widerrufsrecht gilt nicht bei Lieferung von Zeitungen oder Zeitschriften.<br><br>
-Nicht beschädigte oder falsch ausgelieferte Ware kann innerhalb von 14 Tagen zurückgegeben werden. Davon ausgeschlossen sind DVD's und Videos.<br><br>
-Erfüllungsort und Gerichtsstand ist xxx.</p>
+    <p><b>Die Auslieferung</b><br />
+    Die Auslieferung: Die bestellten Artikel werden in der Regel innerhalb einer Woche nach Eingang der Bestellung ausgeliefert. Die gelieferte Ware bleibt bis zur vollst&auml;ndigen Bezahlung Eigentum von xxx.</p>
+	<p><b>Widerspruchsrecht</b><br />
+    Bei Fernabsatzvertr&auml;gen hat der K&auml;ufer das Recht, den Kaufvertrag ohne Begr&uuml;ndung innerhalb von 2 Wochen ab Eingang der Ware zu widerrufen. Der K&auml;ufer ist in diesem Fall verpflichtet, die Ware an den Absender zur&uuml;ckzusenden. Bis zu einem Warenwert von 40,- Euro tr&auml;gt der K&auml;ufer die Kosten der R&uuml;cksendung. Dieses Widerrufsrecht gilt nicht bei Lieferung von Zeitungen oder Zeitschriften.<br /><br />
+Nicht besch&auml;digte oder falsch ausgelieferte Ware kann innerhalb von 14 Tagen zur&uuml;ckgegeben werden. Davon ausgeschlossen sind DVD's und Videos.<br /><br />
+Erf&uuml;llungsort und Gerichtsstand ist xxx.</p>
     </div>
     <div class="shop-confirmation-ansprechpartner">
         <h2>Ihre Ansprechpartnerin</h2>
-        <p>xxx xxx<br>
-        xxxstraße x<br>
-        xxx Wien <br><br>
-        Telefon: xxx<br>
-        Fax: xxx<br>
+        <p>xxx xxx<br />
+        xxxstra&szlig;e x<br  />
+        xxx Wien <br /><br />
+        Telefon: xxx<br />
+        Fax: xxx<br/>
         Email: <a href="mailto:xxx@example.com">xxx@example.com</a></p>
     </div>
-</div> 
+</div>
 
 <!-- ###BASKET_ORDERCONFIRMATION_TEMPLATE### end -->
 
@@ -715,12 +717,12 @@ If the basket is empty this subpart is displayed -->
 
 <div class="shop-basket-empty">
   <b>Ihr Warenkorb ist noch leer.</b>
-</div>  
+</div>
 
   <!-- ###BASKET_TEMPLATE_EMPTY### end -->
-  
 
-<!------------------------------------------- BASKET_REQUIRED_INFO_MISSING -------------------------------------------------------------->  
+
+<!------------------------------------------- BASKET_REQUIRED_INFO_MISSING -------------------------------------------------------------->
 
 <h3>BASKET_REQUIRED_INFO_MISSING</h3>
 <em>If payment is initiated but the required information fields are not filled in correctly, this happens.</em>
@@ -731,11 +733,11 @@ If payment is initiated but the required information fields are not filled in co
 <div class="shop-basket-required-info-missing">
 <h2>Leider ist ein Problem aufgetreten</h2>
 <div class="shop-basket-required-info-missing-details">###ERROR_DETAILS###</div>
-Bitte gehen Sie zurück und kontrollieren Sie Ihre Eingaben.
-</div> 
-<form method="post" action="http://www.thomas-hirt.at/fileadmin/template_dateien/templates_ext/shop/tt_products_css.html###FORM_URL###">
+Bitte gehen Sie zur&uuml;ck und kontrollieren Sie Ihre Eingaben.
+</div>
+<form method="post" action="###FORM_URL###">
 <input type="submit" id="products_info" name="products_info" value="Adressdaten eingeben" class="shop-basket-required-info-missing-back">
-</form>  
+</form>
 
 <!-- ###BASKET_REQUIRED_INFO_MISSING### end -->
 
@@ -748,7 +750,8 @@ Bitte gehen Sie zurück und kontrollieren Sie Ihre Eingaben.
 Subpart used as template for the order-emails.
 First line is used as subject for the mail.
 </em>
-<pre><!-- ###EMAIL_PLAINTEXT_TEMPLATE### begin
+<pre>
+<!-- ###EMAIL_PLAINTEXT_TEMPLATE### begin
 Subpart used as template for the order-emails
 First line is used as subject for the mail.
 -->
@@ -842,7 +845,7 @@ Bestellte Artikel:
 <!-- ###ITEM_CATEGORY_AND_ITEMS### -->
 <!-- ###ITEM_LIST### begin -->
 <!-- ###ITEM_SINGLE### begin-->
-Artikelname:			###PRODUCT_TITLE### 
+Artikelname:			###PRODUCT_TITLE###
 Preis:				###PRICE_TAX### EUR
 Stück:				###FIELD_QTY###
 Preis insgesamt:		###PRICE_TOTAL_TAX### EUR
@@ -854,8 +857,8 @@ Preis insgesamt:		###PRICE_TOTAL_TAX### EUR
 AUSLIEFERUNG
 *****************************************************************************
 
-Die Auslieferung: Die bestellten Artikel werden in der Regel innerhalb 
-einer Woche nach Eingang der Bestellung ausgeliefert. Die gelieferte Ware 
+Die Auslieferung: Die bestellten Artikel werden in der Regel innerhalb
+einer Woche nach Eingang der Bestellung ausgeliefert. Die gelieferte Ware
 bleibt bis zur vollständigen Bezahlung Eigentum von xxx.
 
 
@@ -866,14 +869,14 @@ WIDERSPRUCHSRECHT
 Bei Fernabsatzverträgen hat der Käufer das Recht, den Kaufvertrag ohne
 Begründung innerhalb von 2 Wochen ab Eingang der Ware zu widerrufen.
 Der Käufer ist in diesem Fall verpflichtet, die Ware an den Absender
-zurückzusenden. Bis zu einem Warenwert von 40,- Euro trägt der Käufer die 
-Kosten der Rücksendung. Dieses Widerrufsrecht gilt nicht bei Lieferung 
+zurückzusenden. Bis zu einem Warenwert von 40,- Euro trägt der Käufer die
+Kosten der Rücksendung. Dieses Widerrufsrecht gilt nicht bei Lieferung
 von Zeitungen oder Zeitschriften.
 
-Nicht beschädigte oder falsch ausgelieferte Ware kann innerhalb von 14 Tagen 
+Nicht beschädigte oder falsch ausgelieferte Ware kann innerhalb von 14 Tagen
 zurückgegeben werden. Davon ausgeschlossen sind DVD's und Videos.
 
-Erfüllungsort und Gerichtsstand ist xxx. 
+Erfüllungsort und Gerichtsstand ist xxx.
 
 
 Ihre Ansprechpartnerin:
@@ -900,4 +903,4 @@ URL:		www.xxx.at
 		###ITEM_SINGLE_POST_HTML###
 	<!-- ###CATEGORY_SINGLE### end-->
 
-<!-- ###ITEM_CATLIST_TEMPLATE### end --></pre></div></body></html>
+<!-- ###ITEM_CATLIST_TEMPLATE### end -->

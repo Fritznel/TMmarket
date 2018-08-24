@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2009-2009 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2009-2009 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -60,9 +60,6 @@ class tx_ttproducts_search_view implements t3lib_Singleton {
 	 */
 	public function &printFirstletter ($pibaseObj, &$templateCode, $columns, &$error_code)	{
 		// local_table
-
-/*		$ctrlArray = t3lib_div::makeInstance('tx_ttproducts_model_control');
-		$ctrlArray = x_ttproducts_model_control::$tableParamsArray;*/
 
 		$searboxViewObj = t3lib_div::makeInstance('tx_searchbox_view');
 

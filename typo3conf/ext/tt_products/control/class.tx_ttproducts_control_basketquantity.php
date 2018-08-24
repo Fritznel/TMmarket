@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2009-2009 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2009-2009 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -37,9 +37,9 @@
  */
 
 
-class tx_ttproducts_control_basketquantity implements t3lib_Singleton {
+class tx_ttproducts_control_basketquantity {
 
-	public function getQuantityMarker (
+	static public function getQuantityMarker (
 		$marker,
 		$prodUid,
 		$uid
@@ -53,20 +53,18 @@ class tx_ttproducts_control_basketquantity implements t3lib_Singleton {
 	}
 
 
-	public function getQuantityMarkerArray (
+	static public function getQuantityMarkerArray (
 		$relatedIds,
-		&$rowArray,
+		$rowArray,
 		&$markerArray
 	)	{
 		$tablesObj = t3lib_div::makeInstance('tx_ttproducts_tables');
 		$prodViewObj = $tablesObj->get('tt_products',TRUE);
-
 		$basketObj = t3lib_div::makeInstance('tx_ttproducts_basket');
-		$quantityArray = $basketObj->getQuantityArray($relatedIds,$rowArray);
+		$quantityArray = $basketObj->getQuantityArray($relatedIds, $rowArray);
 
 		foreach ($rowArray as $functablename => $functableRowArray)	{
-
-			$viewObj = $tablesObj->get($functablename,TRUE);
+			$viewObj = $tablesObj->get($functablename, TRUE);
 			$modelObj = $viewObj->getModelObj();
 			$marker = $viewObj->getMarker();
 
@@ -88,11 +86,6 @@ class tx_ttproducts_control_basketquantity implements t3lib_Singleton {
 			}
 		}
 	}
-}
-
-
-if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/tt_products/control/class.tx_ttproducts_control_basketquantity.php'])	{
-	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/tt_products/control/class.tx_ttproducts_control_basketquantity.php']);
 }
 
 

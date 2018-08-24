@@ -10,5 +10,7 @@ return array(
     'JambageCom\\Div2007\\' => array($typo3InstallDir . 'typo3conf/ext/div2007/Classes'),
     'JambageCom\\MigrationCore\\' => array($typo3InstallDir . 'typo3conf/ext/migration_core/Classes'),
     'JambageCom\\Tsparser\\' => array($typo3InstallDir . 'typo3conf/ext/tsparser/Classes'),
+    'JambageCom\\TtProducts\\' => array($typo3InstallDir . 'typo3conf/ext/tt_products/Classes'),
     'PhpParser\\' => array($typo3InstallDir . 'typo3conf/ext/extension_builder/Resources/Private/PHP/PHP-Parser/lib/PhpParser'),
+    'SJBR\\StaticInfoTables\\' => array($typo3InstallDir . 'typo3conf/ext/static_info_tables/Classes'),
 );

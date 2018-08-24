@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2006-2009 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2006-2009 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -69,17 +69,16 @@ class tx_ttproducts_config implements t3lib_Singleton {
 
 
 	public function getUseArticles ()	{
-		$rc = $this->conf['useArticles'];
-		return $rc;
+		return $this->conf['useArticles'];
 	}
 
 
-	public function &getTableDesc ($functablename, $type='')	{
+	public function &getTableDesc ($functablename, $type = '')	{
 		$tableDesc = array();
 		if (is_array($this->conf['table.']) &&
-			is_array($this->conf['table.'][$functablename.'.'])
+			is_array($this->conf['table.'][$functablename . '.'])
 			)	{
-			$tableDesc = $this->conf['table.'][$functablename.'.'];
+			$tableDesc = $this->conf['table.'][$functablename . '.'];
 		}
 
 		if ($type)	{
@@ -101,11 +100,10 @@ class tx_ttproducts_config implements t3lib_Singleton {
 	}
 
 
-	public function &getSpecialConf ($type, $tablename='', $theCode='')	{
+	public function &getSpecialConf ($type, $tablename = '', $theCode = '')	{
 		$specialConf = array();
 
 		if (is_array($this->conf[$type.'.']))	{
-
 			if ($tablename != '' && is_array($this->conf[$type.'.'][$tablename.'.']))	{
 				if (is_array($this->conf[$type.'.'][$tablename.'.']['ALL.']))	{
 					$specialConf = $this->conf[$type.'.'][$tablename.'.']['ALL.'];
@@ -133,69 +131,53 @@ class tx_ttproducts_config implements t3lib_Singleton {
 	}
 
 
-	public function &getTableConf ($functablename, $theCode='')	{
+	public function &getTableConf ($functablename, $theCode = '')	{
 		$tableConf = $this->getSpecialConf('conf', $functablename, $theCode);
 		return $tableConf;
 	}
 
 
-	public function &getCSSConf ($functablename, $theCode='')	{
+	public function &getCSSConf ($functablename, $theCode = '')	{
 		$cssConf = $this->getSpecialConf('CSS', $functablename, $theCode);
 
 		return $cssConf;
 	}
 
 
-	public function &getFormConf ($theCode='')	{
+	public function &getFormConf ($theCode = '')	{
 		$cssConf = $this->getSpecialConf('form', '', $theCode);
 
 		return $cssConf;
 	}
 
 
-	public function &getViewControlConf ($theCode)	{
+	public function getViewControlConf ($theCode) {
 		$viewConf = $this->getSpecialConf('control', '', $theCode);
 
 		return $viewConf;
 	}
 
 
-	public function getTypeConf ($type, $feature, $detail='') {
+	public function getBasketConf ($feature, $detail = '')	{
 
 		$rc = array();
-
-		if (is_array($this->conf[$type . '.'])) {
-			if ($detail != '') {
-				if (isset($this->conf[$type . '.'][$feature . '.']) && is_array($this->conf[$type . '.'][$feature . '.'])) {
-					if (isset($this->conf[$type . '.'][$feature . '.'][$detail])) {
-						$rc = $this->conf[$type . '.'][$feature . '.'][$detail];
-					} else if (isset($this->conf[$type . '.'][$feature . '.'][$detail . '.'])) {
-						$rc = $this->conf[$type . '.'][$feature . '.'][$detail . '.'];
+		if (is_array($this->conf['basket.']))	{
+			if ($detail != '')	{
+				if (isset($this->conf['basket.'][$feature . '.']) && is_array($this->conf['basket.'][$feature . '.']))	{
+					if (isset($this->conf['basket.'][$feature . '.'][$detail]))	{
+						$rc = $this->conf['basket.'][$feature . '.'][$detail];
+					} else if (isset($this->conf['basket.'][$feature . '.'][$detail . '.']))	{
+						$rc = $this->conf['basket.'][$feature . '.'][$detail . '.'];
 					}
 				}
 			} else {
-				if (
-					isset($this->conf[$type . '.'][$feature]) &&
-					$this->conf[$type . '.'][$feature] != ''
-				) {
-					$rc = $this->conf[$type . '.'][$feature];
-				} else if (isset($this->conf[$type . '.'][$feature . '.'])) {
-					$rc = $this->conf[$type . '.'][$feature . '.'];
+				if (isset($this->conf['basket.'][$feature . '.'])) {
+					$rc = $this->conf['basket.'][$feature . '.'];
+				} else {
+					$rc = $this->conf['basket.'][$feature];
 				}
 			}
 		}
-		return $rc;
-	}
-
-
-	public function getBasketConf ($feature, $detail='')	{
-		$rc = $this->getTypeConf('basket', $feature, $detail);
-		return $rc;
-	}
-
-
-	public function getFinalizeConf ($feature, $detail='')	{
-		$rc = $this->getTypeConf('finalize', $feature, $detail);
 		return $rc;
 	}
 
@@ -254,11 +236,11 @@ class tx_ttproducts_config implements t3lib_Singleton {
 
 
 	/**
-	 * Returns true if the item has the $check value checked
+	 * Returns TRUE if the item has the $check value checked
 	 *
 	 */
 	public function hasConfig (&$row, $check)  {
-		$hasConfig = false;
+		$hasConfig = FALSE;
 		$config = t3lib_div::xml2array($row['config']);
 		$hasConfig = tx_div2007_ff::get($config, $check);
 
@@ -311,6 +293,7 @@ class tx_ttproducts_config implements t3lib_Singleton {
 
 	public function mergeAJAX ($ajaxconf)	{
 		global $TYPO3_DB;
+
 	}
 }
 

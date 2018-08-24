@@ -164,7 +164,7 @@ $result = array (
 		),
 	),
 	'types' => array (
-		'0' =>
+        '0' =>
             array (
                 'columnsOverrides' => array(
                     'note' => array(
@@ -180,6 +180,7 @@ $result = array (
 		'1' => array('showitem' => 'starttime, endtime, fe_group')
 	)
 );
+
 
 
 if (

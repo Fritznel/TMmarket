@@ -231,8 +231,7 @@ class tx_ttproducts_control_memo {
 
 		if (
             $GLOBALS['TSFE']->loginUser &&
-            isset($GLOBALS['TSFE']->fe_user->user[$feuserField]) &&
-            $GLOBALS['TSFE']->fe_user->user[$feuserField] != ''
+            isset($GLOBALS['TSFE']->fe_user->user[$feuserField])
         ) {
 			$result = explode(',', $GLOBALS['TSFE']->fe_user->user[$feuserField]);
 		}

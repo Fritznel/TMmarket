@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2005-2009 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2005-2009 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -37,19 +37,10 @@
  *
  */
 
- 
+
 class tx_ttproducts_pricecalc extends tx_ttproducts_pricecalc_base {
 
-	function getCalculatedData (
-		&$itemArray,
-		&$conf,
-		$type,
-		&$priceReduction,
-		&$discountArray,
-		$priceTotalTax,
-		$bUseArticles,
-		$bMergeArticles=TRUE
-	) {
+	function getCalculatedData(&$itemArray, &$conf, $type, &$priceReduction, $priceTotalTax, $bUseArticles) {
 		$sql = t3lib_div::makeInstance('tx_ttproducts_sql');
 
 		if (!$itemArray || !count($itemArray)) {

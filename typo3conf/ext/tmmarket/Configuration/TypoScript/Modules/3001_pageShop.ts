@@ -13,6 +13,7 @@ page.stylesheet=fileadmin/user_upload/shop/tt_products.css
 
 # Default Stylesheet deaktivieren
 plugin.tt_products._CSS_DEFAULT_STYLE =
+
 plugin.tt_products.statusCodes {
 # 1: Eingehende Bestellung
 1 = Bestellung
@@ -126,3 +127,37 @@ page.10.marks.CONTENT_RIGHT {
 # manuelle Sortierung ermöglichen
 plugin.tt_products.conf.tt_products_cat.ALL.orderBy = sorting
 plugin.tt_products.conf.tt_products.LIST.orderBy = sorting
+
+# Condition damit der "alle Produkte" Button in der Kategorieübersicht funktioniert
+[globalVar = TSFE:id = {$id_shopkategorien}]
+page.10.marks.CONTENT_RIGHT {
+  8 = TEXT
+  8 {
+    if.isFalse.data = GPvar:tt_products|cat
+    wrap = <div id="tx-ttproducts-pi1-listcat-allproducts-off"><ul id="cat1"><li> | </li></ul></div>
+    value = Alle Produkte
+    typolink.parameter = {$id_shopkategorien} - act -
+  }
+
+  9 = TEXT
+  9 {
+    if.isTrue.data = GPvar:tt_products|cat
+    wrap = <div id="tx-ttproducts-pi1-listcat-allproducts-off"><ul id="cat1"><li> | </li></ul></div>
+    value = Alle Produkte
+    typolink.parameter = {$id_shopkategorien}
+  }
+}
+[else]
+page.10.marks.CONTENT_RIGHT {
+  9 = TEXT
+  9 {
+    wrap = <div id="tx-ttproducts-pi1-listcat-allproducts-off"><ul id="cat1"><li> | </li></ul></div>
+    value = Alle Produkte
+    typolink.parameter = {$id_shopkategorien}
+  }
+}
+page.20{
+  SWORDS = TEXT
+  SWORDS.value= GP:{current}
+}
+[global]

@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2007-2008 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2007-2008 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -40,13 +40,13 @@
 
 class tx_ttproducts_field_note_view extends tx_ttproducts_field_base_view {
 
-	public function getRowMarkerArray ($functablename, $fieldname, $row, $markerKey, &$markerArray, $tagArray, $theCode, $id, $basketExtra, &$bSkip, $bHtml=true, $charset='', $prefix='', $suffix='', $imageRenderObj='')	{
+	function getRowMarkerArray ($functablename, $fieldname, &$row, $markerKey, &$markerArray, $tagArray, $theCode, $id, &$bSkip, $bHtml = TRUE, $charset = '', $prefix = '', $suffix = '', $imageRenderObj = '')	{
 
 		if (
 			$bHtml
 			&& ($theCode != 'EMAIL' || $this->conf['orderEmail_htmlmail'])
 		)	{
-			$value = $this->getModelObj()->getFieldValue($basketExtra, $row, $fieldname);
+			$value = $this->getModelObj()->getFieldValue($row, $fieldname);
 
 				// Extension CSS styled content or fluid styled content
 			if (isset($GLOBALS['TSFE']->tmpl->setup['lib.']['parseFunc_RTE.'])) {
@@ -57,7 +57,6 @@ class tx_ttproducts_field_note_view extends tx_ttproducts_field_base_view {
 				$value = nl2br($value);
 			}
 		}
-
 		return $value;
 	}
 }

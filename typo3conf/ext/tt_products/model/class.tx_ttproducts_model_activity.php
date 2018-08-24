@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2008-2009 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2008-2009 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -39,7 +39,7 @@
 
 
 class tx_ttproducts_model_activity {
-	public static $activityArray;
+	static public $activityArray;
 
 
 	public static function setActivityArray ($activityArray)	{

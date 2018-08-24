@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2007-2017 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2007-2010 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -42,7 +42,7 @@ class tx_ttproducts_voucher extends tx_ttproducts_table_base {
 	var $amount;
 	var $amountType;
 	var $code;
-	var $bValid = FALSE;
+	var $bValid;
 	var $marker = 'VOUCHER';
 	var $usedCodeArray = array();
 
@@ -53,7 +53,7 @@ class tx_ttproducts_voucher extends tx_ttproducts_table_base {
 		global $TSFE;
 
 		parent::init($cObj, $functablename);
-		$usedCodeArray = $TSFE->fe_user->getKey('ses','vo');
+		$usedCodeArray = $TSFE->fe_user->getKey('ses', 'vo');
 
 		if (isset($usedCodeArray) && is_array($usedCodeArray))	{
 			list($voucherCode, $voucherArray) = each($usedCodeArray);
@@ -66,7 +66,6 @@ class tx_ttproducts_voucher extends tx_ttproducts_table_base {
 	} // init
 
 	function getAmount ()	{
-
 		return $this->amount;
 	}
 
@@ -83,23 +82,15 @@ class tx_ttproducts_voucher extends tx_ttproducts_table_base {
 	}
 
 
-	function getPercentageAmount ($amount) {
-		$basketObj = t3lib_div::makeInstance('tx_ttproducts_basket');
-		$calculatedArray = $basketObj->getCalculatedArray();
-
-		$amount = $calculatedArray['priceTax']['goodstotal'] * ($amount / 100);
-		return $amount;
-	}
-
-
 	function getRebateAmount ()	{
 
 		$amountType = $this->getAmountType();
-
 		$amount = $this->getAmount();
 
 		if ($amountType == 1)	{
-			$amount = $this->getPercentageAmount($amount);
+			$basketObj = t3lib_div::makeInstance('tx_ttproducts_basket');
+			$calculatedArray = $basketObj->getCalculatedArray();
+			$amount = $calculatedArray['priceTax']['goodstotal'] * ($amount / 100);
 		}
 
 		return $amount;
@@ -118,46 +109,23 @@ class tx_ttproducts_voucher extends tx_ttproducts_table_base {
 
 	function isCodeUsed ($code)	{
 
-		$result = FALSE;
+		$rc = isset($this->usedCodeArray[$code]);
 
-		foreach ($this->usedCodeArray as $codeRow) {
-			if ($codeRow['code'] == $code) {
-				$result = TRUE;
-				break;
-			}
-		}
-
-		return $result;
+		return $rc;
 	}
 
+	function getLastCodeUsed ()	{
+		$rc = '';
 
-	function getVoucherArray ($code) {
-		$result = FALSE;
-
-		foreach ($this->usedCodeArray as $codeRow) {
-			if ($codeRow['code'] == $code) {
-				$result = $codeRow;
-				break;
-			}
+		if (count($this->usedCodeArray))	{
+			reset($this->usedCodeArray);
+			$rc = key($this->usedCodeArray);
 		}
-
-		return $result;
-	}
-
-
-	function getLastCodeUsed () {
-		$result = '';
-
-		if (count($this->usedCodeArray)) {
-			$lastArray = array_pop($this->usedCodeArray);
-			$result = $lastArray['code'];
-			array_push($this->usedCodeArray, $lastArray);
-		}
-		return $result;
+		return $rc;
 	}
 
 	function setCodeUsed ($code, $row)	{
-		array_push($this->usedCodeArray, $row);
+		$this->usedCodeArray[$code] = $row;
 	}
 
 	function getCode ()	{
@@ -168,9 +136,9 @@ class tx_ttproducts_voucher extends tx_ttproducts_table_base {
 		$this->code = $code;
 	}
 
-    function getVoucherTableName ()	{
+    function getVoucherTableName () {
         $result = 'fe_users';
-        if ($this->conf['table.']['voucher'])	{
+        if ($this->conf['table.']['voucher'])   {
             $result = $this->conf['table.']['voucher'];
         } else if ($this->conf['voucher.']['table'])    {
             $result = $this->conf['voucher.']['table'];
@@ -191,59 +159,58 @@ class tx_ttproducts_voucher extends tx_ttproducts_table_base {
 		global $TYPO3_DB, $TSFE;
 
 		$voucherCode = $this->getLastCodeUsed();
-		$voucherArray = $this->getVoucherArray($voucherCode);
+		$usedCodeArray = $this->getUsedCodeArray();
 
-		if ($voucherCode && isset($voucherArray) && is_array($voucherArray))	{
-			$row = $voucherArray;
+		if ($voucherCode && isset($usedCodeArray[$voucherCode]) && is_array($usedCodeArray[$voucherCode]))	{
+			$row = $usedCodeArray[$voucherCode];
 			$voucherTable = $this->getVoucherTableName();
 
 			if ($voucherTable == 'fe_users')	{
 				$whereGeneral = '';
-				$uid_voucher = $row['uid'];
+				$uid_voucher = intval($row['uid']);
 			} else {
-                $row = tx_voucher_api::getRowFromCode($voucherCode, TRUE);
-				$uid_voucher = $row['fe_users_uid'];
-				$whereGeneral = '(fe_users_uid="'.$TSFE->fe_user->user['uid'].'" OR fe_users_uid=0) ';
-				$whereGeneral .= 'AND code=' . $TYPO3_DB->fullQuoteStr($voucherCode, $voucherTable);
+				$uid_voucher = intval($row['fe_users_uid']);
+				$whereGeneral = '(fe_users_uid="' . $uid_voucher . '" OR fe_users_uid=0) ';
+				$whereGeneral .= 'AND code="'.$voucherCode.'"';
 			}
 
-			if (
-				$uid_voucher &&
-				$TSFE->fe_user->user['uid'] == $uid_voucher
-					||
-				$voucherTable != 'fe_users' &&
-				!$row['reusable']
-			) {
-				$updateArray = array();
-				$where = $whereGeneral;
-				if ($voucherTable == 'fe_users')	{
-					$where = 'uid="'.$row['uid'] . '"';
-					$updateArray['tt_products_vouchercode'] = '';
-				} else {
-					$updateArray['deleted'] = 1;
-				}
+            if (
+                $uid_voucher &&
+                $TSFE->fe_user->user['uid'] == $uid_voucher
+                    ||
+                $voucherTable != 'fe_users' &&
+                !$row['reusable']
+            ) {
+                if ($TSFE->fe_user->user['uid'] == $uid_voucher)	{
+                    $updateArray = array();
+                    $where = $whereGeneral;
+                    if ($voucherTable == 'fe_users')	{
+                        $where = 'uid="'.$row['uid'].'"';
+                        $updateArray['tt_products_vouchercode'] = '';
+                    } else {
+                        $updateArray['deleted'] = 1;
+                    }
 
-				$TYPO3_DB->exec_UPDATEquery($voucherTable, $where, $updateArray);
-			}
+                    $TYPO3_DB->exec_UPDATEquery($voucherTable, $where, $updateArray);
+                }
+            }
 		}
 	}
 
 
-	function doProcessing(&$recs)	{
+	function doProcessing (&$recs)	{
 		global $TYPO3_DB, $TSFE;
 
 		$voucherCode = $recs['tt_products']['vouchercode'];
 		$this->setCode($voucherCode);
-		if ($this->isCodeUsed($voucherCode) || $voucherCode == '')	{
+
+		if ($this->isCodeUsed($voucherCode))	{
 			$this->setValid(TRUE);
 			$lastVoucherCode = $this->getLastCodeUsed();
 
-			$row = $this->getVoucherArray($lastVoucherCode);
-
-			if (isset($row) && is_array($row)) {
-				$this->setAmount($row['amount']);
-				$this->setAmountType($row['amount_type']);
-			}
+			$row = $this->usedCodeArray[$lastVoucherCode];
+			$this->setAmount($row['amount']);
+			$this->setAmountType($row['amount_type']);
 		} else {
 			$this->setValid(FALSE);
 		}
@@ -256,11 +223,10 @@ class tx_ttproducts_voucher extends tx_ttproducts_table_base {
                 isset($this->conf['table.']['voucher'])
             )
         ) {
-			$uid_voucher = '';
+			$uid_voucher = "";
 			$voucherfieldArray = array();
 			$whereGeneral = '';
 			$voucherTable = $this->getVoucherTableName();
-
             if ($voucherTable == 'fe_users') {
                 $voucherfieldArray = array('uid', 'tt_products_vouchercode');
                 $whereGeneral = $voucherTable . '.uid=' . intval($TSFE->fe_user->user['uid']);
@@ -288,20 +254,20 @@ class tx_ttproducts_voucher extends tx_ttproducts_table_base {
 					$uid_voucher = $row['fe_users_uid'];
 				}
 			}
+
 			$TYPO3_DB->sql_free_result($res);
 
 			if ($row && ($voucherTable != 'fe_users' || $uid_voucher == $TSFE->fe_user->user['uid']))	{
 
-				$amount = doubleval($this->getAmount());
-				$amountType = intval($this->getAmountType());
-
-				if ($amountType == $row['amount_type']) {
-					$amount += $row['amount'];
-				} else if ($row['amount_type'] == 1){
-					$amount += $this->getPercentageAmount($row['amount']);
-				}
-
+				$amount = $this->getAmount();
+				$amountType = $row['amount_type'];
+				$this->setAmountType($amountType);
+				$this->setAmount($row['amount']);
+				$newAmount = $this->getRebateAmount();
+				$amount += $newAmount;
 				$this->setAmount($amount);
+				$this->setAmountType(0);
+
 				$this->setCode($row['code']);
 				$this->setValid(TRUE);
 

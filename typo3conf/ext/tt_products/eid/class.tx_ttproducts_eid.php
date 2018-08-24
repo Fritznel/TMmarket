@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2007-2016 Kasper Skårhøj (kasperYYYY@typo3.com)
+*  (c) 2007-2009 Kasper Skårhøj <kasperYYYY@typo3.com>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -46,16 +46,24 @@ if (version_compare(TYPO3_version, '6.2.0', '>=')) {
 
 	tx_div2007_alpha5::initFE();
 } else {
+
 	define ('CRLF', "\r\n");
 	define ('DQT', '"');
 	define ('QT', "'");
 
 
-	// *********************
-	// Libraries included
+	// // *********************
+	// // Libraries included
 	// // *********************
 	// $TT->push('Include Frontend libraries','');
+	//     require_once(PATH_tslib.'class.tslib_fe.php');
+	//     require_once(PATH_t3lib.'class.t3lib_page.php');
+	//     require_once(PATH_t3lib.'class.t3lib_userauth.php');
+	//     require_once(PATH_tslib.'class.tslib_feuserauth.php');
+	//     require_once(PATH_t3lib.'class.t3lib_tstemplate.php');
+	//     require_once(PATH_t3lib.'class.t3lib_cs.php');
 	// $TT->pull();
+
 
 	// ***********************************
 	// Create $TSFE object (TSFE = TypoScript Front End)
@@ -84,13 +92,6 @@ if (version_compare(TYPO3_version, '6.2.0', '>=')) {
 	if ($TSFE->RDCT)    {
 		$TSFE->sendRedirect();
 	}
-
-	// *******************
-	// output compression
-	// *******************
-	// if ($GLOBALS['TYPO3_CONF_VARS']['FE']['compressionLevel'])    {
-	//     ob_start();
-	// }
 
 	// *********
 	// FE_USER
@@ -150,6 +151,7 @@ if (version_compare(TYPO3_version, '6.2.0', '>=')) {
 	$TSFE->getConfigArray();
 }
 
+
 if (
 	version_compare(TYPO3_version, '6.1.0', '>=') &&
 	version_compare(TYPO3_version, '6.1.99', '<')
@@ -176,6 +178,9 @@ $config['LLkey'] = '';
 
 // tt_products specific parts
 
+// require_once(PATH_BE_ttproducts.'eid/class.tx_ttproducts_ajax.php');
+// require_once(PATH_BE_ttproducts.'eid/class.tx_ttproducts_db.php');
+
 
 // Make instance:
 $ajax = t3lib_div::makeInstance('tx_ttproducts_ajax');
@@ -184,16 +189,14 @@ $ajax->init();
 $SOBE = t3lib_div::makeInstance('tx_ttproducts_db');
 $SOBE->init($conf, $config, $ajax, $tmp='');
 
-if($_POST['xajax']) {
+if($_POST['xajax']){
 	global $trans;
 
 	$trans = $this;
 	$ajax->taxajax->processRequests();
-	$SOBE->destruct();
 	exit();
 }
 $SOBE->main();
 $SOBE->printContent();
-$SOBE->destruct();
 
 ?>

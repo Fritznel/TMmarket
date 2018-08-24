@@ -1367,13 +1367,6 @@ if (
 				'max' => '15'
 			)
 		),
-		'tt_products_payment_bill' => array (
-			'exclude' => 1,
-			'label' => 'LLL:EXT:' . TT_PRODUCTS_EXT . '/locallang_db.xml:fe_users.tt_products_payment_bill',
-			'config' => array (
-				'type' => 'check',
-			)
-		),
 		'tt_products_business_partner' => array (
 			'exclude' => 1,
 			'label' => 'LLL:EXT:' . TT_PRODUCTS_EXT . '/locallang_db.xml:fe_users.tt_products_business_partner',
@@ -1437,7 +1430,7 @@ if (
 
 	call_user_func($emClass . '::addTCAcolumns', 'fe_users', $tempColumns);
 	call_user_func($emClass . '::addToAllTCAtypes', 'fe_users',
-	'tt_products_creditpoints;;;;1-1-1,tt_products_vouchercode;;;;1-1-1,tt_products_memoItems;;;;1-1-1,tt_products_memodam;;;;1-1-1,tt_products_discount;;;;1-1-1,tt_products_vat;;;;1-1-1,tt_products_payment_bill;;;;1-1-1,tt_products_business_partner;;;;1-1-1,tt_products_organisation_form;;;;1-1-1'
+	'tt_products_creditpoints;;;;1-1-1,tt_products_vouchercode;;;;1-1-1,tt_products_memoItems;;;;1-1-1,tt_products_memodam;;;;1-1-1,tt_products_discount;;;;1-1-1,tt_products_vat;;;;1-1-1,tt_products_business_partner;;;;1-1-1,tt_products_organisation_form;;;;1-1-1'
 	);
 }
 
@@ -1667,59 +1660,6 @@ if (
 		)
 	);
 
-	$GLOBALS['TCA']['tt_products_downloads'] = array (
-		'ctrl' => array (
-			'title' => 'LLL:EXT:' . TT_PRODUCTS_EXT . '/locallang_db.xml:tt_products_downloads',
-			'label' => 'title',
-			'default_sortby' => 'ORDER BY title',
-			'tstamp' => 'tstamp',
-			'delete' => 'deleted',
-			'enablecolumns' => array (
-				'disabled' => 'hidden',
-				'starttime' => 'starttime',
-				'endtime' => 'endtime',
-				'fe_group' => 'fe_group',
-			),
-			'prependAtCopy' => DIV2007_LANGUAGE_LGL . 'prependAtCopy',
-			'crdate' => 'crdate',
-			'cruser_id' => 'cruser_id',
-			'iconfile' => PATH_TTPRODUCTS_ICON_TABLE_REL . 'tt_products_downloads.gif',
-			'dynamicConfigFile' => PATH_BE_TTPRODUCTS . 'tca.php',
-			'searchFields' => 'title,marker,note',
-		),
-		'feInterface' => array (
-			'fe_admin_fieldList' => 'hidden,starttime,endtime,title,note',
-		)
-	);
-
-	$GLOBALS['TCA']['tt_products_downloads_language'] = array (
-		'ctrl' => array (
-			'title' => 'LLL:EXT:' . TT_PRODUCTS_EXT . '/locallang_db.xml:tt_products_downloads_language',
-			'label' => 'title',
-			'default_sortby' => 'ORDER BY title',
-			'tstamp' => 'tstamp',
-			'delete' => 'deleted',
-			'enablecolumns' => array (
-				'disabled' => 'hidden',
-				'starttime' => 'starttime',
-				'endtime' => 'endtime',
-				'fe_group' => 'fe_group',
-			),
-			'prependAtCopy' => DIV2007_LANGUAGE_LGL . 'prependAtCopy',
-			'crdate' => 'crdate',
-			'cruser_id' => 'cruser_id',
-			'iconfile' => PATH_TTPRODUCTS_ICON_TABLE_REL . 'tt_products_downloads_language.gif',
-			'dynamicConfigFile' => PATH_BE_TTPRODUCTS . 'tca.php',
-			'transOrigPointerField' => 'parent_uid',
-			'transOrigPointerTable' => 'tt_products_downloads',
-			'languageField' => 'sys_language_uid',
-			'searchFields' => 'title,note',
-		),
-		'feInterface' => array (
-			'fe_admin_fieldList' => 'hidden,starttime,endtime,cat_uid, sys_language_uid,title',
-		)
-	);
-
 	if ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][TT_PRODUCTS_EXT]['articleMode'] == '2') {
 		$GLOBALS['TCA']['tt_products_products_mm_articles'] = array (
 			'ctrl' => array (
@@ -1892,16 +1832,81 @@ if (
 		)
 	);
 
+	if (call_user_func($emClass . '::isLoaded', 'voucher')) {
+		// ******************************************************************
+		// order to voucher codes table, sys_products_orders_mm_gained_voucher_codes
+		// ******************************************************************
+		$GLOBALS['TCA']['sys_products_orders_mm_gained_voucher_codes'] = array (
+			'ctrl' => array (
+				'title' => 'LLL:EXT:' . TT_PRODUCTS_EXT . '/locallang_db.xml:sys_products_orders_mm_gained_voucher_codes',
+				'label' => 'uid_local',
+				'tstamp' => 'tstamp',
+				'delete' => 'deleted',
+				'enablecolumns' => array (
+					'disabled' => 'hidden'
+				),
+				'prependAtCopy' => DIV2007_LANGUAGE_LGL . 'prependAtCopy',
+				'crdate' => 'crdate',
+				'iconfile' => PATH_TTPRODUCTS_ICON_TABLE_REL . 'sys_products_orders.gif',
+				'hideTable' => TRUE,
+			),
+			'interface' => array (
+				'showRecordFieldList' => 'uid_local,uid_foreign'
+			),
+			'columns' => array (
+				'uid_local' => array (
+					'label' => 'LLL:EXT:' . TT_PRODUCTS_EXT . '/locallang_db.xml:sys_products_orders_mm_gained_voucher_codes.uid_local',
+					'config' => array (
+						'type' => 'select',
+						'renderType' => 'selectSingle',
+						'foreign_table' => 'sys_products_orders',
+						'maxitems' => 1
+					)
+				),
+				'uid_foreign' => array (
+					'label' => 'LLL:EXT:' . TT_PRODUCTS_EXT . '/locallang_db.xml:sys_products_orders_mm_gained_voucher_codes.uid_foreign',
+					'config' => array (
+						'type' => 'select',
+						'renderType' => 'selectSingle',
+						'foreign_table' => 'tx_voucher_codes',
+						'maxitems' => 1
+					)
+				),
+				'sorting' => array (
+					'config' => array (
+						'type' => 'passthrough',
+					)
+				),
+				'sorting_foreign' => array (
+					'config' => array (
+						'type' => 'passthrough',
+					)
+				),
+			),
+		);
+	}
 }
 
 
 if (!$loadTcaAdditions) {
-	call_user_func($emClass . '::addStaticFile', TT_PRODUCTS_EXT, 'Configuration/TypoScript/PluginSetup/Main/', 'Shop System CSS Styled');
-	call_user_func($emClass . '::addStaticFile', TT_PRODUCTS_EXT, 'Configuration/TypoScript/PluginSetup/Int/',  'Shop System Variable Content');
+    call_user_func($emClass . '::addStaticFile', TT_PRODUCTS_EXT, 'Configuration/TypoScript/PluginSetup/Main/', 'Shop System');
+    call_user_func($emClass . '::addStaticFile', TT_PRODUCTS_EXT, 'Configuration/TypoScript/PluginSetup/Int/',  'Shop System Variable Content');
 
-	if (call_user_func($emClass . '::isLoaded', 'searchbox')) {
-		call_user_func($emClass . '::addStaticFile', TT_PRODUCTS_EXT, 'Configuration/TypoScript/PluginSetup/Searchbox/', 'Shop System Search Box');
-	}
+    if (call_user_func($emClass . '::isLoaded', 'searchbox')) {
+        call_user_func($emClass . '::addStaticFile', TT_PRODUCTS_EXT, 'Configuration/TypoScript/PluginSetup/Searchbox/', 'Shop System Search Box');
+    }
+
+    if (version_compare(TYPO3_version, '6.1.0', '<')) {
+        call_user_func($emClass . '::addStaticFile', TT_PRODUCTS_EXT, 'Configuration/TypoScript/PluginSetup/Compatibility4.5/', 'Compatibility TYPO3 4.5 Shop System');
+    }
+
+// 	call_user_func($emClass . '::addStaticFile', TT_PRODUCTS_EXT, 'static/old_style/', '(deprecated) Shop System Old Style');
+// 	call_user_func($emClass . '::addStaticFile', TT_PRODUCTS_EXT, 'static/css_styled/', 'Shop System CSS Styled');
+// 	call_user_func($emClass . '::addStaticFile', TT_PRODUCTS_EXT, 'static/int/',  'Shop System Variable Content');
+//
+// 	if (call_user_func($emClass . '::isLoaded', 'searchbox')) {
+// 		call_user_func($emClass . '::addStaticFile', TT_PRODUCTS_EXT, 'static/searchbox/', 'Shop System Search Box');
+// 	}
 
 	if (version_compare(TYPO3_version, '6.1.0', '<')) {
 		call_user_func($divClass . '::loadTCA', 'tt_content');
@@ -1941,8 +1946,6 @@ if (!$loadTcaAdditions) {
 	call_user_func($emClass . '::addToInsertRecords', 'tt_products_products_mm_articles');
 	call_user_func($emClass . '::addToInsertRecords', 'tt_products_cat');
 	call_user_func($emClass . '::addToInsertRecords', 'tt_products_cat_language');
-	call_user_func($emClass . '::addToInsertRecords', 'tt_products_downloads');
-	call_user_func($emClass . '::addToInsertRecords', 'tt_products_downloads_language');
 	call_user_func($emClass . '::addToInsertRecords', 'tt_products_emails');
 	call_user_func($emClass . '::addToInsertRecords', 'tt_products_graduated_price');
 	call_user_func($emClass . '::addToInsertRecords', 'tt_products_mm_graduated_price');
@@ -1955,8 +1958,6 @@ if (!$loadTcaAdditions) {
 	call_user_func($emClass . '::allowTableOnStandardPages', 'tt_products_articles_language');
 	call_user_func($emClass . '::allowTableOnStandardPages', 'tt_products_cat');
 	call_user_func($emClass . '::allowTableOnStandardPages', 'tt_products_cat_language');
-	call_user_func($emClass . '::allowTableOnStandardPages', 'tt_products_downloads');
-	call_user_func($emClass . '::allowTableOnStandardPages', 'tt_products_downloads_language');
 	call_user_func($emClass . '::allowTableOnStandardPages', 'tt_products_graduated_price');
 	call_user_func($emClass . '::allowTableOnStandardPages', 'tt_products_emails');
 	call_user_func($emClass . '::allowTableOnStandardPages', 'tt_products_mm_graduated_price');
@@ -1971,7 +1972,6 @@ if (!$loadTcaAdditions) {
 	call_user_func($emClass . '::addLLrefForTCAdescr', 'tt_products_articles', 'EXT:' . TT_PRODUCTS_EXT . '/locallang_csh_ttproda.xml');
 	call_user_func($emClass . '::addLLrefForTCAdescr', 'tt_products_emails', 'EXT:' . TT_PRODUCTS_EXT . '/locallang_csh_ttprode.xml');
 	call_user_func($emClass . '::addLLrefForTCAdescr', 'tt_products_texts', 'EXT:' . TT_PRODUCTS_EXT . '/locallang_csh_ttprodt.xml');
-	call_user_func($emClass . '::addLLrefForTCAdescr', 'tt_products_downloads', 'EXT:' . TT_PRODUCTS_EXT . '/locallang_csh_ttproddl.xml');
 	call_user_func($emClass . '::addLLrefForTCAdescr', 'sys_products_accounts', 'EXT:' . TT_PRODUCTS_EXT . '/locallang_csh_ttprodac.xml');
 	call_user_func($emClass . '::addLLrefForTCAdescr', 'sys_products_cards', 'EXT:' . TT_PRODUCTS_EXT . '/locallang_csh_ttprodca.xml');
 	call_user_func($emClass . '::addLLrefForTCAdescr', 'sys_products_orders', 'EXT:' . TT_PRODUCTS_EXT . '/locallang_csh_ttprodo.xml');
@@ -1983,7 +1983,6 @@ if (!$loadTcaAdditions) {
 			'tt_products_cat', 'tt_products_cat_language', 'tt_products_articles', 'tt_products_articles_language',
 			'tt_products_gifts', 'tt_products_gifts_articles_mm', 'tt_products_emails',
 			'tt_products_texts', 'tt_products_texts_language',
-			'tt_products_downloads', 'tt_products_downloads_language',
 			'tt_products_mm_graduated_price', 'tt_products_graduated_price',
 			'sys_products_accounts', 'sys_products_cards', 'sys_products_orders',
 			'sys_products_orders_mm_tt_products', 'fe_users', 'pages_language_overlay'
@@ -1999,33 +1998,6 @@ if (!$loadTcaAdditions) {
 			}
 		}
 	}
-}
-
-if (TYPO3_MODE == 'BE') {
-
-    if (version_compare(TYPO3_version, '7.0', '>=')) {
-        $GLOBALS['TBE_MODULES_EXT']['xMOD_db_new_content_el']['addElClasses']['JambageCom\\TtProducts\\Controller\\Plugin\\WizardIcon'] = PATH_BE_TTPRODUCTS . 'Classes/Controller/Plugin/WizardIcon.php';
-    } else {
-        $GLOBALS['TBE_MODULES_EXT']['xMOD_db_new_content_el']['addElClasses']['tx_ttproducts_wizicon'] = PATH_BE_TTPRODUCTS . 'class.tx_ttproducts_wizicon.php';
-    }
-
-	call_user_func(
-		$emClass . '::insertModuleFunction',
-		'web_func',
-		'tx_ttproducts_modfunc1',
-		PATH_BE_TTPRODUCTS . 'modfunc1/class.tx_ttproducts_modfunc1.php',
-		'LLL:EXT:' . TT_PRODUCTS_EXT . '/locallang.xml:moduleFunction.tx_ttproducts_modfunc1',
-		'wiz'
-	);
-
-	call_user_func(
-		$emClass . '::insertModuleFunction',
-		'web_func',
-		'tx_ttproducts_modfunc2',
-		PATH_BE_TTPRODUCTS . 'modfunc2/class.tx_ttproducts_modfunc2.php',
-		'LLL:EXT:' . TT_PRODUCTS_EXT . '/locallang.xml:moduleFunction.tx_ttproducts_modfunc2',
-		'wiz'
-	);
 }
 
 /**
@@ -2057,6 +2029,45 @@ if (TYPO3_MODE === 'BE') {
             'labels' => 'LLL:EXT:extension_builder/Resources/Private/Language/locallang_mod.xlf',
         ]
     );
+}
+
+/**
+ * Extension: static_info_tables
+ * File: C:/xampp/htdocs/TMmarket/typo3conf/ext/static_info_tables/ext_tables.php
+ */
+
+$_EXTKEY = 'static_info_tables';
+$_EXTCONF = $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$_EXTKEY];
+
+
+defined('TYPO3_MODE') or die();
+
+if (TYPO3_MODE == 'BE' && !(TYPO3_REQUESTTYPE & TYPO3_REQUESTTYPE_INSTALL)) {
+	/**
+	 * Registers the Static Info Tables Manager backend module, if enabled
+	 */
+	if ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['static_info_tables']['enableManager']) {
+		\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+			'SJBR.static_info_tables',
+			// Make module a submodule of 'tools'
+			'tools',
+			// Submodule key
+			'Manager',
+			// Position
+			'',
+			// An array holding the controller-action combinations that are accessible
+			array(
+				'Manager' => 'information,newLanguagePack,createLanguagePack,testForm,testFormResult,sqlDumpNonLocalizedData'
+			),
+			array(
+				'access' => 'user,group',
+				'icon' => 'EXT:static_info_tables/Resources/Public/Icons/Extension.svg',
+				'labels' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_mod.xlf'
+			)
+		);
+		// Add module configuration setup
+		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScript('static_info_tables', 'setup', '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:static_info_tables/Configuration/TypoScript/Manager/setup.txt">');
+	}
 }
 
 /**

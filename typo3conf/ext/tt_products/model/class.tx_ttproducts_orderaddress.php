@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2006-2009 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2006-2009 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -39,7 +39,6 @@
 
 
 
-
 class tx_ttproducts_orderaddress extends tx_ttproducts_table_base {
 	var $dataArray; // array of read in frontend users
 	var $table;		 // object of the type tx_table_db
@@ -50,7 +49,6 @@ class tx_ttproducts_orderaddress extends tx_ttproducts_table_base {
 
 	private $bCondition = FALSE;
 	private $bConditionRecord = FALSE;
-
 
 	/**
 	 * Getting all tt_products_cat categories into internal array
@@ -70,7 +68,7 @@ class tx_ttproducts_orderaddress extends tx_ttproducts_table_base {
 
 		$this->getTableObj()->setTCAFieldArray($tablename);
 		$this->fieldArray['payment'] = ($this->tableconf['payment'] ? $this->tableconf['payment'] : '');
-		$requiredFields = 'uid,pid,email'.($this->fieldArray['payment'] ? ','.$this->fieldArray['payment'] : '');
+		$requiredFields = 'uid,pid,email' . ($this->fieldArray['payment'] ? ',' . $this->fieldArray['payment'] : '');
 		if (is_array($this->tableconf['ALL.']))	{
 			$tmp = $this->tableconf['ALL.']['requiredFields'];
 			$requiredFields = ($tmp ? $tmp : $requiredFields);
@@ -102,14 +100,14 @@ class tx_ttproducts_orderaddress extends tx_ttproducts_table_base {
 		$rc = $this->dataArray[$uid];
 		if (!$rc && $uid) {
 			$where = '1=1 '.$this->getTableObj()->enableFields();
-			$res = $this->getTableObj()->exec_SELECTquery('*',$where.' AND uid = '.intval($uid));
+			$res = $this->getTableObj()->exec_SELECTquery('*', $where . ' AND uid = ' . intval($uid));
 			$row = $TYPO3_DB->sql_fetch_assoc($res);
 			$TYPO3_DB->sql_free_result($res);
 			$rc = $this->dataArray[$row['uid']] = $row;
 		}
 		return $rc;
-	}
-*/
+	}*/
+
 
 	public function getFieldName ($field)	{
 		$rc = $field;
@@ -125,8 +123,8 @@ class tx_ttproducts_orderaddress extends tx_ttproducts_table_base {
 		$groups = explode(',', $feuser['usergroup']);
 		foreach ($groups as $singlegroup)
 			if ($singlegroup == $group)
-				return true;
-		return false;
+				return TRUE;
+		return FALSE;
 	} // isUserInGroup
 
 
@@ -142,11 +140,8 @@ class tx_ttproducts_orderaddress extends tx_ttproducts_table_base {
 			if ($infoObj->infoArray['billing']['date_of_birth'])	{
 				$timeTemp = $infoObj->infoArray['billing']['date_of_birth'];
 				$bAge = TRUE;
-			} else if (
-                $GLOBALS['TSFE']->loginUser &&
-                is_array($GLOBALS['TSFE']->fe_user->user)
-            )	{
-				$timeTemp = date('d-m-Y', ($GLOBALS['TSFE']->fe_user->user['date_of_birth']));
+			} else if ($TSFE->fe_user->user)	{
+				$timeTemp = date('d-m-Y', ($TSFE->fe_user->user['date_of_birth']));
 				$bAge = TRUE;
 			} else {
 				$bAge = FALSE;
@@ -185,27 +180,13 @@ class tx_ttproducts_orderaddress extends tx_ttproducts_table_base {
 		}
 	}
 
-
-	public function getCondition ()	{
+	public function getCondition()	{
 		return $this->bCondition;
 	}
 
-
-	public function getConditionRecord ()	{
+	public function getConditionRecord()	{
 		return $this->bConditionRecord;
 	}
-
-
-	public function getCreditpoints ()	{
-		global $TSFE;
-
-		$rc = FALSE;
-		if (isset($TSFE->fe_user->user) && is_array(($TSFE->fe_user->user)))	{
-			$rc = $TSFE->fe_user->user['tt_products_creditpoints'];
-		}
-		return $rc;
-	}
-
 }
 
 

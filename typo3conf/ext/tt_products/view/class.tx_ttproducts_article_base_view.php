@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2006-2010 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2006-2009 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -37,8 +37,7 @@
  *
  */
 
-
-
+//
 abstract class tx_ttproducts_article_base_view extends tx_ttproducts_table_base_view {
 	private $dataArray = array(); // array of read in products
 	private $table;	 // object of the type tx_table_db
@@ -67,17 +66,16 @@ abstract class tx_ttproducts_article_base_view extends tx_ttproducts_table_base_
 		&$wrappedSubpartArray,
 		&$tagArray,
 		$theCode='',
-		$basketExtra=array(),
 		$iCount=''
 	)	{
-		$this->getItemSubpartArrays($templateCode, $functablename, $row, $subpartArray, $wrappedSubpartArray, $tagArray, $theCode, $basketExtra, $iCount);
+		$this->getItemSubpartArrays($templateCode, $functablename, $row, $subpartArray, $wrappedSubpartArray, $tagArray, $theCode, $iCount);
 	}
 
 
-	public function getItemSubpartArrays (&$templateCode, $functablename, $row, &$subpartArray, &$wrappedSubpartArray, &$tagArray, $theCode='', $basketExtra=array(), $id='') {
+	public function getItemSubpartArrays (&$templateCode, $functablename, $row, &$subpartArray, &$wrappedSubpartArray, &$tagArray, $theCode='', $id='') {
 		global $TCA;
 
-		parent::getItemSubpartArrays($templateCode, $functablename, $row, $subpartArray, $wrappedSubpartArray, $tagArray, $theCode, $basketExtra, $id);
+		parent::getItemSubpartArrays($templateCode, $functablename, $row, $subpartArray, $wrappedSubpartArray, $tagArray, $theCode, $id);
 	}
 
 
@@ -88,8 +86,7 @@ abstract class tx_ttproducts_article_base_view extends tx_ttproducts_table_base_
 		$mergedName,
 		$mergedRow,
 		$id,
-		$theCode,
-		$basketExtra
+		$theCode
 	)	{
 
 		if (is_array($mergedRow))	{
@@ -99,20 +96,15 @@ abstract class tx_ttproducts_article_base_view extends tx_ttproducts_table_base_
 					$id .= 'from-' . str_replace('_', '-', $mergedName);
 				}
 				$row['uid'] = $originalRow['uid'];
-				foreach ($originalRow as $k => $v)	{
-					if (!isset($row[$k]))	{
-						$row[$k] = $v;
-					}
-				}
 			}
 		} else {
 			$row = $originalRow;
 		}
-		$this->getPriceMarkerArray($basketExtra, $markerArray, $row, '', $id, $theCode);
+		$this->getPriceMarkerArray($markerArray, $row, '', $id, $theCode);
 	}
 
 
-	public function getPriceMarkerArray ($basketExtra, &$markerArray, $row, $markerKey, $id, $theCode)	{
+	public function getPriceMarkerArray (&$markerArray, $row, $markerKey, $id, $theCode)	{
 		global $TCA;
 
 		$modelObj = $this->getModelObj();
@@ -123,7 +115,7 @@ abstract class tx_ttproducts_article_base_view extends tx_ttproducts_table_base_
 
 		foreach ($TCA[$functablename]['columns'] as $field => $fieldTCA)	{
 			if (strpos($field, 'price') === 0)	{
-				$priceViewObj->getModelMarkerArray($functablename, $basketExtra, $field, $row, $markerArray, $markerKey, $mainId);
+				$priceViewObj->getModelMarkerArray($field, $row, $markerArray, $markerKey, $mainId);
 			}
 		}
 	}
@@ -152,23 +144,23 @@ abstract class tx_ttproducts_article_base_view extends tx_ttproducts_table_base_
 		&$tagArray,
 		$forminfoArray=array(),
 		$theCode='',
-		$basketExtra=array(),
 		$id='',
 		$prefix='',
 		$suffix='',
 		$linkWrap='',
-		$bHtml=true,
+		$bHtml=TRUE,
 		$charset=''
 	)	{
 		global $TSFE, $TCA;
 
 		$modelObj = $this->getModelObj();
+		$priceObj = t3lib_div::makeInstance('tx_ttproducts_field_price');
 		$imageObj = t3lib_div::makeInstance('tx_ttproducts_field_image_view');
 
 		if ($markerKey)	{
 			$marker = $markerKey;
 		} else {
-			$marker = $this->getMarker();
+			$marker = $this->marker;
 		}
 
 		if (!$marker)	{
@@ -179,13 +171,12 @@ abstract class tx_ttproducts_article_base_view extends tx_ttproducts_table_base_
 
 		$this->getRowMarkerArray (
 			$row,
-			$marker,
+			$markerKey,
 			$markerArray,
 			$variantFieldArray,
 			$variantMarkerArray,
 			$tagArray,
 			$theCode,
-			$basketExtra,
 			$bHtml,
 			$charset,
 			$imageNum,
@@ -196,13 +187,16 @@ abstract class tx_ttproducts_article_base_view extends tx_ttproducts_table_base_
 			$linkWrap
 		);
 
-		$this->getPriceMarkerArray($basketExtra, $markerArray, $row, $markerKey, $id, $theCode);
+// 		$markerArray = array_merge($markerArray, $variantMarkerArray); // neu +++
+
+		$this->getPriceMarkerArray($markerArray, $row, $markerKey, $id, $theCode);
 
 		if (isset($row['delivery']))	{
 			$imageObj->getSingleImageMarkerArray ($marker.'_DELIVERY', $markerArray, $this->conf['delivery.'][$row['delivery'].'.']['image.'], $theCode);
 		} else {
 			$markerArray['###'.$marker.'_DELIVERY###'] = '';
 		}
+
 	}
 }
 

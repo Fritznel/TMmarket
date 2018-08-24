@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2006-2009 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2006-2009 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -48,7 +48,6 @@ abstract class tx_ttproducts_article_base extends tx_ttproducts_table_base {
 			// this gets in lower case also used for the URL parameter
 	public $variant;       // object for the product variant attributes, must initialized in the init function
 	public $mm_table = ''; // only set if a mm table is used
-	public $relatedArray = array(); // array of related products
 
 
 	/**
@@ -91,8 +90,8 @@ abstract class tx_ttproducts_article_base extends tx_ttproducts_table_base {
 		if (is_array($this->getTableObj()->tableFieldArray[$instockField]))	{
 			$uid = intval($uid);
 			$fieldsArray = array();
-			$fieldsArray[$instockField] = $instockField.'-'.$count;
-			$res = $TYPO3_DB->exec_UPDATEquery($this->getTableObj()->name,'uid=\''.$uid.'\'', $fieldsArray,$instockField);
+			$fieldsArray[$instockField] = $instockField . '-' . $count;
+			$res = $TYPO3_DB->exec_UPDATEquery($this->getTableObj()->name, 'uid=\'' . $uid . '\'', $fieldsArray, $instockField);
 		}
 	}
 
@@ -105,71 +104,7 @@ abstract class tx_ttproducts_article_base extends tx_ttproducts_table_base {
 	}
 
 
-	public function getRelatedArrays (&$allowedRelatedTypeArray, &$mmTable) {
-		$allowedRelatedTypeArray = array();
-		$mmTable = array();
-	}
-
-
-	/* types:
-		'accessories' ... accessory products
-		'articles' ... related articles
-		'products' ... related products
-		returns the uids of the related products or articles
-	*/
 	public function getRelated ($uid, $type) {
-		$resultArray = array();
-		$this->getRelatedArrays($allowedRelatedTypeArray, $mmTable);
-
-		if (
-			in_array($type, $allowedRelatedTypeArray) &&
-			is_array($this->relatedArray[$type])
-		) {
-			if ($type == 'articles') {
-				$relatedArticles = $this->getArticleRows($uid);
-
-				if (count($relatedArticles)) {
-					$rowArray = array();
-					foreach ($relatedArticles as $k => $articleRow) {
-						$resultArray[] = $articleRow['uid'];
-					}
-				}
-			} else if (
-				is_array($mmTable[$type]) &&
-				$mmTable[$type]['table'] != ''
-			) {
-				if (
-					tx_div2007_core::testInt($uid)
-				) {
-					$rowArray = $this->relatedArray[$type][$uid];
-				}
-
-				if (!is_array($rowArray) && $uid) {
-
-					if (
-						tx_div2007_core::testInt($uid)
-					) {
-						$where = 'uid_local = '.intval($uid);
-					} else if (is_array($uid)) {
-						$where = 'uid_local IN (' . implode(',', $uid) . ')';
-					}
-					$rowArray = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*', $mmTable[$type]['table'], $where);
-					if (
-						tx_div2007_core::testInt($uid)
-					) {
-						$this->relatedArray[$type][$uid] = $rowArray;
-					}
-				}
-
-				if (isset($rowArray) && is_array($rowArray)) {
-					foreach ($rowArray as $k => $row) {
-						$resultArray[] = $row['uid_foreign'];
-					}
-				}
-			}
-		}
-
-		return $resultArray;
 	}
 
 
@@ -178,15 +113,15 @@ abstract class tx_ttproducts_article_base extends tx_ttproducts_table_base {
 	}
 
 
-	public function getFlexQuery ($type,$val=1)	{
+	public function getFlexQuery ($type,$val = 1)	{
 		$spacectrl = '[[:space:][:cntrl:]]*';
 
-		 $rc = '<field index="'.$type.'">'.$spacectrl.'<value index="vDEF">'.($val ? '1': '0').'</value>'.$spacectrl.'</field>'.$spacectrl;
+		 $rc = '<field index="' . $type . '">' . $spacectrl . '<value index="vDEF">' . ($val ? '1': '0').'</value>' . $spacectrl . '</field>' . $spacectrl;
 		 return $rc;
 	}
 
 
-	public function addWhereCat ($catObject, $theCode, $cat, $categoryAnd, $pid_list, $bLeadingOperator = TRUE) {
+	public function addWhereCat (&$catObject, $theCode, $cat, $pid_list)	{
 		$where = '';
 
 		return $where;
@@ -210,11 +145,11 @@ abstract class tx_ttproducts_article_base extends tx_ttproducts_table_base {
 
 
 	/**
-	 * Returns true if the item has the $check value checked
+	 * Returns TRUE if the item has the $check value checked
 	 *
 	 */
 	public function hasAdditional (&$row, $check)  {
-		$hasAdditional = false;
+		$hasAdditional = FALSE;
 		return $hasAdditional;
 	}
 
@@ -229,7 +164,6 @@ abstract class tx_ttproducts_article_base extends tx_ttproducts_table_base {
 
 		// Fetching the products
 		$res = $this->getTableObj()->exec_SELECTquery('*', $where, '', $TYPO3_DB->stripOrderBy($orderBy));
-
 		$translateFields = $cnf->getTranslationFields($tableconf);
 
 		while($row = $TYPO3_DB->sql_fetch_assoc($res))	{
@@ -251,63 +185,26 @@ abstract class tx_ttproducts_article_base extends tx_ttproducts_table_base {
 		$where = '';
 
 		$tableConf = $this->getTableConf($theCode);
-		$replaceConf = array();
 
 		$bUseLanguageTable = $this->bUseLanguageTable($tableConf);
-		$charRegExp = $this->getCharRegExp($tableConf, $replaceConf);
-
-		if ($bUseLanguageTable) {
-			$where =
-				$this->getTableObj()->searchWhere(
-					$sw,
-					$searchFieldList,
-					TRUE,
-					$charRegExp,
-					$replaceConf
-				);
-		} else {
-			$where =
-				$this->getTableObj()->searchWhere(
-					$sw,
-					$searchFieldList,
-					FALSE,
-					$charRegExp,
-					$replaceConf
-				);
-		}
+        if ($bUseLanguageTable) {
+            $where =
+                $this->getTableObj()->searchWhere(
+                    $sw,
+                    $searchFieldList,
+                    TRUE
+                );
+        } else {
+            $where =
+                $this->getTableObj()->searchWhere(
+                    $sw,
+                    $searchFieldList,
+                    FALSE
+                );
+        }
 
 		return $where;
 	} // searchWhere
-
-
-	public function getCharRegExp ($tableConf, &$replaceConf) {
-
-		$result = '';
-		$replaceConf = array();
-
-		if (isset($tableConf['charRegExp'])) {
-			$result = $tableConf['charRegExp'];
-			if (
-				isset($tableConf['charRegExp.']) &&
-				isset($tableConf['charRegExp.']['replace.']) &&
-				$tableConf['charRegExp.']['replace.']['type'] == 'bothsided'
-			) {
-				foreach ($tableConf['charRegExp.']['replace.'] as $k => $lineReplaceConf) {
-					if (
-						$k != 'type' &&
-						strpos($k, '.') == strlen($k) - 1
-					) {
-						$k1 = substr($k, 0, strlen($k) - 1);
-						if (tx_div2007_core::testInt($k1)) {
-							$replaceConf = array_merge($replaceConf, $lineReplaceConf);
-						}
-					}
-				}
-			}
-		}
-
-		return $result;
-	}
 
 
 	public function getNeededUrlParams ($functablename, $theCode)	{
@@ -321,39 +218,9 @@ abstract class tx_ttproducts_article_base extends tx_ttproducts_table_base {
 	}
 
 
-	public function mergeVariantFields (
-		&$targetRow,
-		$sourceRow,
-		$bKeepNotEmpty = TRUE
-	) {
-
-		$variantFieldArray = $this->variant->getFieldArray();
-
-		if (isset($variantFieldArray) && is_array($variantFieldArray))	{
-			foreach ($variantFieldArray as $field)	{
-				if (isset($sourceRow[$field]))	{
-					$value = $sourceRow[$field];
-					if($bKeepNotEmpty)	{
-						if (!$targetRow[$field])	{
-							$targetRow[$field] = $value;
-						}
-					} else {
-						$targetRow[$field] = $value;
-					}
-				}
-			}
-		}
-	}
-
-
-	public function mergeAttributeFields (
-		&$targetRow,
-		$sourceRow,
-		$bKeepNotEmpty = TRUE,
-		$bAddValues = FALSE,
-		$bUseExt = FALSE
-	) {
+	public function mergeAttributeFields (&$targetRow, &$sourceRow, $bKeepNotEmpty = TRUE, $bAddValues = FALSE, $bUseExt = FALSE)	{
 		$fieldArray = array();
+
 		$fieldArray['config'] = array('config');
 		$fieldArray['data'] = array('itemnumber', 'image');
 		$fieldArray['number'] = array('weight', 'inStock');
@@ -368,26 +235,30 @@ abstract class tx_ttproducts_article_base extends tx_ttproducts_table_base {
 		} else {
 			$mergeAppendArray = array();
 		}
-
 		$fieldArray['text'][] = 'title';
 		$fieldArray['text'][] = 'subtitle';
 		$fieldArray['text'][] = 'note';
 		$fieldArray['text'][] = 'note2';
 		$fieldArray['text'] = array_unique($fieldArray['text']);
 
+		$variantFieldArray = $this->variant->getFieldArray();
 		$previouslyAddedPrice = 0;
 		if ($bUseExt && isset($targetRow['ext']) && is_array($targetRow['ext']) && isset($targetRow['ext']['addedPrice']))	{
 			$previouslyAddedPrice = $targetRow['addedPrice'];
 		}
-		$bIsAddedPrice = $cnfObj->hasConfig($sourceRow, 'isAddedPrice');
 
 		foreach ($fieldArray as $type => $fieldTypeArray)	{
-
 			foreach ($fieldTypeArray as $k => $field)	{
+				$mergedFieldArray[] = $field;
 
 				if (isset($sourceRow[$field]))	{
 					$value = $sourceRow[$field];
 
+					if ($type == 'config') {
+						if ($field == 'config')	{
+							$bIsAddedPrice = $cnfObj->hasConfig($sourceRow, 'isAddedPrice');
+						}
+					}
 					if ($type == 'price') {
 						if ($bIsAddedPrice)	{
 							$value += $targetRow[$field];
@@ -401,9 +272,8 @@ abstract class tx_ttproducts_article_base extends tx_ttproducts_table_base {
 						if ($previouslyAddedPrice)	{
 							$value += $previouslyAddedPrice;
 						}
-
 						if($bKeepNotEmpty)	{
-							if (!round($targetRow[$field], 16) || round($value, 16)) {
+							if (!round($targetRow[$field], 16)) {
 								$targetRow[$field] = $value;
 							}
 						} else { // $bKeepNotEmpty == FALSE
@@ -430,7 +300,7 @@ abstract class tx_ttproducts_article_base extends tx_ttproducts_table_base {
 								(empty($targetRow[$field]) || !empty($value))
 							) {
 								if (($bAddValues == TRUE) && in_array($field, $mergeAppendArray))	{
-									$targetRow[$field] .= ' ' . $value;
+									$targetRow[$field] .= ' '.$value;
 								} else {
 									$targetRow[$field] = $value;
 								}
@@ -442,22 +312,21 @@ abstract class tx_ttproducts_article_base extends tx_ttproducts_table_base {
 		}
 		// copy the normal fields
 
-		$this->mergeVariantFields(
-			$targetRow,
-			$sourceRow,
-			$bKeepNotEmpty
-		);
+		if (isset($variantFieldArray) && is_array($variantFieldArray))	{
+			foreach ($variantFieldArray as $field)	{
+				if (isset($sourceRow[$field]))	{
+					$value = $sourceRow[$field];
+					if($bKeepNotEmpty)	{
+						if (!$targetRow[$field])	{
+							$targetRow[$field] = $value;
+						}
+					} else {
+						$targetRow[$field] = $value;
+					}
+				}
+			}
+		}
 	} // mergeAttributeFields
-
-
-	public function getTotalDiscountField () {
-		return 'total_discount';
-	}
-
-
-	public function getTotalDiscount (&$row, $pid = 0) {
-	}
-
 }
 
 

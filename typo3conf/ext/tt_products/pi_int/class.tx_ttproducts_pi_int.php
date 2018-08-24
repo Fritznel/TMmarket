@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2008-2009 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2008-2009 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -28,6 +28,7 @@
  * Part of the tt_products (Shop System) extension.
  *
  * variable content plugins for the shop system.
+ *
  *
  * @author	Franz Holzinger <franz@ttproducts.de>
  * @maintainer	Franz Holzinger <franz@ttproducts.de>
@@ -55,21 +56,13 @@ class tx_ttproducts_pi_int implements t3lib_Singleton {
 
 		$pibaseObj = t3lib_div::makeInstance('tx_ttproducts_pi_int_base');
 		$pibaseObj->cObj = $this->cObj;
-		$confMain = $GLOBALS['TSFE']->tmpl->setup['plugin.'][TT_PRODUCTS_EXT . '.'];
-		tx_div2007_core::mergeRecursiveWithOverrule($confMain, $conf);
-		$conf = $confMain;
 
 		if ($conf['templateFile'] != '')	{
 
 			$content = $pibaseObj->main($content,$conf);
 		} else {
 			tx_div2007_alpha5::loadLL_fh002($pibaseObj, 'EXT:' . TT_PRODUCTS_EXT . '/pi_int/locallang.xml');
-
-			if (count($conf) > 2)	{
-				$content = tx_div2007_alpha5::getLL_fh003($pibaseObj, 'no_template') . ' plugin.tx_ttproducts_pi_int.templateFile';
-			} else {
-				$content = tx_div2007_alpha5::getLL_fh003($pibaseObj, 'no_setup');
-			}
+			$content = tx_div2007_alpha5::getLL_fh003($pibaseObj, 'no_template') . ' plugin.tx_ttproducts_pi_int.templateFile';
 		}
 
 		return $content;

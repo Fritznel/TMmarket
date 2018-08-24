@@ -37,7 +37,7 @@
  *
  */
 
-class tx_ttproducts_hooks_transactor implements t3lib_Singleton {
+class tx_ttproducts_hooks_transactor {
 
 	public function execute (
 		$pObj,

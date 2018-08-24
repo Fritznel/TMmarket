@@ -1353,6 +1353,7 @@ return array (
           'page-contentFromPid-root' => 'apps-pagetree-page-content-from-page-root',
           'page-contentFromPid-hideinmenu' => 'apps-pagetree-page-content-from-page-hideinmenu',
           'default' => 'apps-pagetree-page-default',
+          'contains-ttproducts' => 'apps-pagetree-folder-contains-ttproducts',
         ),
         'searchFields' => 'title,alias,nav_title,subtitle,url,keywords,description,abstract,author,author_email',
       ),
@@ -2215,8 +2216,8 @@ return array (
               2 => 
               array (
                 0 => 'LLL:EXT:tt_products/locallang.xml:pageModule.plugin',
-                1 => 'ttpproduct',
-                2 => 'apps-pagetree-folder-contains-tt_products',
+                1 => 'ttproducts',
+                2 => 'apps-pagetree-folder-contains-ttproducts',
               ),
             ),
             'default' => '',
@@ -2356,8 +2357,8 @@ return array (
             array (
               0 => 
               array (
-                0 => 'EXT:tt_products :: Restrict pages to tt_products records (ttpproduct)',
-                1 => 'EXT:ttpproduct/Configuration/TSconfig/Page/folder_tables.txt',
+                0 => 'EXT:tt_products :: Restrict pages to tt_products records (ttproducts)',
+                1 => 'EXT:ttproducts/Configuration/TSconfig/Page/folder_tables.txt',
               ),
             ),
             'enableMultiSelectFilterTextfield' => true,
@@ -3808,10 +3809,34 @@ return array (
         'width' => 
         array (
           'l10n_mode' => 'exclude',
+          'exclude' => true,
+          'l10n_display' => 'defaultAsReadonly',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.width',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => 10,
+            'max' => 20,
+            'eval' => 'int',
+            'default' => 0,
+            'readOnly' => true,
+          ),
         ),
         'height' => 
         array (
           'l10n_mode' => 'exclude',
+          'exclude' => true,
+          'l10n_display' => 'defaultAsReadonly',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.height',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => 10,
+            'max' => 20,
+            'eval' => 'int',
+            'default' => 0,
+            'readOnly' => true,
+          ),
         ),
         'categories' => 
         array (
@@ -3844,12 +3869,531 @@ return array (
             ),
           ),
         ),
+        'visible' => 
+        array (
+          'exclude' => true,
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.visible',
+          'config' => 
+          array (
+            'type' => 'check',
+            'default' => '1',
+          ),
+        ),
+        'status' => 
+        array (
+          'exclude' => true,
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.status',
+          'config' => 
+          array (
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'items' => 
+            array (
+              0 => 
+              array (
+                0 => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.status.1',
+                1 => 1,
+                2 => 'filemetadata-status-1',
+              ),
+              1 => 
+              array (
+                0 => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.status.2',
+                1 => 2,
+                2 => 'filemetadata-status-2',
+              ),
+              2 => 
+              array (
+                0 => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.status.3',
+                1 => 3,
+                2 => 'filemetadata-status-3',
+              ),
+            ),
+            'fieldWizard' => 
+            array (
+              'selectIcons' => 
+              array (
+                'disabled' => false,
+              ),
+            ),
+          ),
+        ),
+        'keywords' => 
+        array (
+          'exclude' => true,
+          'l10n_mode' => 'prefixLangTitle',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.keywords',
+          'config' => 
+          array (
+            'type' => 'text',
+            'cols' => 40,
+            'rows' => 3,
+            'placeholder' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:placeholder.keywords',
+          ),
+        ),
+        'caption' => 
+        array (
+          'exclude' => true,
+          'l10n_mode' => 'prefixLangTitle',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.caption',
+          'config' => 
+          array (
+            'type' => 'text',
+            'cols' => 40,
+            'rows' => 3,
+          ),
+        ),
+        'creator_tool' => 
+        array (
+          'exclude' => true,
+          'l10n_mode' => 'exclude',
+          'l10n_display' => 'defaultAsReadonly',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.creator_tool',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => 20,
+            'eval' => 'trim',
+          ),
+        ),
+        'download_name' => 
+        array (
+          'exclude' => true,
+          'l10n_mode' => 'exclude',
+          'l10n_display' => 'defaultAsReadonly',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.download_name',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => 30,
+            'eval' => 'trim',
+          ),
+        ),
+        'creator' => 
+        array (
+          'exclude' => true,
+          'l10n_mode' => 'exclude',
+          'l10n_display' => 'defaultAsReadonly',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.creator',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => 30,
+            'eval' => 'trim',
+          ),
+        ),
+        'publisher' => 
+        array (
+          'exclude' => true,
+          'l10n_mode' => 'exclude',
+          'l10n_display' => 'defaultAsReadonly',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.publisher',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => 20,
+            'eval' => 'trim',
+          ),
+        ),
+        'source' => 
+        array (
+          'exclude' => true,
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.source',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => 20,
+            'eval' => 'trim',
+          ),
+        ),
+        'copyright' => 
+        array (
+          'exclude' => true,
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.copyright',
+          'config' => 
+          array (
+            'type' => 'text',
+            'cols' => 40,
+            'rows' => 3,
+          ),
+        ),
+        'location_country' => 
+        array (
+          'exclude' => true,
+          'l10n_display' => '',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.location_country',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => 20,
+            'eval' => 'trim',
+            'behaviour' => 
+            array (
+              'allowLanguageSynchronization' => true,
+            ),
+          ),
+        ),
+        'location_region' => 
+        array (
+          'exclude' => true,
+          'l10n_display' => '',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.location_region',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => 20,
+            'eval' => 'trim',
+            'behaviour' => 
+            array (
+              'allowLanguageSynchronization' => true,
+            ),
+          ),
+        ),
+        'location_city' => 
+        array (
+          'exclude' => true,
+          'l10n_display' => '',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.location_city',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => 20,
+            'eval' => 'trim',
+            'behaviour' => 
+            array (
+              'allowLanguageSynchronization' => true,
+            ),
+          ),
+        ),
+        'latitude' => 
+        array (
+          'exclude' => true,
+          'l10n_mode' => 'exclude',
+          'l10n_display' => 'defaultAsReadonly',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.latitude',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => 20,
+            'eval' => 'trim',
+            'max' => 30,
+            'default' => '0.00000000000000',
+          ),
+        ),
+        'longitude' => 
+        array (
+          'exclude' => true,
+          'l10n_mode' => 'exclude',
+          'l10n_display' => 'defaultAsReadonly',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.longitude',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => 20,
+            'eval' => 'trim',
+            'max' => 30,
+            'default' => '0.00000000000000',
+          ),
+        ),
+        'ranking' => 
+        array (
+          'exclude' => true,
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.ranking',
+          'config' => 
+          array (
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'minitems' => 1,
+            'maxitems' => 1,
+            'items' => 
+            array (
+              0 => 
+              array (
+                0 => 0,
+                1 => 0,
+              ),
+              1 => 
+              array (
+                0 => 1,
+                1 => 1,
+              ),
+              2 => 
+              array (
+                0 => 2,
+                1 => 2,
+              ),
+              3 => 
+              array (
+                0 => 3,
+                1 => 3,
+              ),
+              4 => 
+              array (
+                0 => 4,
+                1 => 4,
+              ),
+              5 => 
+              array (
+                0 => 5,
+                1 => 5,
+              ),
+            ),
+          ),
+        ),
+        'content_creation_date' => 
+        array (
+          'exclude' => true,
+          'l10n_mode' => 'exclude',
+          'l10n_display' => 'defaultAsReadonly',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.content_creation_date',
+          'config' => 
+          array (
+            'type' => 'input',
+            'renderType' => 'inputDateTime',
+            'eval' => 'date',
+            'default' => 1535113250,
+          ),
+        ),
+        'content_modification_date' => 
+        array (
+          'exclude' => true,
+          'l10n_mode' => 'exclude',
+          'l10n_display' => 'defaultAsReadonly',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.content_modification_date',
+          'config' => 
+          array (
+            'type' => 'input',
+            'renderType' => 'inputDateTime',
+            'eval' => 'date',
+            'default' => 1535113250,
+          ),
+        ),
+        'note' => 
+        array (
+          'exclude' => true,
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.note',
+          'config' => 
+          array (
+            'type' => 'text',
+            'cols' => 40,
+            'rows' => 15,
+            'eval' => 'trim',
+          ),
+        ),
+        'unit' => 
+        array (
+          'exclude' => true,
+          'l10n_mode' => 'exclude',
+          'l10n_display' => 'defaultAsReadonly',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.unit',
+          'config' => 
+          array (
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'items' => 
+            array (
+              0 => 
+              array (
+                0 => '',
+                1 => '',
+              ),
+              1 => 
+              array (
+                0 => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.unit.px',
+                1 => 'px',
+              ),
+              2 => 
+              array (
+                0 => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.unit.cm',
+                1 => 'cm',
+              ),
+              3 => 
+              array (
+                0 => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.unit.in',
+                1 => 'in',
+              ),
+              4 => 
+              array (
+                0 => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.unit.mm',
+                1 => 'mm',
+              ),
+              5 => 
+              array (
+                0 => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.unit.m',
+                1 => 'm',
+              ),
+              6 => 
+              array (
+                0 => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.unit.p',
+                1 => 'p',
+              ),
+              7 => 
+              array (
+                0 => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.unit.pt',
+                1 => 'pt',
+              ),
+            ),
+            'default' => '',
+            'readOnly' => true,
+          ),
+        ),
+        'duration' => 
+        array (
+          'exclude' => true,
+          'l10n_mode' => 'exclude',
+          'l10n_display' => 'defaultAsReadonly',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.duration',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => 10,
+            'max' => 20,
+            'eval' => 'int',
+            'default' => 0,
+          ),
+        ),
+        'color_space' => 
+        array (
+          'exclude' => true,
+          'l10n_mode' => 'exclude',
+          'l10n_display' => 'defaultAsReadonly',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.color_space',
+          'config' => 
+          array (
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'items' => 
+            array (
+              0 => 
+              array (
+                0 => '',
+                1 => '',
+              ),
+              1 => 
+              array (
+                0 => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.color_space.RGB',
+                1 => 'RGB',
+              ),
+              2 => 
+              array (
+                0 => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.color_space.sRGB',
+                1 => 'sRGB',
+              ),
+              3 => 
+              array (
+                0 => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.color_space.CMYK',
+                1 => 'CMYK',
+              ),
+              4 => 
+              array (
+                0 => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.color_space.CMY',
+                1 => 'CMY',
+              ),
+              5 => 
+              array (
+                0 => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.color_space.YUV',
+                1 => 'YUV',
+              ),
+              6 => 
+              array (
+                0 => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.color_space.grey',
+                1 => 'grey',
+              ),
+              7 => 
+              array (
+                0 => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.color_space.indx',
+                1 => 'indx',
+              ),
+            ),
+            'default' => '',
+            'readOnly' => true,
+          ),
+        ),
+        'pages' => 
+        array (
+          'exclude' => true,
+          'l10n_mode' => 'exclude',
+          'l10n_display' => 'defaultAsReadonly',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.pages',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => 30,
+            'eval' => 'trim',
+            'readOnly' => true,
+          ),
+        ),
+        'language' => 
+        array (
+          'exclude' => true,
+          'l10n_mode' => 'exclude',
+          'l10n_display' => 'defaultAsReadonly',
+          'label' => 'LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:sys_file_metadata.language',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => 30,
+            'eval' => 'trim',
+          ),
+        ),
+        'fe_groups' => 
+        array (
+          'exclude' => true,
+          'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.fe_group',
+          'config' => 
+          array (
+            'type' => 'select',
+            'renderType' => 'selectMultipleSideBySide',
+            'size' => 5,
+            'maxitems' => 20,
+            'items' => 
+            array (
+              0 => 
+              array (
+                0 => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login',
+                1 => -1,
+              ),
+              1 => 
+              array (
+                0 => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.any_login',
+                1 => -2,
+              ),
+              2 => 
+              array (
+                0 => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.usergroups',
+                1 => '--div--',
+              ),
+            ),
+            'exclusiveKeys' => '-1,-2',
+            'foreign_table' => 'fe_groups',
+            'foreign_table_where' => 'ORDER BY fe_groups.title',
+          ),
+        ),
       ),
       'types' => 
       array (
         1 => 
         array (
-          'showitem' => '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,fileinfo,title,description,alternative,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,--palette--;;language,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,--div--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_category.tabs.category,categories,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended',
+          'showitem' => '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,fileinfo,title,description,ranking,keywords,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.accessibility;25,--div--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:tabs.metadata,creator,creator_tool,publisher,source,copyright,language,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.geo_location;40,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,--palette--;;language,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.visibility;10,fe_groups,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,categories,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended',
+        ),
+        0 => 
+        array (
+          'showitem' => '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,fileinfo,title,description,ranking,keywords,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.accessibility;25,--div--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:tabs.metadata,creator,creator_tool,publisher,source,copyright,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.geo_location;40,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,--palette--;;language,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.visibility;10,fe_groups,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,categories,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended',
+        ),
+        2 => 
+        array (
+          'showitem' => '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,fileinfo,title,description,ranking,keywords,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.accessibility;20,--div--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:tabs.metadata,creator,creator_tool,publisher,source,copyright,language,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.geo_location;40,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.gps;30,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.content_date;60,--div--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:tabs.camera,color_space,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.metrics;50,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,--palette--;;language,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.visibility;10,fe_groups,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,categories,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended',
+        ),
+        3 => 
+        array (
+          'showitem' => '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,fileinfo,title,description,ranking,keywords,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.accessibility;25,--div--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:tabs.metadata,creator,creator_tool,publisher,source,copyright,language,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.content_date;60,--div--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:tabs.audio,duration,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,--palette--;;language,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.visibility;10,fe_groups,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,categories,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended',
+        ),
+        4 => 
+        array (
+          'showitem' => '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,fileinfo,title,description,ranking,keywords,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.accessibility;25,--div--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:tabs.metadata,creator,creator_tool,publisher,source,copyright,language,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.content_date;60,--div--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:tabs.video,duration,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,--palette--;;language,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.visibility;10,fe_groups,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,categories,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended',
+        ),
+        5 => 
+        array (
+          'showitem' => '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,fileinfo,title,description,ranking,keywords,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.accessibility;25,--div--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:tabs.metadata,creator,creator_tool,publisher,source,copyright,language,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.geo_location;40,pages,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.metrics;50,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.content_date;60,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,--palette--;;language,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,--palette--;LLL:EXT:filemetadata/Resources/Private/Language/locallang_tca.xlf:palette.visibility;10,fe_groups,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,categories,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended',
         ),
       ),
       'palettes' => 
@@ -3857,6 +4401,34 @@ return array (
         'language' => 
         array (
           'showitem' => 'sys_language_uid, l10n_parent',
+        ),
+        10 => 
+        array (
+          'showitem' => 'visible, status',
+        ),
+        20 => 
+        array (
+          'showitem' => 'alternative, --linebreak--, caption, --linebreak--, download_name',
+        ),
+        25 => 
+        array (
+          'showitem' => 'caption, --linebreak--, download_name',
+        ),
+        30 => 
+        array (
+          'showitem' => 'latitude, longitude',
+        ),
+        40 => 
+        array (
+          'showitem' => 'location_country, location_region, location_city',
+        ),
+        50 => 
+        array (
+          'showitem' => 'width, height, unit',
+        ),
+        60 => 
+        array (
+          'showitem' => 'content_creation_date, content_modification_date',
         ),
       ),
     ),
@@ -6172,12 +6744,46 @@ return array (
             ),
           ),
         ),
+        'static_lang_isocode' => 
+        array (
+          'exclude' => 1,
+          'label' => 'LLL:EXT:lang/locallang_tca.xlf:sys_language.isocode',
+          'config' => 
+          array (
+            'type' => 'group',
+            'internal_type' => 'db',
+            'allowed' => 'static_languages',
+            'foreign_table' => 'static_languages',
+            'suggestOptions' => 
+            array (
+              'default' => 
+              array (
+                'pidList' => '0',
+                'additionalSearchFields' => 'lg_name_local',
+              ),
+            ),
+            'fieldWizard' => 
+            array (
+              'recordsOverview' => 
+              array (
+                'disabled' => true,
+              ),
+              'tableList' => 
+              array (
+                'disabled' => true,
+              ),
+            ),
+            'size' => 1,
+            'minitems' => 0,
+            'maxitems' => 1,
+          ),
+        ),
       ),
       'types' => 
       array (
         1 => 
         array (
-          'showitem' => '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,title,language_isocode,flag,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,hidden,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended',
+          'showitem' => '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,title,language_isocode,static_lang_isocode,flag,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,hidden,--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended',
         ),
       ),
     ),
@@ -7162,7 +7768,7 @@ return array (
             'eval' => 'trim,double2',
             'range' => 
             array (
-              'upper' => '100',
+              'upper' => '1000',
               'lower' => '0',
             ),
             'default' => 0,
@@ -8330,6 +8936,11 @@ return array (
               array (
                 0 => 'Indexed Search (Extbase & Fluid based) (indexed_search)',
                 1 => 'EXT:indexed_search/Configuration/TypoScript',
+              ),
+              6 => 
+              array (
+                0 => 'Static Info Tables (static_info_tables)',
+                1 => 'EXT:static_info_tables/Configuration/TypoScript/Static',
               ),
             ),
             'enableMultiSelectFilterTextfield' => true,
@@ -11716,7 +12327,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531864800,
+              'lower' => 1532383200,
             ),
           ),
         ),
@@ -11795,7 +12406,7 @@ return array (
       array (
         1 => 
         array (
-          'showitem' => 'hidden,cc_number,owner_name,cc_type,cvv2,endtime',
+          'showitem' => 'cc_number, owner_name, cc_type, cvv2, endtime',
         ),
       ),
       'palettes' => 
@@ -11829,7 +12440,7 @@ return array (
       ),
       'interface' => 
       array (
-        'showRecordFieldList' => 'hidden,sys_language_uid,name,first_name,last_name,company,vat_id,salutation,address,house_no,,zip,city,country,email,business_partner,organisation_form,payment,shipping,amount,tax_mode,pay_mode,email_notify,tracking_code,status,agb,feusers_id,creditpoints,creditpoints_spended,creditpoints_saved,creditpoints_gifts,desired_date,desired_time,note,giftservice,date_of_payment,date_of_delivery,bill_no,radio1,ordered_products',
+        'showRecordFieldList' => 'hidden,sys_language_uid,name,first_name,last_name,company,vat_id,salutation,address,zip,city,country,email,business_partner,organisation_form,payment,shipping,amount,tax_mode,pay_mode,email_notify,tracking_code,status,agb,feusers_id,creditpoints,creditpoints_spended,creditpoints_saved,creditpoints_gifts,desired_date,desired_time,note,giftservice,date_of_payment,date_of_delivery,bill_no,radio1',
       ),
       'columns' => 
       array (
@@ -11997,18 +12608,6 @@ return array (
             'type' => 'input',
             'size' => '50',
             'max' => '256',
-          ),
-        ),
-        'house_no' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:sys_products_orders.house_no',
-          'config' => 
-          array (
-            'type' => 'input',
-            'eval' => 'trim',
-            'size' => '20',
-            'max' => '20',
           ),
         ),
         'zip' => 
@@ -12710,17 +13309,6 @@ return array (
             'default' => '0',
           ),
         ),
-        'ordered_products' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:sys_products_orders.ordered_products',
-          'config' => 
-          array (
-            'type' => 'user',
-            'userFunc' => 'tx_ttproducts_hooks_be->tceSingleOrder',
-            'db' => 'passthrough',
-          ),
-        ),
       ),
       'types' => 
       array (
@@ -12736,7 +13324,7 @@ return array (
               ),
             ),
           ),
-          'showitem' => 'hidden,--palette--;;1,name,sys_language_uid,first_name,last_name,company,vat_id,salutation,address,house_no,zip,city,country,email,payment,shipping,amount,tax_mode,pay_mode,email_notify,tracking_code,status,business_partner,organisation_form,agb,feusers_uid,creditpoints,creditpoints_spended,creditpoints_saved,creditpoints_gifts,desired_date,desired_time,note,giftservice,foundby,giftcode,date_of_payment,date_of_delivery,bill_no,radio1,ordered_products,--div--;LLL:EXT:tt_products/locallang_db.xml:sys_products_orders.orderHtmlDiv,orderHtml',
+          'showitem' => 'hidden,--palette--;;1,name,sys_language_uid,first_name,last_name,company,vat_id,salutation,address,zip,city,country,email,payment,shipping,amount,tax_mode,pay_mode,email_notify,tracking_code,status,business_partner,organisation_form,agb,feusers_uid,creditpoints,creditpoints_spended,creditpoints_saved,creditpoints_gifts,desired_date,desired_time,note,giftservice,foundby,giftcode,date_of_payment,date_of_delivery,bill_no,radio1,--div--;LLL:EXT:tt_products/locallang_db.xml:sys_products_orders.orderHtmlDiv,orderHtml',
         ),
       ),
       'palettes' => 
@@ -12776,20 +13364,10 @@ return array (
       ),
       'interface' => 
       array (
-        'showRecordFieldList' => 'hidden,starttime,endtime,fe_group,title,subtitle,keyword,accessory_uid,related_uid,itemnumber,ean,shipping_point,price,price2,discount,discount_disable,tax,creditpoints,graduated_price_uid,article_uid,note,note2,note_uid,text_uid,category,address,inStock,basketminquantity,weight,usebydate,bulkily,offer,highlight,bargain,directcost,color,color2,color3,size,size2,size3,description,gradings,material,quality,additional,unit,unit_factor,www,datasheet,special_preparation,image,smallimage,sellstarttime,sellendtime,shipping,shipping2,handling',
+        'showRecordFieldList' => 'hidden,starttime,endtime,fe_group,title,subtitle,accessory_uid,related_uid,itemnumber,ean,price,price2,creditpoints,graduated_price_uid,tax,article_uid,note,note2,note_uid,text_uid,category,address,inStock,basketminquantity,weight,usebydate,bulkily,offer,highlight,bargain,directcost,color,color2,color3,size,size2,size3,description,gradings,material,quality,additional,unit,unit_factor,www,datasheet,special_preparation,image,sellstarttime,sellendtime,shipping,shipping2,handling',
       ),
       'columns' => 
       array (
-        't3ver_label' => 
-        array (
-          'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.versionLabel',
-          'config' => 
-          array (
-            'type' => 'input',
-            'size' => '30',
-            'max' => '30',
-          ),
-        ),
         'sorting' => 
         array (
           'config' => 
@@ -12859,7 +13437,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531864800,
+              'lower' => 1532383200,
             ),
           ),
         ),
@@ -12922,20 +13500,6 @@ return array (
             'default' => NULL,
           ),
         ),
-        'keyword' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products.keyword',
-          'config' => 
-          array (
-            'type' => 'text',
-            'rows' => '5',
-            'cols' => '20',
-            'max' => '512',
-            'eval' => 'null',
-            'default' => NULL,
-          ),
-        ),
         'prod_uid' => 
         array (
           'exclude' => 1,
@@ -12976,18 +13540,6 @@ return array (
             'max' => '48',
           ),
         ),
-        'shipping_point' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products.shipping_point',
-          'config' => 
-          array (
-            'type' => 'input',
-            'size' => '24',
-            'eval' => 'trim',
-            'max' => '24',
-          ),
-        ),
         'price' => 
         array (
           'exclude' => 1,
@@ -13010,33 +13562,6 @@ return array (
             'size' => '20',
             'eval' => 'trim,double2',
             'max' => '20',
-          ),
-        ),
-        'discount' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products.discount',
-          'config' => 
-          array (
-            'type' => 'input',
-            'size' => '4',
-            'max' => '8',
-            'eval' => 'trim,double2',
-            'range' => 
-            array (
-              'upper' => '1000',
-              'lower' => '0',
-            ),
-            'default' => 0,
-          ),
-        ),
-        'discount_disable' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products.discount_disable',
-          'config' => 
-          array (
-            'type' => 'check',
           ),
         ),
         'tax' => 
@@ -13541,14 +14066,6 @@ return array (
 										</config>
 									</TCEforms>
 								</noMinPrice>
-								<noMaxPrice>
-									<TCEforms>
-										<label>LLL:EXT:tt_products/locallang_db.xml:tt_products.additional.noMaxPrice</label>
-										<config>
-											<type>check</type>
-										</config>
-									</TCEforms>
-								</noMaxPrice>
 								<noGiftService>
 									<TCEforms>
 										<label>LLL:EXT:tt_products/locallang_db.xml:tt_products.additional.noGiftService</label>
@@ -13591,24 +14108,6 @@ return array (
             'size' => '5',
             'maxitems' => '30',
             'minitems' => '0',
-            'default' => NULL,
-          ),
-        ),
-        'smallimage' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products.smallimage',
-          'config' => 
-          array (
-            'type' => 'group',
-            'internal_type' => 'file',
-            'allowed' => 'gif,jpg,jpeg,tif,tiff,bmp,pcx,tga,png,pdf,ai,svg',
-            'max_size' => NULL,
-            'uploadfolder' => 'uploads/pics',
-            'size' => '5',
-            'maxitems' => '30',
-            'minitems' => '0',
-            'eval' => 'null',
             'default' => NULL,
           ),
         ),
@@ -13711,7 +14210,7 @@ return array (
             'range' => 
             array (
               'upper' => false,
-              'lower' => 1531864800,
+              'lower' => 1532383200,
             ),
           ),
         ),
@@ -13751,7 +14250,7 @@ return array (
               ),
             ),
           ),
-          'showitem' => 'title,--palette--;;7,itemnumber,--palette--;;2,category,address,price,--palette--;;3,tax,--palette--;;4,offer,--palette--;;6,weight,--palette--;;8,creditpoints,hidden,--palette--;;1,--div--;LLL:EXT:tt_products/locallang_db.xml:tt_products.descriptions,note,note2,note_uid,text_uid,image,smallimage,datasheet,--div--;LLL:EXT:tt_products/locallang_db.xml:tt_products.variants,color,color2,--palette--;;9,size,size2,--palette--;;10,description,gradings,material,quality,--palette--,additional,--palette--;;11,--div--;LLL:EXT:tt_products/locallang_db.xml:tt_products.graduated,graduated_price_uid,--div--;LLL:EXT:tt_products/locallang_db.xml:tt_products.relations,article_uid,related_uid,accessory_uid,download_info,download_uid,--div--;LLL:EXT:tt_products/locallang_db.xml:tt_products.shippingdiv,shipping_point,shipping,shipping2,handling,delivery',
+          'showitem' => 'title,--palette--;;7,itemnumber,--palette--;;2,category,address,price,--palette--;;3,tax,--palette--;;4,offer,--palette--;;6,weight,--palette--;;8,creditpoints,hidden,--palette--;;1,--div--;LLL:EXT:tt_products/locallang_db.xml:tt_products.descriptions,note,note2,note_uid,text_uid,image,datasheet,--div--;LLL:EXT:tt_products/locallang_db.xml:tt_products.variants,color,color2,--palette--;;9,size,size2,--palette--;;10,description,gradings,material,quality,--palette--,additional,--palette--;;11,--div--;LLL:EXT:tt_products/locallang_db.xml:tt_products.graduated,graduated_price_uid,--div--;LLL:EXT:tt_products/locallang_db.xml:tt_products.relations,related_uid,accessory_uid,--div--;LLL:EXT:tt_products/locallang_db.xml:tt_products.shippingdiv,shipping,shipping2,handling,delivery',
         ),
       ),
       'palettes' => 
@@ -13766,7 +14265,7 @@ return array (
         ),
         3 => 
         array (
-          'showitem' => 'price2,discount,discount_disable,directcost',
+          'showitem' => 'price2,directcost',
         ),
         4 => 
         array (
@@ -13778,7 +14277,7 @@ return array (
         ),
         7 => 
         array (
-          'showitem' => 'subtitle,keyword,www',
+          'showitem' => 'subtitle,www',
         ),
         8 => 
         array (
@@ -13821,24 +14320,14 @@ return array (
         'cruser_id' => 'cruser_id',
         'iconfile' => 'EXT:tt_products/res/icons/table/tt_products_articles.gif',
         'dividers2tabs' => '1',
-        'searchFields' => 'title,subtitle,itemnumber,keyword,note,note2',
+        'searchFields' => 'title,subtitle,itemnumber,note,note2',
       ),
       'interface' => 
       array (
-        'showRecordFieldList' => 'hidden,starttime,endtime,fe_group,title,subtitle,uid_product,keyword,itemnumber,price,price2,weight,inStock,basketminquantity,color,color2,color3,size,size2,size3,description,gradings,material,quality,note,note2,image,smallimage',
+        'showRecordFieldList' => 'hidden,starttime,endtime,fe_group,title,subtitle,uid_product,itemnumber,price,price2,weight,inStock,basketminquantity,color,color2,color3,size,size2,size3,description,gradings,material,quality,note,note2,image',
       ),
       'columns' => 
       array (
-        't3ver_label' => 
-        array (
-          'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.versionLabel',
-          'config' => 
-          array (
-            'type' => 'input',
-            'size' => '30',
-            'max' => '30',
-          ),
-        ),
         'tstamp' => 
         array (
           'exclude' => 1,
@@ -13909,7 +14398,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531864800,
+              'lower' => 1532383200,
             ),
           ),
         ),
@@ -13969,20 +14458,6 @@ return array (
             'rows' => '3',
             'cols' => '20',
             'max' => '512',
-          ),
-        ),
-        'keyword' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products.keyword',
-          'config' => 
-          array (
-            'type' => 'text',
-            'rows' => '5',
-            'cols' => '20',
-            'max' => '512',
-            'eval' => 'null',
-            'default' => NULL,
           ),
         ),
         'itemnumber' => 
@@ -14213,7 +14688,7 @@ return array (
         ),
         'config_type' => 
         array (
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products_articles.config_type',
+          'label' => 'LLL:EXT:cms/locallang_ttc.php:list_type',
           'config' => 
           array (
             'type' => 'select',
@@ -14282,24 +14757,6 @@ return array (
             'default' => NULL,
           ),
         ),
-        'smallimage' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products.smallimage',
-          'config' => 
-          array (
-            'type' => 'group',
-            'internal_type' => 'file',
-            'allowed' => 'gif,jpg,jpeg,tif,tiff,bmp,pcx,tga,png,pdf,ai,svg',
-            'max_size' => NULL,
-            'uploadfolder' => 'uploads/pics',
-            'size' => '3',
-            'maxitems' => '10',
-            'minitems' => '0',
-            'eval' => 'null',
-            'default' => NULL,
-          ),
-        ),
         'uid_product' => 
         array (
           'exclude' => 1,
@@ -14336,7 +14793,7 @@ return array (
               ),
             ),
           ),
-          'showitem' => 'hidden,--palette--;;1,uid_product,title,--palette--;;3,itemnumber,inStock,basketminquantity,price,--palette--;;2,weight,color,color2,color3,size,size2,size3,description,gradings,material,quality,note,note2,image,smallimage',
+          'showitem' => 'hidden,--palette--;;1,uid_product,title,--palette--;;3,itemnumber,inStock,basketminquantity,price,--palette--;;2,weight,color,color2,color3,size,size2,size3,description,gradings,material,quality,note,note2,image',
         ),
       ),
       'palettes' => 
@@ -14351,7 +14808,7 @@ return array (
         ),
         3 => 
         array (
-          'showitem' => 'subtitle, keyword',
+          'showitem' => 'subtitle',
         ),
       ),
     ),
@@ -14378,24 +14835,14 @@ return array (
         'iconfile' => 'EXT:tt_products/res/icons/table/tt_products_articles_language.gif',
         'languageField' => 'sys_language_uid',
         'mainpalette' => 1,
-        'searchFields' => 'title,subtitle,itemnumber,keyword,note,note2',
+        'searchFields' => 'title,subtitle,itemnumber,note,note2',
       ),
       'interface' => 
       array (
-        'showRecordFieldList' => 'sys_language_uid,hidden,starttime,endtime,fe_group,article_uid,title,subtitle,keyword,note,note2',
+        'showRecordFieldList' => 'sys_language_uid,hidden,starttime,endtime,fe_group,article_uid,title,subtitle,note,note2',
       ),
       'columns' => 
       array (
-        't3ver_label' => 
-        array (
-          'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.versionLabel',
-          'config' => 
-          array (
-            'type' => 'input',
-            'size' => '30',
-            'max' => '30',
-          ),
-        ),
         'sys_language_uid' => 
         array (
           'exclude' => 0,
@@ -14491,7 +14938,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531864800,
+              'lower' => 1532383200,
             ),
           ),
         ),
@@ -14570,20 +15017,6 @@ return array (
           ),
           'l10n_mode' => 'prefixLangTitle',
         ),
-        'keyword' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products.keyword',
-          'config' => 
-          array (
-            'type' => 'text',
-            'rows' => '5',
-            'cols' => '20',
-            'max' => '512',
-            'eval' => 'null',
-            'default' => NULL,
-          ),
-        ),
         'note' => 
         array (
           'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products.note',
@@ -14641,7 +15074,7 @@ return array (
         ),
         2 => 
         array (
-          'showitem' => 'subtitle,keyword',
+          'showitem' => 'subtitle',
         ),
       ),
     ),
@@ -14667,24 +15100,14 @@ return array (
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
         'iconfile' => 'EXT:tt_products/res/icons/table/tt_products_cat.gif',
-        'searchFields' => 'uid,title,subtitle,catid,keyword,note,note2',
+        'searchFields' => 'uid,title,subtitle,note,note2',
       ),
       'interface' => 
       array (
-        'showRecordFieldList' => 'hidden,starttime,endtime,fe_group,title, subtitle, catid, keyword, note, note2, image, discount, discount_disable, email_uid, highlight',
+        'showRecordFieldList' => 'hidden,starttime,endtime,fe_group,title, subtitle, note, note2, image, email_uid',
       ),
       'columns' => 
       array (
-        't3ver_label' => 
-        array (
-          'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.versionLabel',
-          'config' => 
-          array (
-            'type' => 'input',
-            'size' => '30',
-            'max' => '30',
-          ),
-        ),
         'sorting' => 
         array (
           'config' => 
@@ -14754,7 +15177,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531864800,
+              'lower' => 1532383200,
             ),
           ),
         ),
@@ -14817,32 +15240,6 @@ return array (
             'default' => NULL,
           ),
         ),
-        'catid' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products_cat.catid',
-          'config' => 
-          array (
-            'type' => 'input',
-            'size' => '20',
-            'eval' => 'trim',
-            'max' => '40',
-          ),
-        ),
-        'keyword' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products.keyword',
-          'config' => 
-          array (
-            'type' => 'text',
-            'rows' => '5',
-            'cols' => '20',
-            'max' => '512',
-            'eval' => 'null',
-            'default' => NULL,
-          ),
-        ),
         'note' => 
         array (
           'exclude' => 1,
@@ -14887,33 +15284,6 @@ return array (
             'default' => NULL,
           ),
         ),
-        'discount' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products_cat.discount',
-          'config' => 
-          array (
-            'type' => 'input',
-            'size' => '4',
-            'max' => '8',
-            'eval' => 'trim,double2',
-            'range' => 
-            array (
-              'upper' => '1000',
-              'lower' => '0',
-            ),
-            'default' => 0,
-          ),
-        ),
-        'discount_disable' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products_cat.discount_disable',
-          'config' => 
-          array (
-            'type' => 'check',
-          ),
-        ),
         'email_uid' => 
         array (
           'exclude' => 1,
@@ -14928,15 +15298,6 @@ return array (
             'size' => 1,
             'minitems' => 0,
             'maxitems' => 1,
-          ),
-        ),
-        'highlight' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products_cat.highlight',
-          'config' => 
-          array (
-            'type' => 'check',
           ),
         ),
       ),
@@ -14961,7 +15322,7 @@ return array (
               ),
             ),
           ),
-          'showitem' => 'title,subtitle,catid,keyword,note,note2,email_uid,image,discount,discount_disable,highlight,hidden,--palette--;;1',
+          'showitem' => 'title,subtitle,note,note2,email_uid,image,hidden,--palette--;;1',
         ),
       ),
       'palettes' => 
@@ -14995,7 +15356,7 @@ return array (
         'iconfile' => 'EXT:tt_products/res/icons/table/tt_products_cat_language.gif',
         'languageField' => 'sys_language_uid',
         'mainpalette' => 1,
-        'searchFields' => 'title,subtitle,catid,keyword,note,note2',
+        'searchFields' => 'title,subtitle,catid,note,note2',
       ),
       'interface' => 
       array (
@@ -15003,16 +15364,6 @@ return array (
       ),
       'columns' => 
       array (
-        't3ver_label' => 
-        array (
-          'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.versionLabel',
-          'config' => 
-          array (
-            'type' => 'input',
-            'size' => '30',
-            'max' => '30',
-          ),
-        ),
         'sys_language_uid' => 
         array (
           'exclude' => 0,
@@ -15108,7 +15459,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531864800,
+              'lower' => 1532383200,
             ),
           ),
         ),
@@ -15139,20 +15490,6 @@ return array (
             'default' => NULL,
           ),
           'l10n_mode' => 'prefixLangTitle',
-        ),
-        'keyword' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products.keyword',
-          'config' => 
-          array (
-            'type' => 'text',
-            'rows' => '5',
-            'cols' => '20',
-            'max' => '512',
-            'eval' => 'null',
-            'default' => NULL,
-          ),
         ),
         'note' => 
         array (
@@ -15218,7 +15555,7 @@ return array (
               ),
             ),
           ),
-          'showitem' => 'sys_language_uid,l18n_diffsource,hidden,--palette--;;1,cat_uid,title,subtitle,keyword,note,note2',
+          'showitem' => 'sys_language_uid,l18n_diffsource,hidden,--palette--;;1,cat_uid,title,subtitle,note,note2',
         ),
       ),
       'palettes' => 
@@ -15254,20 +15591,10 @@ return array (
       ),
       'interface' => 
       array (
-        'showRecordFieldList' => 'name,email,suffix,hidden,starttime,endtime,fe_group',
+        'showRecordFieldList' => 'name,email,hidden,starttime,endtime,fe_group',
       ),
       'columns' => 
       array (
-        't3ver_label' => 
-        array (
-          'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.versionLabel',
-          'config' => 
-          array (
-            'type' => 'input',
-            'size' => '30',
-            'max' => '30',
-          ),
-        ),
         'tstamp' => 
         array (
           'exclude' => 1,
@@ -15331,7 +15658,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531864800,
+              'lower' => 1532383200,
             ),
           ),
         ),
@@ -15389,22 +15716,12 @@ return array (
             'max' => '80',
           ),
         ),
-        'suffix' => 
-        array (
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products_emails.suffix',
-          'config' => 
-          array (
-            'type' => 'input',
-            'size' => '24',
-            'max' => '24',
-          ),
-        ),
       ),
       'types' => 
       array (
         1 => 
         array (
-          'showitem' => 'hidden,--palette--;;1,name,email,suffix',
+          'showitem' => 'hidden,--palette--;;1,name,email',
         ),
       ),
       'palettes' => 
@@ -15511,7 +15828,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531864800,
+              'lower' => 1532383200,
             ),
           ),
         ),
@@ -15675,20 +15992,10 @@ return array (
       ),
       'interface' => 
       array (
-        'showRecordFieldList' => 'sys_language_uid,hidden,starttime,endtime,prod_uid,title,subtitle,keyword,unit,note,note2,smallimage',
+        'showRecordFieldList' => 'sys_language_uid,hidden,starttime,endtime,prod_uid,title,subtitle,unit,note,note2',
       ),
       'columns' => 
       array (
-        't3ver_label' => 
-        array (
-          'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.versionLabel',
-          'config' => 
-          array (
-            'type' => 'input',
-            'size' => '30',
-            'max' => '30',
-          ),
-        ),
         'sys_language_uid' => 
         array (
           'exclude' => 0,
@@ -15784,7 +16091,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531864800,
+              'lower' => 1532383200,
             ),
           ),
         ),
@@ -15861,24 +16168,9 @@ return array (
             'rows' => '3',
             'cols' => '20',
             'max' => '512',
-            'eval' => 'null',
             'default' => NULL,
           ),
           'l10n_mode' => 'prefixLangTitle',
-        ),
-        'keyword' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products.keyword',
-          'config' => 
-          array (
-            'type' => 'text',
-            'rows' => '5',
-            'cols' => '20',
-            'max' => '512',
-            'eval' => 'null',
-            'default' => NULL,
-          ),
         ),
         'itemnumber' => 
         array (
@@ -15927,24 +16219,6 @@ return array (
           ),
           'l10n_mode' => 'prefixLangTitle',
         ),
-        'smallimage' => 
-        array (
-          'exclude' => 1,
-          'label' => 'LLL:EXT:tt_products/locallang_db.xml:tt_products.smallimage',
-          'config' => 
-          array (
-            'type' => 'group',
-            'internal_type' => 'file',
-            'allowed' => 'gif,jpg,jpeg,tif,tiff,bmp,pcx,tga,png,pdf,ai,svg',
-            'max_size' => NULL,
-            'uploadfolder' => 'uploads/pics',
-            'size' => '5',
-            'maxitems' => '10',
-            'minitems' => '0',
-            'eval' => 'null',
-            'default' => NULL,
-          ),
-        ),
       ),
       'types' => 
       array (
@@ -15967,7 +16241,7 @@ return array (
               ),
             ),
           ),
-          'showitem' => 'sys_language_uid,l18n_diffsource,hidden,--palette--;;1,prod_uid,title,--palette--;;2,unit,note,note2,smallimage',
+          'showitem' => 'sys_language_uid,l18n_diffsource,hidden,--palette--;;1,prod_uid,title,--palette--;;2,unit,note,note2',
         ),
       ),
       'palettes' => 
@@ -15978,7 +16252,7 @@ return array (
         ),
         2 => 
         array (
-          'showitem' => 'subtitle, keyword, itemnumber',
+          'showitem' => 'subtitle, itemnumber',
         ),
       ),
     ),
@@ -16087,16 +16361,6 @@ return array (
       ),
       'columns' => 
       array (
-        't3ver_label' => 
-        array (
-          'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.versionLabel',
-          'config' => 
-          array (
-            'type' => 'input',
-            'size' => '30',
-            'max' => '30',
-          ),
-        ),
         'tstamp' => 
         array (
           'exclude' => 1,
@@ -16167,7 +16431,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531864800,
+              'lower' => 1532383200,
             ),
           ),
         ),
@@ -16329,16 +16593,6 @@ return array (
       ),
       'columns' => 
       array (
-        't3ver_label' => 
-        array (
-          'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.versionLabel',
-          'config' => 
-          array (
-            'type' => 'input',
-            'size' => '30',
-            'max' => '30',
-          ),
-        ),
         'tstamp' => 
         array (
           'exclude' => 1,
@@ -16434,7 +16688,7 @@ return array (
             'range' => 
             array (
               'upper' => 1830207600,
-              'lower' => 1531864800,
+              'lower' => 1532383200,
             ),
           ),
         ),
@@ -16536,6 +16790,1005 @@ return array (
         1 => 
         array (
           'showitem' => 'starttime, endtime, fe_group',
+        ),
+      ),
+    ),
+    'static_countries' => 
+    array (
+      'ctrl' => 
+      array (
+        'label' => 'cn_short_en',
+        'label_alt' => 'cn_iso_2',
+        'label_alt_force' => 1,
+        'label_userFunc' => 'SJBR\\StaticInfoTables\\Hook\\Backend\\Form\\FormDataProvider\\TcaLabelProcessor->addIsoCodeToLabel',
+        'adminOnly' => true,
+        'rootLevel' => 1,
+        'is_static' => 1,
+        'readOnly' => 1,
+        'default_sortby' => 'ORDER BY cn_short_en',
+        'delete' => 'deleted',
+        'title' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries.title',
+        'iconfile' => 'EXT:static_info_tables/Resources/Public/Images/Icons/static_countries.svg',
+        'searchFields' => 'cn_short_en,cn_official_name_local,cn_official_name_en',
+      ),
+      'interface' => 
+      array (
+        'showRecordFieldList' => 'cn_iso_2,cn_iso_3,cn_iso_nr,cn_official_name_local,cn_official_name_en,cn_capital,cn_tldomain,cn_currency_iso_3,cn_currency_iso_nr,cn_phone,cn_uno_member,cn_eu_member,cn_address_format,cn_short_en',
+      ),
+      'columns' => 
+      array (
+        'deleted' => 
+        array (
+          'readonly' => 1,
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:deleted',
+          'config' => 
+          array (
+            'type' => 'check',
+          ),
+        ),
+        'cn_iso_2' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_iso_2',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '4',
+            'max' => '2',
+            'eval' => '',
+            'default' => '',
+          ),
+        ),
+        'cn_iso_3' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_iso_3',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '5',
+            'max' => '3',
+            'eval' => '',
+            'default' => '',
+          ),
+        ),
+        'cn_iso_nr' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_iso_nr',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '7',
+            'max' => '7',
+            'eval' => 'int',
+            'default' => '0',
+          ),
+        ),
+        'cn_parent_territory_uid' => 
+        array (
+          'exclude' => 0,
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_parent_territory_uid',
+          'config' => 
+          array (
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'items' => 
+            array (
+              0 => 
+              array (
+                0 => '',
+                1 => 0,
+              ),
+            ),
+            'foreign_table' => 'static_territories',
+            'foreign_table_where' => 'ORDER BY static_territories.tr_name_en',
+            'itemsProcFunc' => 'SJBR\\StaticInfoTables\\Hook\\Backend\\Form\\FormDataProvider\\TcaSelectItemsProcessor->translateTerritoriesSelector',
+            'size' => 1,
+            'minitems' => 0,
+            'maxitems' => 1,
+          ),
+        ),
+        'cn_parent_tr_iso_nr' => 
+        array (
+          'config' => 
+          array (
+            'type' => 'passthrough',
+          ),
+        ),
+        'cn_official_name_local' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_official_name_local',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '25',
+            'max' => '128',
+            'eval' => 'trim',
+            'default' => '',
+            '_is_string' => '1',
+          ),
+        ),
+        'cn_official_name_en' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_official_name_en',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '25',
+            'max' => '50',
+            'eval' => 'trim',
+            'default' => '',
+            '_is_string' => '1',
+          ),
+        ),
+        'cn_capital' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_capital',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '15',
+            'max' => '45',
+            'eval' => 'trim',
+            'default' => '',
+            '_is_string' => '1',
+          ),
+        ),
+        'cn_tldomain' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_tldomain',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '5',
+            'max' => '',
+            'eval' => '',
+            'default' => '',
+          ),
+        ),
+        'cn_currency_uid' => 
+        array (
+          'exclude' => 0,
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_currency_uid',
+          'config' => 
+          array (
+            'type' => 'group',
+            'internal_type' => 'db',
+            'allowed' => 'static_currencies',
+            'foreign_table' => 'static_currencies',
+            'foreign_table_where' => 'ORDER BY static_currencies.cu_name_en',
+            'suggestOptions' => 
+            array (
+              'default' => 
+              array (
+                'pidList' => '0',
+              ),
+            ),
+            'fieldWizard' => 
+            array (
+              'recordsOverview' => 
+              array (
+                'disabled' => true,
+              ),
+              'tableList' => 
+              array (
+                'disabled' => true,
+              ),
+            ),
+            'size' => 1,
+            'minitems' => 0,
+            'maxitems' => 1,
+          ),
+        ),
+        'cn_currency_iso_nr' => 
+        array (
+          'config' => 
+          array (
+            'type' => 'passthrough',
+          ),
+        ),
+        'cn_currency_iso_3' => 
+        array (
+          'config' => 
+          array (
+            'type' => 'passthrough',
+          ),
+        ),
+        'cn_phone' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_phone',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '10',
+            'max' => '20',
+            'eval' => '',
+            'default' => '0',
+          ),
+        ),
+        'cn_eu_member' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_eu_member',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'check',
+            'default' => '0',
+          ),
+        ),
+        'cn_uno_member' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_uno_member',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'check',
+            'default' => '0',
+          ),
+        ),
+        'cn_address_format' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_address_format',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'items' => 
+            array (
+              0 => 
+              array (
+                0 => '',
+                1 => '0',
+              ),
+              1 => 
+              array (
+                0 => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_address_format_1',
+                1 => '1',
+              ),
+              2 => 
+              array (
+                0 => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_address_format_2',
+                1 => '2',
+              ),
+              3 => 
+              array (
+                0 => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_address_format_3',
+                1 => '3',
+              ),
+              4 => 
+              array (
+                0 => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_address_format_4',
+                1 => '4',
+              ),
+              5 => 
+              array (
+                0 => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_address_format_5',
+                1 => '5',
+              ),
+              6 => 
+              array (
+                0 => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_address_format_6',
+                1 => '6',
+              ),
+              7 => 
+              array (
+                0 => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_address_format_7',
+                1 => '7',
+              ),
+              8 => 
+              array (
+                0 => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_address_format_8',
+                1 => '8',
+              ),
+              9 => 
+              array (
+                0 => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_address_format_9',
+                1 => '9',
+              ),
+            ),
+            'default' => '0',
+          ),
+        ),
+        'cn_zone_flag' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_zone_flag',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'check',
+            'default' => '0',
+          ),
+        ),
+        'cn_short_local' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_short_local',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '25',
+            'max' => '50',
+            'eval' => 'trim',
+            'default' => '',
+            '_is_string' => '1',
+          ),
+        ),
+        'cn_short_en' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_short_en',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '25',
+            'max' => '50',
+            'eval' => 'trim',
+            'default' => '',
+            '_is_string' => '1',
+          ),
+        ),
+        'cn_country_zones' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_country_zones',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'inline',
+            'foreign_table' => 'static_country_zones',
+            'foreign_field' => 'zn_country_uid',
+            'foreign_table_field' => 'zn_country_table',
+            'foreign_default_sortby' => 'zn_name_local',
+            'maxitems' => '200',
+            'appearance' => 
+            array (
+              'expandSingle' => 1,
+              'newRecordLinkAddTitle' => 1,
+            ),
+          ),
+        ),
+      ),
+      'types' => 
+      array (
+        1 => 
+        array (
+          'showitem' => 'cn_short_local,cn_official_name_local,cn_official_name_en,--palette--;;1,--palette--;;5,--palette--;;2,--palette--;;3,--palette--;;6,--palette--;;4,cn_short_en,cn_country_zones',
+        ),
+      ),
+      'palettes' => 
+      array (
+        1 => 
+        array (
+          'showitem' => 'cn_iso_nr,cn_iso_2,cn_iso_3',
+          'canNotCollapse' => '1',
+        ),
+        2 => 
+        array (
+          'showitem' => 'cn_currency_uid,cn_currency_iso_nr,cn_currency_iso_3',
+          'canNotCollapse' => '1',
+        ),
+        3 => 
+        array (
+          'showitem' => 'cn_capital,cn_uno_member,cn_eu_member',
+          'canNotCollapse' => '1',
+        ),
+        4 => 
+        array (
+          'showitem' => 'cn_address_format,cn_zone_flag',
+          'canNotCollapse' => '1',
+        ),
+        5 => 
+        array (
+          'showitem' => 'cn_parent_territory_uid,cn_parent_tr_iso_nr',
+          'canNotCollapse' => '1',
+        ),
+        6 => 
+        array (
+          'showitem' => 'cn_phone,cn_tldomain',
+          'canNotCollapse' => '1',
+        ),
+      ),
+    ),
+    'static_country_zones' => 
+    array (
+      'ctrl' => 
+      array (
+        'label' => 'zn_name_local',
+        'label_alt' => 'zn_name_local,zn_code',
+        'adminOnly' => true,
+        'rootLevel' => 1,
+        'is_static' => 1,
+        'readOnly' => 1,
+        'default_sortby' => 'ORDER BY zn_name_local',
+        'delete' => 'deleted',
+        'title' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_country_zones.title',
+        'iconfile' => 'EXT:static_info_tables/Resources/Public/Images/Icons/static_country_zones.svg',
+        'searchFields' => 'zn_name_en,zn_name_local',
+      ),
+      'interface' => 
+      array (
+        'showRecordFieldList' => 'zn_country_iso_nr,zn_country_iso_2,zn_country_iso_3,zn_code,zn_name_local,zn_name_en',
+      ),
+      'columns' => 
+      array (
+        'deleted' => 
+        array (
+          'readonly' => 1,
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:deleted',
+          'config' => 
+          array (
+            'type' => 'check',
+          ),
+        ),
+        'zn_country_uid' => 
+        array (
+          'config' => 
+          array (
+            'type' => 'passthrough',
+          ),
+        ),
+        'zn_country_table' => 
+        array (
+          'config' => 
+          array (
+            'type' => 'passthrough',
+          ),
+        ),
+        'zn_country_iso_nr' => 
+        array (
+          'config' => 
+          array (
+            'type' => 'passthrough',
+          ),
+        ),
+        'zn_country_iso_2' => 
+        array (
+          'config' => 
+          array (
+            'type' => 'passthrough',
+          ),
+        ),
+        'zn_country_iso_3' => 
+        array (
+          'config' => 
+          array (
+            'type' => 'passthrough',
+          ),
+        ),
+        'zn_code' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_country_zones_item.zn_code',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '18',
+            'max' => '45',
+            'eval' => 'trim',
+            'default' => '',
+            '_is_string' => '1',
+          ),
+        ),
+        'zn_name_local' => 
+        array (
+          'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.name',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '18',
+            'max' => '45',
+            'eval' => 'trim',
+            'default' => '',
+            '_is_string' => '1',
+          ),
+        ),
+        'zn_name_en' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_country_zones_item.zn_name_en',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '18',
+            'max' => '45',
+            'eval' => 'trim',
+            'default' => '',
+            '_is_string' => '1',
+          ),
+        ),
+      ),
+      'types' => 
+      array (
+        1 => 
+        array (
+          'showitem' => 'zn_name_local,zn_code,--palette--;;1,zn_name_en',
+        ),
+      ),
+      'palettes' => 
+      array (
+        1 => 
+        array (
+          'showitem' => 'zn_country_uid,zn_country_iso_nr,zn_country_iso_2,zn_country_iso_3',
+          'canNotCollapse' => '1',
+        ),
+      ),
+    ),
+    'static_currencies' => 
+    array (
+      'ctrl' => 
+      array (
+        'label' => 'cu_name_en',
+        'label_alt' => 'cu_iso_3',
+        'label_alt_force' => 1,
+        'label_userFunc' => 'SJBR\\StaticInfoTables\\Hook\\Backend\\Form\\FormDataProvider\\TcaLabelProcessor->addIsoCodeToLabel',
+        'adminOnly' => true,
+        'rootLevel' => 1,
+        'is_static' => 1,
+        'readOnly' => 1,
+        'default_sortby' => 'ORDER BY cu_name_en',
+        'delete' => 'deleted',
+        'title' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_currencies.title',
+        'iconfile' => 'EXT:static_info_tables/Resources/Public/Images/Icons/static_currencies.svg',
+        'searchFields' => 'cu_name_en',
+      ),
+      'interface' => 
+      array (
+        'showRecordFieldList' => 'cu_iso_3,cu_iso_nr,cu_name_en,cu_symbol_left,cu_symbol_right,cu_thousands_point,cu_decimal_point,cu_decimal_digits,cu_sub_name_en,cu_sub_divisor,cu_sub_symbol_left,cu_sub_symbol_right',
+      ),
+      'columns' => 
+      array (
+        'deleted' => 
+        array (
+          'readonly' => 1,
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:deleted',
+          'config' => 
+          array (
+            'type' => 'check',
+          ),
+        ),
+        'cu_iso_3' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_currencies_item.cu_iso_3',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '5',
+            'max' => '3',
+            'eval' => '',
+            'default' => '',
+          ),
+        ),
+        'cu_iso_nr' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_currencies_item.cu_iso_nr',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '7',
+            'max' => '3',
+            'eval' => '',
+            'default' => '0',
+          ),
+        ),
+        'cu_name_en' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_currencies_item.cu_name_en',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '18',
+            'max' => '40',
+            'eval' => 'trim',
+            'default' => '',
+            '_is_string' => '1',
+          ),
+        ),
+        'cu_sub_name_en' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_currencies_item.cu_sub_name_en',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '18',
+            'max' => '20',
+            'eval' => 'trim',
+            'default' => '',
+            '_is_string' => '1',
+          ),
+        ),
+        'cu_symbol_left' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_currencies_item.cu_symbol_left',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '8',
+            'max' => '12',
+            'eval' => 'trim',
+            'default' => '',
+            '_is_string' => '1',
+          ),
+        ),
+        'cu_symbol_right' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_currencies_item.cu_symbol_right',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '8',
+            'max' => '12',
+            'eval' => 'trim',
+            'default' => '',
+            '_is_string' => '1',
+          ),
+        ),
+        'cu_thousands_point' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_currencies_item.cu_thousands_point',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '3',
+            'max' => '1',
+            'eval' => '',
+            'default' => '',
+          ),
+        ),
+        'cu_decimal_point' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_currencies_item.cu_decimal_point',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '3',
+            'max' => '1',
+            'eval' => '',
+            'default' => '',
+          ),
+        ),
+        'cu_decimal_digits' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_currencies_item.cu_decimal_digits',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '5',
+            'max' => '',
+            'eval' => 'int',
+            'default' => '',
+          ),
+        ),
+        'cu_sub_divisor' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_currencies_item.cu_sub_divisor',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '8',
+            'max' => '20',
+            'eval' => 'int',
+            'default' => '1',
+          ),
+        ),
+        'cu_sub_symbol_left' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_currencies_item.cu_sub_symbol_left',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '8',
+            'max' => '12',
+            'eval' => 'trim',
+            'default' => '',
+            '_is_string' => '1',
+          ),
+        ),
+        'cu_sub_symbol_right' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_currencies_item.cu_sub_symbol_right',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '8',
+            'max' => '12',
+            'eval' => 'trim',
+            'default' => '',
+            '_is_string' => '1',
+          ),
+        ),
+      ),
+      'types' => 
+      array (
+        1 => 
+        array (
+          'showitem' => 'cu_name_en,--palette--;;1,--palette--;;2,cu_sub_name_en,--palette--;;3',
+        ),
+      ),
+      'palettes' => 
+      array (
+        1 => 
+        array (
+          'showitem' => 'cu_iso_nr,cu_iso_3',
+          'canNotCollapse' => '1',
+        ),
+        2 => 
+        array (
+          'showitem' => 'cu_symbol_left,cu_symbol_right,cu_thousands_point,cu_decimal_point',
+          'canNotCollapse' => '1',
+        ),
+        3 => 
+        array (
+          'showitem' => 'cu_sub_symbol_left,cu_sub_symbol_right,cu_decimal_digits,cu_sub_divisor',
+          'canNotCollapse' => '1',
+        ),
+      ),
+    ),
+    'static_languages' => 
+    array (
+      'ctrl' => 
+      array (
+        'label' => 'lg_name_en',
+        'label_alt' => 'lg_iso_2',
+        'label_alt_force' => 1,
+        'label_userFunc' => 'SJBR\\StaticInfoTables\\Hook\\Backend\\Form\\FormDataProvider\\TcaLabelProcessor->addIsoCodeToLabel',
+        'adminOnly' => true,
+        'rootLevel' => 1,
+        'is_static' => 1,
+        'readOnly' => 1,
+        'default_sortby' => 'ORDER BY lg_name_en',
+        'delete' => 'deleted',
+        'title' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_languages.title',
+        'iconfile' => 'EXT:static_info_tables/Resources/Public/Images/Icons/static_languages.svg',
+        'searchFields' => 'lg_name_en,lg_name_local',
+      ),
+      'interface' => 
+      array (
+        'showRecordFieldList' => 'lg_name_local,lg_name_en,lg_iso_2,lg_typo3,lg_country_iso_2,lg_collate_locale,lg_sacred,lg_constructed',
+      ),
+      'columns' => 
+      array (
+        'deleted' => 
+        array (
+          'readonly' => 1,
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:deleted',
+          'config' => 
+          array (
+            'type' => 'check',
+          ),
+        ),
+        'lg_iso_2' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_languages_item.lg_iso_2',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '4',
+            'max' => '2',
+            'eval' => '',
+            'default' => '',
+          ),
+        ),
+        'lg_name_local' => 
+        array (
+          'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.name',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '25',
+            'max' => '50',
+            'eval' => 'trim',
+            'default' => '',
+            '_is_string' => '1',
+          ),
+        ),
+        'lg_name_en' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_languages_item.lg_name_en',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '18',
+            'max' => '40',
+            'eval' => 'trim',
+            'default' => '',
+            '_is_string' => '1',
+          ),
+        ),
+        'lg_typo3' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_languages_item.lg_typo3',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '3',
+            'max' => '2',
+            'eval' => '',
+            'default' => '',
+          ),
+        ),
+        'lg_country_iso_2' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_countries_item.cn_iso_2',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '3',
+            'max' => '2',
+            'eval' => '',
+            'default' => '',
+          ),
+        ),
+        'lg_collate_locale' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_languages_item.lg_collate_locale',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '5',
+            'max' => '5',
+            'eval' => '',
+            'default' => '',
+          ),
+        ),
+        'lg_sacred' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_languages_item.lg_sacred',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'check',
+            'default' => '0',
+          ),
+        ),
+        'lg_constructed' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_languages_item.lg_constructed',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'check',
+            'default' => '0',
+          ),
+        ),
+      ),
+      'types' => 
+      array (
+        1 => 
+        array (
+          'showitem' => 'lg_name_local,lg_name_en,lg_iso_2,lg_typo3,lg_country_iso_2,lg_collate_locale,lg_sacred,lg_constructed',
+        ),
+      ),
+    ),
+    'static_territories' => 
+    array (
+      'ctrl' => 
+      array (
+        'label' => 'tr_name_en',
+        'label_alt' => 'tr_iso_nr',
+        'label_alt_force' => 1,
+        'label_userFunc' => 'SJBR\\StaticInfoTables\\Hook\\Backend\\Form\\FormDataProvider\\TcaLabelProcessor->addIsoCodeToLabel',
+        'adminOnly' => true,
+        'rootLevel' => 1,
+        'is_static' => 1,
+        'readOnly' => 1,
+        'default_sortby' => 'ORDER BY tr_name_en',
+        'delete' => 'deleted',
+        'title' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_territories.title',
+        'iconfile' => 'EXT:static_info_tables/Resources/Public/Images/Icons/static_territories.svg',
+        'searchFields' => 'tr_name_en',
+      ),
+      'interface' => 
+      array (
+        'showRecordFieldList' => 'tr_iso_nr,tr_parent_iso_nr,tr_name_en',
+      ),
+      'columns' => 
+      array (
+        'deleted' => 
+        array (
+          'readonly' => 1,
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:deleted',
+          'config' => 
+          array (
+            'type' => 'check',
+          ),
+        ),
+        'tr_iso_nr' => 
+        array (
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_territories_item.tr_iso_nr',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '7',
+            'max' => '7',
+            'eval' => 'int',
+            'default' => '0',
+          ),
+        ),
+        'tr_parent_territory_uid' => 
+        array (
+          'exclude' => 0,
+          'label' => 'LLL:EXT:static_info_tables/Resources/Private/Language/locallang_db.xlf:static_territories_item.tr_parent_territory_uid',
+          'config' => 
+          array (
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'items' => 
+            array (
+              0 => 
+              array (
+                0 => '',
+                1 => 0,
+              ),
+            ),
+            'foreign_table' => 'static_territories',
+            'foreign_table_where' => 'ORDER BY static_territories.tr_name_en',
+            'itemsProcFunc' => 'SJBR\\StaticInfoTables\\Hook\\Backend\\Form\\FormDataProvider\\TcaSelectItemsProcessor->translateTerritoriesSelector',
+            'size' => 1,
+            'minitems' => 0,
+            'maxitems' => 1,
+          ),
+        ),
+        'tr_parent_iso_nr' => 
+        array (
+          'config' => 
+          array (
+            'type' => 'passthrough',
+          ),
+        ),
+        'tr_name_en' => 
+        array (
+          'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.name',
+          'exclude' => '0',
+          'config' => 
+          array (
+            'type' => 'input',
+            'size' => '18',
+            'max' => '45',
+            'eval' => 'trim',
+            'default' => '',
+            '_is_string' => '1',
+          ),
+        ),
+      ),
+      'types' => 
+      array (
+        1 => 
+        array (
+          'showitem' => 'tr_iso_nr,tr_name_en,fk_billing_country,--palette--;;1',
+        ),
+      ),
+      'palettes' => 
+      array (
+        1 => 
+        array (
+          'showitem' => 'tr_parent_territory_uid,tr_parent_iso_nr',
+          'canNotCollapse' => '1',
         ),
       ),
     ),

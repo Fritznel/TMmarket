@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2007-2008 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2007-2008 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -43,8 +43,6 @@ class tx_ttproducts_dam_view extends tx_ttproducts_article_base_view {
 	public $piVar = 'dam';
 
 	function init($langObj, $modelObj)	{
-		include_once (PATH_BE_ttproducts.'view/class.tx_ttproducts_variant_dummy_view.php');
-
 		$this->variant = t3lib_div::makeInstance('tx_ttproducts_variant_dummy_view');
 		parent::init($langObj, $modelObj);
 	}
@@ -63,14 +61,13 @@ class tx_ttproducts_dam_view extends tx_ttproducts_article_base_view {
 	 * @access private
 	 */
 	public function getRowMarkerArray (
-		$row,
+		&$row,
 		$markerKey,
 		&$markerArray,
 		&$variantFieldArray,
 		&$variantMarkerArray,
 		&$tagArray,
 		$theCode,
-		$basketExtra,
 		$bHtml=TRUE,
 		$charset='',
 		$imageNum=0,
@@ -90,7 +87,6 @@ class tx_ttproducts_dam_view extends tx_ttproducts_article_base_view {
 			$variantMarkerArray,
 			$tagArray,
 			$theCode,
-			$basketExtra,
 			$bHtml,
 			$charset,
 			$imageNum,

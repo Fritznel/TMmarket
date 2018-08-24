@@ -55,7 +55,7 @@ class tx_ttproducts_field_creditpoints_view extends tx_ttproducts_field_base_vie
 	}
 
 
- 	public function getRowMarkerArray ($functablename, $fieldname, $row, $markerKey, &$markerArray, $tagArray, $theCode, $id, $basketExtra, &$bSkip, $bHtml=true, $charset='', $prefix='', $suffix='', $imageRenderObj='')	{
+ 	public function getRowMarkerArray ($functablename, $fieldname, &$row, $markerKey, &$markerArray, $tagArray, $theCode, $id, &$bSkip, $bHtml = TRUE, $charset = '', $prefix = '', $suffix = '', $imageRenderObj = '') {
 		$modifiedRow = array();
 		$value = $this->getModelObj()->getFieldValue($basketExtra, $row, $fieldname);
 		$value = number_format($value,'0');

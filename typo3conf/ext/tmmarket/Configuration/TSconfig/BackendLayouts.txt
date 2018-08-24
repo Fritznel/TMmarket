@@ -65,6 +65,39 @@ mod.web_layout.BackendLayouts {
     }
   }
 
+  mod.web_layout.BackendLayouts {
+    3spalten {
+      title = 3 Spalten
+      icon = EXT:tmmarket/Resources/Public/Icons/BackendLayouts/3spalten.png
+      config {
+        backend_layout {
+          colCount = 3
+          rowCount = 1
+          rows {
+            1 {
+            columns {
+              1 {
+                name = Linke Spalte
+                colspan = 4
+                colPos = 1
+              }
+              2 {
+                name = Mittlere Spalte
+                colspan = 4
+                colPos = 3
+              }
+              3 {
+                name = Rechte Spalte
+                colspan = 4
+                colPos = 2
+              }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
 mod.web_layout.BackendLayouts {
   2spalten {

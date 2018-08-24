@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2012 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2005-2012 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -40,7 +40,6 @@
 
 class tx_ttproducts_email_div {
 
-
 	/**
 	 * Extended mail function
 	 */
@@ -58,12 +57,10 @@ class tx_ttproducts_email_div {
 		global $TYPO3_CONF_VARS;
 
 		if ($toEMail == '' || $fromEMail == '' || ($html == '' && $message == '')) {
-
 			return FALSE;
 		}
 
 		$typoVersion = tx_div2007_core::getTypoVersion();
-		$result = TRUE;
 
 		if (
 			$typoVersion >= 4007000 ||
@@ -80,14 +77,11 @@ class tx_ttproducts_email_div {
 		) {
 			if (!is_array($toEMail)) {
 				$emailArray = t3lib_div::trimExplode(',', $toEMail);
-
 				$toEMail = array();
 				foreach ($emailArray as $email) {
 					$toEMail[] = $email;
 				}
 			}
-
-			$fromName = str_replace('"', '\'', $fromName);
 
 			$mailMessage = tx_div2007_core::newMailMessage();
 			$mailMessage->setCharset('UTF-8')
@@ -97,9 +91,6 @@ class tx_ttproducts_email_div {
 				->setSubject($subject)
 				->setBody($html, 'text/html')
 				->addPart($message, 'text/plain');
-
-			$type = $mailMessage->getHeaders()->get('Content-Type');
-			$type->setParameter('charset', 'UTF-8');
 
 			if (isset($attachment)) {
 				if (is_array($attachment)) {
@@ -113,17 +104,13 @@ class tx_ttproducts_email_div {
 					}
 				}
 			}
-
 			if ($bcc != '') {
 				$mailMessage->addBcc($bcc);
 			}
 			$mailMessage->send();
-			$result = $mailMessage->isSent();
-			if ($conf['errorLog'] && count($mailMessage->getFailedRecipients())) {
-				error_log('send_mail Pos 2 undelivered emails: ' . implode(',', $mailMessage->getFailedRecipients()) . chr(13), 3, $conf['errorLog']);
-			}
-			return $result;
 		} else {
+			include_once (PATH_t3lib.'class.t3lib_htmlmail.php');
+
 			$fromName = tx_div2007_alpha5::slashName($fromName);
 			if (is_array($toEMail)) {
 				list($email, $name) = each($toEMail);
@@ -133,15 +120,10 @@ class tx_ttproducts_email_div {
 			$Typo3_htmlmail = t3lib_div::makeInstance('t3lib_htmlmail');
 			$Typo3_htmlmail->start();
 			$Typo3_htmlmail->mailer = 'TYPO3 HTMLMail';
-
+			// $Typo3_htmlmail->useBase64(); TODO
 			$message = html_entity_decode($message);
-			if ($Typo3_htmlmail->linebreak == chr(10)) {
-				$message =
-					str_replace(
-						chr(13) . chr(10),
-						$Typo3_htmlmail->linebreak,
-						$message
-					);
+			if ($Typo3_htmlmail->linebreak == chr(10))	{
+				$message = str_replace(chr(13).chr(10),$Typo3_htmlmail->linebreak,$message);
 			}
 
 			$Typo3_htmlmail->subject = $subject;
@@ -152,17 +134,8 @@ class tx_ttproducts_email_div {
 			$Typo3_htmlmail->replyto_name = $Typo3_htmlmail->from_name;
 			$Typo3_htmlmail->organisation = '';
 
-			if (isset($attachment)) {
-				if (is_array($attachment)) {
-					$attachmentArray = $attachment;
-				} else {
-					$attachmentArray = array($attachment);
-				}
-				foreach ($attachmentArray as $theAttachment) {
-					if (file_exists($theAttachment))	{
-						$Typo3_htmlmail->addAttachment($theAttachment);
-					}
-				}
+			if ($attachment != '' && file_exists($attachment))	{
+				$Typo3_htmlmail->addAttachment($attachment);
 			}
 
 			if ($html)  {
@@ -182,11 +155,9 @@ class tx_ttproducts_email_div {
 			if ($bcc != '')	{
 				$Typo3_htmlmail->add_header('Bcc: '.$bcc);
 			}
-			if (isset($attachment) && is_array($attachment) && count($attachment))	{
-				if (isset($Typo3_htmlmail->theParts) && is_array($Typo3_htmlmail->theParts) && isset($Typo3_htmlmail->theParts['attach']) && is_array($Typo3_htmlmail->theParts['attach'])) {
-					foreach ($Typo3_htmlmail->theParts['attach'] as $k => $media)	{
-						$Typo3_htmlmail->theParts['attach'][$k]['filename'] = basename($media['filename']);
-					}
+			if ($attachment != '')	{
+				foreach ($Typo3_htmlmail->theParts['attach'] as $k => $media)	{
+					$Typo3_htmlmail->theParts['attach'][$k]['filename'] = basename($media['filename']);
 				}
 			}
 			$Typo3_htmlmail->setContent();
@@ -200,16 +171,15 @@ class tx_ttproducts_email_div {
 						$hookObj->init($Typo3_htmlmail);
 					}
 					if (method_exists($hookObj, 'sendMail')) {
-						$result = $hookObj->sendMail($Typo3_htmlmail,$toEMail,$subject,$message,$html,$fromEMail,$fromName,$attachment,$bcc);
+						$rc = $hookObj->sendMail($Typo3_htmlmail, $toEMail, $subject, $message, $html, $fromEMail, $fromName, $attachment, $bcc);
 					}
 				}
 			}
 
-			if ($result !== FALSE)	{
+			if ($rc !== FALSE)	{
 				$Typo3_htmlmail->sendTheMail();
 			}
 		}
-		return $result;
 	}
 
 
@@ -217,7 +187,7 @@ class tx_ttproducts_email_div {
 	 * Send notification email for tracking
 	 */
 	static public function sendNotifyEmail (
-		$cObj,
+		&$cObj,
 		&$conf,
 		&$config,
 		&$feusersObj,
@@ -241,19 +211,19 @@ class tx_ttproducts_email_div {
 
 			// Notification email
 		$recipients = $recipient;
-		$recipients = t3lib_div::trimExplode(',',$recipients,1);
+		$recipients=t3lib_div::trimExplode(',',$recipients,1);
 
 		if (count($recipients)) {	// If any recipients, then compile and send the mail.
-			$emailContent=trim($cObj->getSubpart($templateCode,'###'.$templateMarker.$config['templateSuffix'].'###'));
+			$emailContent=trim($cObj->getSubpart($templateCode, '###' . $templateMarker . $config['templateSuffix'] . '###'));
 			if (!$emailContent)	{
-				$emailContent=trim($cObj->getSubpart($templateCode,'###'.$templateMarker.'###'));
+				$emailContent=trim($cObj->getSubpart($templateCode, '###' . $templateMarker . '###'));
 			}
 			if ($emailContent)  {		// If there is plain text content - which is required!!
 				$markerObj = t3lib_div::makeInstance('tx_ttproducts_marker');
 				$globalMarkerArray = &$markerObj->getGlobalMarkerArray();
 
 				$markerArray = $globalMarkerArray;
-				$markerArray['###ORDER_STATUS_TIME###'] = $cObj->stdWrap($v['time'],$conf['statusDate_stdWrap.']);
+				$markerArray['###ORDER_STATUS_TIME###'] = $cObj->stdWrap($v['time'], $conf['statusDate_stdWrap.']);
 				$markerArray['###ORDER_STATUS###'] = $v['status'];
 				$info = $statusCodeArray[$v['status']];
 				$markerArray['###ORDER_STATUS_INFO###'] = ($info ? $info : $v['info']);
@@ -262,26 +232,18 @@ class tx_ttproducts_email_div {
 				$markerArray['###PERSON_NAME###'] = $orderData['billing']['name'];
 				$markerArray['###DELIVERY_NAME###'] = $orderData['delivery']['name'];
 
-				$feusersObj->getAddressMarkerArray(
-					$orderData['billing'],
-					$markerArray,
-					FALSE,
-					'person'
-				);
-				$feusersObj->getAddressMarkerArray(
-					$orderData['delivery'],
-					$markerArray,
-					FALSE,
-					'delivery'
-				);
+				$variantFieldArray = array();
+				$variantMarkerArray = array();
+				$feusersObj->getAddressMarkerArray($orderData['billing'], $markerArray, FALSE, 'person');
+				$feusersObj->getAddressMarkerArray($orderData['delivery'], $markerArray, FALSE, 'delivery');
 
 				$markerArray['###ORDER_TRACKING_NO###'] = $tracking;
 				$markerArray['###ORDER_UID###'] = $orderNumber;
 				$emailContent = $cObj->substituteMarkerArrayCached($emailContent, $markerArray);
-				$parts = explode(chr(10),$emailContent,2);
+				$parts = explode(chr(10), $emailContent, 2);
 				$subject = trim($parts[0]);
 				$plain_message = trim($parts[1]);
-				self::send_mail(implode($recipients,','), $subject, $plain_message, $tmp='', $senderemail, $sendername);
+				self::send_mail(implode($recipients, ','), $subject, $plain_message, $tmp = '', $senderemail, $sendername);
 			}
 		}
 	}
@@ -290,7 +252,7 @@ class tx_ttproducts_email_div {
 	/**
 	 * Send notification email for gift certificates
 	 */
-	static public function sendGiftEmail ($cObj,&$conf,$recipient,$comment,$giftRow,$templateCode,$templateMarker, $bHtmlMail=false)	{
+	static public function sendGiftEmail (&$cObj,&$conf,$recipient,$comment,$giftRow,$templateCode,$templateMarker, $bHtmlMail=FALSE)	{
 		global $TSFE;
 
 		$sendername = ($giftRow['personname'] ? $giftRow['personname'] : $conf['orderEmail_fromName']);
@@ -299,36 +261,34 @@ class tx_ttproducts_email_div {
 		$recipients = t3lib_div::trimExplode(',',$recipients,1);
 
 		if (count($recipients)) {	// If any recipients, then compile and send the mail.
-			$emailContent=trim($cObj->getSubpart($templateCode,'###'.$templateMarker.'###'));
+			$emailContent=trim($cObj->getSubpart($templateCode, '###' . $templateMarker . '###'));
 			if ($emailContent)  {		// If there is plain text content - which is required!!
 				$markerObj = t3lib_div::makeInstance('tx_ttproducts_marker');
 				$globalMarkerArray = &$markerObj->getGlobalMarkerArray();
-				$priceViewObj = t3lib_div::makeInstance('tx_ttproducts_field_price_view');
 
-				$parts = explode(chr(10),$emailContent,2);	// First line is subject
+				$parts = explode(chr(10), $emailContent,2);	// First line is subject
 				$subject = trim($parts[0]);
 				$plain_message = trim($parts[1]);
 
 				$markerArray = $globalMarkerArray;
-
-				$markerArray['###CERTIFICATES_TOTAL###'] = $priceViewObj->priceFormat($giftRow['amount']);
-				$markerArray['###CERTIFICATES_UNIQUE_CODE###'] = $giftRow['uid'].'-'.$giftRow['crdate'];
+				$markerArray['###CERTIFICATES_TOTAL###'] = $giftRow['amount'];
+				$markerArray['###CERTIFICATES_UNIQUE_CODE###'] = $giftRow['uid'] . '-' . $giftRow['crdate'];
 				$markerArray['###PERSON_NAME###'] = $giftRow['personname'];
 				$markerArray['###DELIVERY_NAME###'] = $giftRow['deliveryname'];
-				$markerArray['###ORDER_STATUS_COMMENT###'] = $giftRow['note'].($bHtmlMail?'\n':chr(13)).$comment;
+				$markerArray['###ORDER_STATUS_COMMENT###'] = $giftRow['note'] . ($bHtmlMail ? '\n' : chr(13)) . $comment;
 				$emailContent = $cObj->substituteMarkerArrayCached($plain_message, $markerArray);
 
-				$recipients = implode($recipients,',');
+				$recipients = implode($recipients, ',');
 
 				if ($bHtmlMail) {	// If htmlmail lib is included, then generate a nice HTML-email
-					$HTMLmailShell = $cObj->getSubpart($this->templateCode,'###EMAIL_HTML_SHELL###');
-					$HTMLmailContent = $cObj->substituteMarker($HTMLmailShell,'###HTML_BODY###',$emailContent);
+					$HTMLmailShell = $cObj->getSubpart($this->templateCode, '###EMAIL_HTML_SHELL###');
+					$HTMLmailContent = $cObj->substituteMarker($HTMLmailShell, '###HTML_BODY###', $emailContent);
 					$markerObj = t3lib_div::makeInstance('tx_ttproducts_marker');
 					$HTMLmailContent=$cObj->substituteMarkerArray($HTMLmailContent, $markerObj->getGlobalMarkerArray());
 
 					self::send_mail($recipients,  $subject, $emailContent, $HTMLmailContent, $senderemail, $sendername, $conf['GiftAttachment']);
 				} else {		// ... else just plain text...
-					self::send_mail($recipients, $subject, $emailContent, $tmp='',$senderemail, $sendername, $conf['GiftAttachment']);
+					self::send_mail($recipients, $subject, $emailContent, $tmp = '',$senderemail, $sendername, $conf['GiftAttachment']);
 				}
 			}
 		}

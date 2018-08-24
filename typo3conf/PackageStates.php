@@ -89,6 +89,9 @@ return [
         'filelist' => [
             'packagePath' => 'typo3/sysext/filelist/',
         ],
+        'filemetadata' => [
+            'packagePath' => 'typo3/sysext/filemetadata/',
+        ],
         'form' => [
             'packagePath' => 'typo3/sysext/form/',
         ],
@@ -145,6 +148,9 @@ return [
         ],
         'extension_builder' => [
             'packagePath' => 'typo3conf/ext/extension_builder/',
+        ],
+        'static_info_tables' => [
+            'packagePath' => 'typo3conf/ext/static_info_tables/',
         ],
         'tmmarket' => [
             'packagePath' => 'typo3conf/ext/tmmarket/',

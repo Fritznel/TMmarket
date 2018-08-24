@@ -144,6 +144,10 @@
 							<numindex index="0">LLL:EXT:tt_products/locallang_db.xml:tt_content.pi_flexform.display_mode.34</numindex>
 							<numindex index="1">MEMODAM</numindex>
 						</numindex>
+						<numindex index="27">
+							<numindex index="0">LLL:EXT:tt_products/locallang_db.xml:tt_content.pi_flexform.display_mode.35</numindex>
+							<numindex index="1">MEMODAMOVERVIEW</numindex>
+						</numindex>
 						<numindex index="28">
 							<numindex index="0">LLL:EXT:tt_products/locallang_db.xml:tt_content.pi_flexform.display_mode.24</numindex>
 							<numindex index="1">LISTDAMCAT</numindex>
@@ -197,22 +201,6 @@
 				</config>
 			</TCEforms>
 	      </productSelection>
-		<categorySelection>
-			<TCEforms>
-				<label>LLL:EXT:tt_products/locallang_db.xml:tt_content.pi_flexform.category_selection</label>
-				<config>
-					<type>select</type>
-					<form_type>user</form_type>
-					<userFunc>tx_ttproducts_hooks_be->displayCategoryTree</userFunc>
-					<treeView>1</treeView>
-					<foreign_table>tt_products_cat</foreign_table>
-					<foreign_table_where> ORDER BY tt_products_cat.sorting</foreign_table_where>
-					<autoSizeMax>30</autoSizeMax>
-					<minitems>0</minitems>
-					<maxitems>99</maxitems>
-				</config>
-			</TCEforms>
-		</categorySelection>
 	      <template_suffix>
 			<TCEforms>
 				<label>LLL:EXT:tt_products/locallang_db.xml:tt_content.pi_flexform.template_suffix</label>

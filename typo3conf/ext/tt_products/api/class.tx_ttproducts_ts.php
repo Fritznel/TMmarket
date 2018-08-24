@@ -37,13 +37,12 @@
  */
 
 
-class tx_ttproducts_ts implements t3lib_Singleton {
+class tx_ttproducts_ts {
 	static $count = 0;
 
 	protected function getChilds ($uid = 0) {
 		$cObj = t3lib_div::makeInstance('tx_div2007_cobj');
 		$where = 'pid = ' . $uid . $cObj->enableFields('pages');
-
 		$rows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid', 'pages', $where);
 		$childs = array();
 
@@ -193,6 +192,5 @@ class tx_ttproducts_ts implements t3lib_Singleton {
 if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/tt_products/api/class.tx_ttproducts_ts.php']) {
 	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/tt_products/api/class.tx_ttproducts_ts.php']);
 }
-
 
 ?>

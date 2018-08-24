@@ -90,7 +90,7 @@ ul#cat1 a {
 	background-image:url(icons/arrow-right-off.gif);
 	background-repeat:no-repeat;
 	background-position: 5px 4px;
-	padding-left: 17px;	
+	padding-left: 17px;
 }
 
 ul#cat1 a:link { color:#414141; text-decoration:none }
@@ -104,7 +104,7 @@ ul#cat1 a.act {
 	background-repeat:no-repeat;
 	background-position: 5px 4px;
 	padding-left: 17px;
-} 
+}
 
 ul#cat1 a.act:link { color:#AED91A; text-decoration:none }
 ul#cat1 a.act:visited { color:#AED91A; text-decoration:none  }
@@ -197,7 +197,7 @@ h4.shop-list-button-detailansicht {
 	background-repeat:no-repeat;
 	background-position: 0px 5px;
 	padding-left:10px;
-}	
+}
 
 h4.shop-list-button-detailansicht a:link { text-decoration: none; color: #AED91A;}
 h4.shop-list-button-detailansicht a:visited { text-decoration: none; color: #AED91A;}
@@ -239,7 +239,7 @@ h4.shop-list-button-detailansicht a:active { text-decoration: none; color: #AED9
 
 .shop-single-product-img {
 	margin-bottom: 15px;
-}	
+}
 
 p.shop-single-product-subtitle {
 	margin: 0px;
@@ -296,7 +296,7 @@ table.shop-single-price-table {
 	background-image:url(icons/arrow-right-on.gif);
 	background-repeat:no-repeat;
 	background-position: 0px 5px;
-	padding-left:10px;	
+	padding-left:10px;
 	margin-top: 15px;
 	float: left;
 	margin-bottom: 25px;
@@ -613,7 +613,7 @@ table.shop-payment-billing-address-table {
 .shop-payment-billing-address-table td {
 	padding-right: 5px;
 	padding-bottom: 10px;
-	
+
 	font-size: 12px;
 }
 
@@ -634,7 +634,7 @@ table.shop-payment-billing-address-table {
 
 .shop-payment-billing-note {
 	margin-bottom: 30px;
-	
+
 }
 
 .shop-basket-payment input[type=submit] {
@@ -714,4 +714,3 @@ input[type=submit] {
 	border: 1px solid #bdbdbd;
 	background-color:#f4f4f4;
 }
-

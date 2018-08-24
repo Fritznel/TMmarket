@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2007-2009 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2007-2009 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -37,7 +37,8 @@
  */
 
 
-class tx_ttproducts_variant_dummy  implements t3lib_Singleton, tx_ttproducts_variant_int {
+
+class tx_ttproducts_variant_dummy implements tx_ttproducts_variant_int, t3lib_Singleton {
 	private $selectableArray = array();
 	public $conf;	// reduced local conf
 
@@ -63,7 +64,7 @@ class tx_ttproducts_variant_dummy  implements t3lib_Singleton, tx_ttproducts_var
 	 * @access private
 	 * @see getVariantFromRow
 	 */
-	public function modifyRowFromVariant (&$row, $variant='') {
+	public function modifyRowFromVariant (&$row, $variant = '') {
 	}
 
 	/**
@@ -91,7 +92,7 @@ class tx_ttproducts_variant_dummy  implements t3lib_Singleton, tx_ttproducts_var
 	public function getVariantFromRawRow (&$row) {
 	}
 
-	public function getVariantRow($row='',$varianArray=array())	{
+	public function getVariantRow($row = '', $varianArray = array())	{
 	}
 
 	public function getTableUid ($table, $uid)	{
@@ -103,7 +104,7 @@ class tx_ttproducts_variant_dummy  implements t3lib_Singleton, tx_ttproducts_var
 		return $this->selectableArray;
 	}
 
-	public function getVariantValuesByArticle ($articleRowArray,$productRow,$withSemicolon = FALSE) {
+	public function getVariantValuesByArticle ($articleRowArray,$productRow,$withSemicolon=FALSE) {
 	}
 
 	public function filterArticleRowsByVariant($row, $variant, $articleRows, $bCombined=FALSE) {

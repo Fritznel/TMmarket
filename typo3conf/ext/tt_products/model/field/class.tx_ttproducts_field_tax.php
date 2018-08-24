@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2008-2009 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2008-2009 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -43,7 +43,7 @@ class tx_ttproducts_field_tax extends tx_ttproducts_field_base {
 	/**
 	 *
 	 */
-	public function preInit ($cObj, $bUseStaticTaxes, $uidStore) {
+	public function preInit($cObj, $bUseStaticTaxes, $uidStore) {
 		global $TYPO3_DB,$TSFE,$TCA;
 
 		parent::init($cObj);
@@ -51,7 +51,7 @@ class tx_ttproducts_field_tax extends tx_ttproducts_field_base {
 		if ($bUseStaticTaxes && $uidStore)	{
 			$tablesObj = t3lib_div::makeInstance('tx_ttproducts_tables');
 			$staticTaxObj = $tablesObj->get('static_taxes', FALSE);
-/*			$dummyRow = array('tax_id' => '1');*/
+
 			$staticTaxObj->setStoreData($uidStore);
 			if ($staticTaxObj->isValid())	{
 				$this->bUseStaticTaxes = TRUE;
@@ -63,15 +63,13 @@ class tx_ttproducts_field_tax extends tx_ttproducts_field_base {
 		return $this->bUseStaticTaxes;
 	}
 
-	public function getTax ($basketExtra, &$row) {
-		$rc = $this->getFieldValue ($basketExtra, $row, 'tax');
+	public function getTax (&$row)	{
+		$rc = $this->getFieldValue ($row, 'tax');
 		return $rc;
 	}
 
-	public function getFieldValue ($basketExtra, $row, $fieldname)	{
+	public function getFieldValue ($row, $fieldname)	{
 		$newTax = '';
-		$fieldValue = '';
-		$taxFromShipping = '';
 
 		if ($this->getUseStaticTaxes())	{
 			$taxArray = array();
@@ -80,32 +78,20 @@ class tx_ttproducts_field_tax extends tx_ttproducts_field_base {
 			$staticTaxObj->getStaticTax($row, $newTax, $taxArray);
 		}
 
-		if (is_numeric($newTax)) {
+		if (is_float($newTax))	{
 			$fieldValue = $newTax;
 		} else {
-			$fieldValue = parent::getFieldValue($basketExtra, $row, $fieldname);
-			$paymentshippingObj = t3lib_div::makeInstance('tx_ttproducts_paymentshipping');
-			if (isset($paymentshippingObj) && is_object($paymentshippingObj)) {
-				$taxFromShipping =
-					$paymentshippingObj->getReplaceTaxPercentage(
-						$basketExtra,
-						'shipping',
-						$row['tax']
-					);	// if set then this has a tax which will override the tax of the products
+			$fieldValue = parent::getFieldValue($row, $fieldname);
 
-				if (is_numeric($taxFromShipping)) {
-					$fieldValue = $taxFromShipping;
-				}
-			}
-
-			if (!is_numeric($taxFromShipping) && $fieldValue == 0)	{
-				if ($this->conf['TAXpercentage'])	{
+			if ($fieldValue == 0) {
+				if ($this->conf['TAXpercentage']) {
 					$fieldValue = floatval($this->conf['TAXpercentage']);
 				} else {
 					$fieldValue = 0.0;
 				}
 			}
 		}
+
 		return $fieldValue;
 	}
 }

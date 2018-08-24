@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Franz Holzinger (franz@ttproducts.de)
+*  (c) 2006-2010 Franz Holzinger <franz@ttproducts.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -28,14 +28,12 @@
  * Part of the tt_products (Shopping System) extension.
  *
  * Payment Library extra functions
- * deprecated: use the extension transactor (Payment Transactor API) instead of this code
  *
  * @author  Franz Holzinger <franz@ttproducts.de>
  * @package TYPO3
  * @subpackage tt_products
  *
  */
-
 
 
 class tx_ttproducts_paymentlib implements t3lib_Singleton {
@@ -85,7 +83,6 @@ class tx_ttproducts_paymentlib implements t3lib_Singleton {
 
 		if (is_object($providerObject))	{
 			$tablesObj = t3lib_div::makeInstance('tx_ttproducts_tables');
-
 			$orderObj = $tablesObj->get('sys_products_orders');
 			$orderUid = $orderObj->getUid();
 
@@ -120,12 +117,11 @@ class tx_ttproducts_paymentlib implements t3lib_Singleton {
 	/**
 	 * Include handle extension library
 	 */
-	public function includeHandleLib ($handleLib, $basketExtra, $calculatedArray, &$confScript, &$bFinalize, &$errorMessage)	{
+	public function includeHandleLib ($handleLib, &$confScript, &$bFinalize, &$errorMessage)	{
 		global $TSFE;
 
 		$lConf = $confScript;
 		$content = '';
-
 		if (strpos($handleLib,'paymentlib') !== FALSE)	{
 
 			if (t3lib_extMgm::isLoaded($handleLib))	{
@@ -135,7 +131,6 @@ class tx_ttproducts_paymentlib implements t3lib_Singleton {
 			$providerFactoryObj = ($handleLib == 'paymentlib' ? tx_paymentlib_providerfactory::getInstance() : tx_paymentlib2_providerfactory::getInstance());
 			$paymentMethod = $confScript['paymentMethod'];
 			$providerProxyObject = $providerFactoryObj->getProviderObjectByPaymentMethod($paymentMethod);
-
 			if (is_object($providerProxyObject))	{
 				if (method_exists($providerProxyObject, 'getRealInstance'))	{
 					$providerObject = $providerProxyObject->getRealInstance();
@@ -152,23 +147,21 @@ class tx_ttproducts_paymentlib implements t3lib_Singleton {
 					TT_PRODUCTS_EXT,
 					$confScript['conf.']
 				);
-
 				if (!$ok)	{
 					$errorMessage = 'ERROR: Could not initialize transaction.';
 					return '';
 				}
-				$this->getPaymentBasket($basketExtra, $totalArr, $addrArr, $paymentBasketArray);
+				$this->getPaymentBasket($totalArr, $addrArr, $paymentBasketArray);
 				$referenceId = $this->getReferenceUid();
-
 				if (!$referenceId)	{
 					$errorMessage = tx_div2007_alpha5::getLL_fh003($langObj, 'error_reference_id');
 					return '';
 				}
 
 				$transactionDetailsArr = $this->getTransactionDetails($referenceId, $handleLib, $confScript, $totalArr, $addrArr, $paymentBasketArray);
+
 					// Set payment details and get the form data:
 				$ok = $providerObject->transaction_setDetails($transactionDetailsArr);
-
 				if (!$ok) {
 					$errorMessage = tx_div2007_alpha5::getLL_fh003($langObj, 'error_transaction_details');
 					return '';
@@ -192,7 +185,7 @@ class tx_ttproducts_paymentlib implements t3lib_Singleton {
 
 					if ($gatewayMode == $compGatewayForm)	{
 
-						$templateFilename = $lConf['templateFile'] ? $lConf['templateFile'] : (t3lib_extMgm::isLoaded('addons_tt_products') ? 'EXT:'.TT_PRODUCTS_EXT.'/template/paymentlib.tmpl' : '');
+						$templateFilename = $lConf['templateFile'] ? $lConf['templateFile'] : (t3lib_extMgm::isLoaded('addons_tt_products') ? 'EXT:' . TT_PRODUCTS_EXT . '/template/paymentlib.tmpl' : '');
 						if (!$templateFilename)	{
 							$templateObj = t3lib_div::makeInstance('tx_ttproducts_template');
 							$templateFilename = $templateObj->getTemplateFile();
@@ -228,21 +221,7 @@ class tx_ttproducts_paymentlib implements t3lib_Singleton {
                             );
 							$markerArray['###PAYMENTLIB_WWW###'] = $lConf['extWww'];
 
-							$content=$this->basketView->getView(
-								$localTemplateCode,
-								'PAYMENT',
-								$this->info,
-								FALSE,
-								FALSE,
-								$calculatedArray,
-								TRUE,
-								'PAYMENTLIB_FORM_TEMPLATE',
-								$markerArray,
-								$templateFilename,
-								array(),
-								array(),
-								$basketExtra
-							);
+							$content=$this->basketView->getView($localTemplateCode,'PAYMENT', $this->info, FALSE, FALSE, TRUE, 'PAYMENTLIB_FORM_TEMPLATE', $markerArray, $templateFilename);
 						} else {
 							if ($bError)	{
 								$errorMessage = $formuri;
@@ -266,7 +245,6 @@ class tx_ttproducts_paymentlib implements t3lib_Singleton {
 				$errorMessage = 'ERROR: Could not find provider object for payment method \''.$paymentMethod.'\' .';
 			}
 		}
-
 		return $content;
 	} // includeHandleLib
 
@@ -312,7 +290,7 @@ class tx_ttproducts_paymentlib implements t3lib_Singleton {
 		$addQueryString = array();
 		$excludeList = '';
 		$target = '';
-		$url = tx_div2007_alpha5::getTypoLink_URL_fh003($this->pibase->cObj,$pid,$this->urlObj->getLinkParams($excludeList,$addQueryString,TRUE),$target,$conf);
+		$url = tx_div2007_alpha5::getTypoLink_URL_fh003($this->pibase->cObj, $pid, $this->urlObj->getLinkParams($excludeList, $addQueryString, TRUE), $target, $conf);
 		return $url;
 	}
 
@@ -327,16 +305,14 @@ class tx_ttproducts_paymentlib implements t3lib_Singleton {
 		$tablesObj = t3lib_div::makeInstance('tx_ttproducts_tables');
 
 		$param = '';
+		// perform the access to the Gateway
 		$paramNameActivity = '&products_' . $this->conf['paymentActivity'];
 		$paramFailLink = $paramNameActivity . '=0' . $param;
 		$paramSuccessLink = $paramNameActivity . '=1' . $param;
 		$paramReturi = $param;
 
 			// Prepare some values for the form fields:
-		$calculObj = t3lib_div::makeInstance('tx_ttproducts_basket_calculate');
-		$calculatedArray = $calculObj->getCalculatedArray();
-
-		$totalPrice = $calculatedArray['priceNoTax']['total'];
+		$totalPrice = $this->basket->calculatedArray['priceNoTax']['total'];
 		$totalPriceFormatted = $priceViewObj->priceFormat($totalPrice);
 		$orderObj = $tablesObj->get('sys_products_orders');
 		$orderUid = $orderObj->getUid();
@@ -385,9 +361,12 @@ class tx_ttproducts_paymentlib implements t3lib_Singleton {
 			$cardRow = $cardObj->getRow($cardUid);
 			$transactionDetailsArr['cc'] = $cardRow;
 		}
-
 		return $transactionDetailsArr;
 	}
+//*******************************************************************************//
+//* Added by Udo Gerhards: If the $providerObject has a basket fill it, begin   *//
+//*******************************************************************************//
+
 
 	//****************************************************//
 	//* Filling the basket of a paymentlib basket if the *//
@@ -397,7 +376,7 @@ class tx_ttproducts_paymentlib implements t3lib_Singleton {
 	//* @providerObject		The paymentlib-object which  *//
 	//*                     holds the payment-basket     *//
 	//****************************************************//
-	public function getPaymentBasket ($basketExtra, &$totalArr, &$addrArr, &$basketArr) {
+	public function getPaymentBasket (&$totalArr, &$addrArr, &$basketArr) {
 		global $TYPO3_DB;
 
 		$bUseStaticInfo = FALSE;
@@ -415,28 +394,29 @@ class tx_ttproducts_paymentlib implements t3lib_Singleton {
 		// Get references to the concerning baskets
 		//$pOBasket = &$providerObject->payment_basket;
 		$shopBasket = $this->basket;
-		$calculObj = t3lib_div::makeInstance('tx_ttproducts_basket_calculate');
 
 		// Get references from the shop basket
 		$items = &$shopBasket->itemArray;
-		$calculatedArray = &$calculObj->getCalculatedArray();
+		$calculatedArray = &$shopBasket->calculatedArray;
 
 		// Setting up total values
 		$totalArr = array();
 		$totalArr['goodsnotax'] = $this->fFloat($calculatedArray['priceNoTax']['goodstotal']);
 		$totalArr['goodstax'] = $this->fFloat($calculatedArray['priceTax']['goodstotal']);
-		$totalArr['paymentnotax'] = $this->fFloat($calculatedArray['payment']['priceNoTax']);
-		$totalArr['paymenttax'] = $this->fFloat($calculatedArray['payment']['priceTax']);
-		$totalArr['shippingnotax'] = $this->fFloat($calculatedArray['shipping']['priceNoTax']);
-		$totalArr['shippingtax'] = $this->fFloat($calculatedArray['shipping']['priceTax']);
-		$totalArr['handlingnotax'] = $this->fFloat($calculatedArray['handling']['0']['priceNoTax']);
-		$totalArr['handlingtax'] = $this->fFloat($calculatedArray['handling']['0']['priceTax']);
+		$totalArr['paymentnotax'] = $this->fFloat($calculatedArray['priceNoTax']['payment']);
+		$totalArr['paymenttax'] = $this->fFloat($calculatedArray['priceTax']['payment']);
+		$totalArr['shippingnotax'] = $this->fFloat($calculatedArray['priceNoTax']['shipping']);
+		$totalArr['shippingtax'] = $this->fFloat($calculatedArray['priceTax']['shipping']);
+		$totalArr['handlingnotax'] = $this->fFloat($calculatedArray['priceNoTax']['handling']);
+		$totalArr['handlingtax'] = $this->fFloat($calculatedArray['priceTax']['handling']);
 /*		$totalArr['amountnotax'] = $this->fFloat($calculatedArray['priceNoTax']['total']);
 		$totalArr['amounttax'] = $this->fFloat($calculatedArray['priceTax']['total']);*/
 		$totalArr['amountnotax'] = $this->fFloat($calculatedArray['priceNoTax']['vouchertotal']);
 		$totalArr['amounttax'] = $this->fFloat($calculatedArray['priceTax']['vouchertotal']);
 		$totalArr['taxrate'] = $calculatedArray['maxtax']['goodstotal'];
 		$totalArr['totaltax'] = $this->fFloat($totalArr['amounttax'] - $totalArr['amountnotax']);
+// 		$totalArr['totalamountnotax'] = $this->fFloat($totalArr['amountnotax'] + $totalArr['shippingnotax'] + $totalArr['handlingnotax']);
+// 		$totalArr['totalamount'] = $this->fFloat($totalArr['amounttax'] + $totalArr['shippingtax'] + $totalArr['handlingtax']);
 
 		// Setting up address info values
 		$mapAddrFields = array(
@@ -514,7 +494,7 @@ class tx_ttproducts_paymentlib implements t3lib_Singleton {
 					'quantity' => $count,
 					'amount' => $this->fFloat($actItem['priceNoTax']),
 					'shipping' => $count * $totalArr['shippingtax'] / $totalCount,
-					'handling' => $this->fFloat($priceObj->getPrice($basketExtra, $row['handling'],0,$row)),
+					'handling' => $this->fFloat($priceObj->getPrice($row['handling'],0,$row)),
 					'taxpercent' => $tax,
 					'tax' => $this->fFloat($actItem['priceTax'] - $actItem['priceNoTax']),
 					'totaltax' => $this->fFloat($actItem['totalTax'])-$this->fFloat($actItem['totalNoTax']),
@@ -537,20 +517,21 @@ class tx_ttproducts_paymentlib implements t3lib_Singleton {
 					'taxpercent' => 0,
 					'item_number' => 'VOUCHER'
 				);
+
 			$totalArr['goodsnotax'] = $this->fFloat($calculatedArray['priceNoTax']['goodstotal'] + $voucherAmount);
 			$totalArr['goodstax'] = $this->fFloat($calculatedArray['priceTax']['goodstotal'] + $voucherAmount);
 		}
 	}
 
 
-	public function fFloat ($value=0)	{
+	public function fFloat ($value = 0)	{
 		if (is_float($value))	{
 			$float = $value;
 		} else {
 			$float = floatval($value);
 		}
 
-		return round($float,2);
+		return round($float, 2);
 	}
 }
 
